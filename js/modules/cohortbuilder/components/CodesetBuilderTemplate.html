@@ -1,0 +1,36 @@
+<template id="codesetTemplate">
+	<select data-bind="options: Codesets(), 
+		optionsText: function(item) { return item.Name }, 
+		optionsCaption: 'Please select codeset to modify...', 
+		value: selectedCodeset" class="mediumInputField">
+	</select>
+	<button class="button button-flat-primary button-small" data-bind="click: function () { $component.addCodeset() }">New Codeset</button>
+	<button class="button button-flat-caution button-small" data-bind="visible: selectedCodeset, click: function () { $component.removeCodeset() }">Delete Codeset</button>
+	<div data-bind="if: selectedCodeset">
+		<table data-bind="with: selectedCodeset">
+			<colgroup>
+				<col />
+				<col />
+				<col />
+			</colgroup>
+			<tbody>
+				<tr>
+					<td>Name:</td>
+					<td><input data-bind="value: Name"></input></td>
+				</tr>
+				<tr>
+					<td>Target Concepts:<br><span style="font-size: .7em"><input type="checkbox" data-bind="checked: UseDescendents" /> include descendent concepts</span></td>
+					<td><concept-picker params="ConceptList: TargetConcepts"></concept-picker></td>
+				</tr>
+				<tr>
+					<td>Excluded Concepts:<br><span style="font-size: .7em"><input type="checkbox" data-bind="checked: ExcludeDescendents" /> exclude descendent concepts</span></td>
+					<td><concept-picker params="ConceptList: Excluded"></concept-picker></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</template>
+<template id="codesetTemplate-readonly">
+	This is a readonly template.
+</template>
+<div data-bind="template: { name: 'codesetTemplate' }"></div>

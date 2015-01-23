@@ -1,0 +1,22 @@
+define(['knockout', '../InputTypes/Range','../InputTypes/Concept'], function (ko, Range, Concept) {
+	function ObservationPeriod(data) {
+		var self = this;
+		data = data || {};
+
+		self.PeriodStartDate = ko.observable(data.OccurrenceStartDate && new Range(data.PeriodStartDate));
+		self.PeriodEndDate = ko.observable(data.OccurrenceEndDate && new Range(data.PeriodEndDate));
+		self.PeriodType = ko.observable(data.PeriodType && ko.observableArray(data.PeriodType.map(function (d) {
+			return new Concept(d);
+		})));
+
+		// Derived Fields
+		self.AgeAtStart = ko.observable(data.AgeAtStart && new Range(data.AgeAtStart));
+		self.AgeAtEnd = ko.observable(data.AgeAtEnd && new Range(data.AgeAtEnd));
+		self.PeriodLength = ko.observable(data.PeriodLength && new Range(data.PeriodLength));
+	}
+
+	ObservationPeriod.prototype.toJSON = function () {
+		return this;
+	}
+	return ObservationPeriod;
+});

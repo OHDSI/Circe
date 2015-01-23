@@ -1,0 +1,86 @@
+<div class="tabs" data-bind="tabs: { }">
+	<ul>
+		<li data-bind="attr: { 'aria-controls': 'criteria' }">
+			<a data-bind="attr: { title: 'Criteria', href: '#criteria' }, text: 'Criteria'"></a>
+		</li>
+		<li data-bind="attr: { 'aria-controls': 'codesets' }">
+			<a data-bind="attr: { title: 'Codesets', href: '#codesets' }, text: 'Codesets'"></a>
+		</li>
+		<li data-bind="attr: { 'aria-controls': 'printfriendly' }">
+			<a data-bind="attr: { title: 'Print Friendly', href: '#printfriendly' }, text: 'Print Friendly'"></a>
+		</li>
+		<li data-bind="attr: { 'aria-controls': 'raw' }">
+			<a data-bind="attr: { title: 'Raw JSON', href: '#raw' }, text: 'Raw JSON'"></a>
+		</li>		
+	</ul>
+	<div data-bind="attr: { id: 'codesets' }, with: rule">
+		<div style="padding: 5px">
+			<codeset-builder params="{Codesets: Codesets}"></codeset-builder>
+		</div>
+	</div>
+	<div data-bind="attr: { id: 'criteria' }">
+		<div class="criteriaGroup">
+			<div class="criteriaHeading">
+				<table>
+					<colgroup>
+						<col />
+						<col />
+					</colgroup>
+					<tbody>
+						<tr>
+							<td>
+								People having any of the following:
+							</td>
+							<td>
+								<div data-bind="ddSlickAction: $component.addPrimaryCriteriaOptions"></div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<table class="criteria">
+				<colgroup>
+					<col span="1" class="rule" />
+					<col span="1" class="delete" />
+				</colgroup>
+				<tbody data-bind="foreach: rule().PrimaryCriteria">
+					<tr style="padding-top: 5px">
+						<td>
+							<div data-bind='component: { 
+													name: $component.getCriteriaIndexComponent($data),
+													params: {rule: $component.rule(), criteria: $data}
+												}'></div>
+						</td>
+						<td style="vertical-align: top; padding-top: 5px">
+							<button class="button button-small button-flat-caution" data-bind="click: function (data, event) { $component.removePrimaryCriteria(data) }">Delete Criteria</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div data-bind="with: rule().ObservationWindow"> with observation at least 
+					<span contenteditable="true" class="numericInputField dropdown" data-bind="htmlValue: PriorDays.numeric(), ko_autocomplete: { source: $component.options.dayOptions, minLength: 0, maxShowItems: 10, scroll: true }" /> days prior 
+				and <span contenteditable="true" class="numericInputField dropdown" data-bind="htmlValue: PostDays.numeric(), ko_autocomplete: { source: $component.options.dayOptions, minLength: 0, maxShowItems: 10, scroll: true }" /> days after index
+			</div>
+		</div>
+
+		<div data-bind="with: rule">
+			<div data-bind="if: AdditionalCriteria">
+				<div style="font-weight: bold">For people matching the Primary Criteria, include:</div>
+				<criteria-group params="{rule: $data, group: AdditionalCriteria}"></criteria-group>
+				<button class="button button-flat-primary button-small" data-bind="click: function () { $component.removeAdditionalCriteria() }">Remove Additional Criteria</button>
+			</div>
+			<div data-bind="ifnot: AdditionalCriteria">
+				<button class="button button-flat-primary button-small" data-bind="click: function () { $component.addAdditionalCriteria() }">Add Additional Criteria</button>
+			</div>
+		</div>
+	</div>
+	<div data-bind="attr: { id: 'printfriendly' }">
+		<div style="padding: 5px">
+			Print friendly version of cohort criteria here.
+		</div>
+	</div>
+	<div data-bind="attr: { id: 'raw' }">
+		<textarea style="width: 100%; height: 500px" data-bind="text: getRuleJSON()"></textarea>
+	</div>
+</div>

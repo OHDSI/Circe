@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="js/jqueryui/themes/base/jquery-ui.css"/>
+	<link rel="stylesheet" href="js/jqueryui/themes/base/jquery.ui.datepicker.css"/>
+	<script src="js/require.js"></script>
+	<script src="js/main.js"></script>
+</head>
+
+<body>
+	<div>
+		Simple editor:
+		<table>
+			<tr>
+				<td>
+					<select data-bind="options: sampleRules, 
+						optionsText: function(item) { return item.Title() }, 
+						optionsCaption: 'Please select...', 
+						value: selectedRule" class="mediumInputField">
+					</select>
+				</td>
+				<td><button data-bind="click: $root.resetForm">Reset Form</button></td>				
+				<td><div data-bind="ddSlickNewCohort: {}"></div></td>
+			</tr>
+		</table>
+	</div>
+	<table width="70%">
+		<col width="100%" />
+			<tr>
+				<td style="vertical-align: top">
+					<div data-bind="if: selectedRule()">
+						<span data-bind="text: selectedRule().Title"></span>
+						<cohort-builder params="rule: selectedRule()"></cohort-builder>
+						<button data-bind="click: generate">Generate</button>
+					</div>
+				</td>
+			</tr>
+	</table>
+</body>
+
+</html>

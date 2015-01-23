@@ -1,0 +1,160 @@
+define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', 'text!./ProcedureOccurrenceTemplate.html'], function (ko, options, Range, Text, template) {
+
+	function ProcedureOccurrenceViewModel(params) {
+		var self = this;
+
+		var addActions = [
+			{
+				text: "Add Procedure Start Date Criterion",
+				value: 0,
+				selected: false,
+				description: "Filter Procedure Occurrences by the Procedure Start Date."
+			},
+			{
+				text: "Add Procedure Type Criterion",
+				value: 2,
+				selected: false,
+				description: "Filter Procedure Occurrences  by the Procedure Type."
+			},
+			{
+				text: "Add Modifier Criterion",
+				value: 1,
+				selected: false,
+				description: "Filter Procedure Occurrences  by the Modifier."
+			},
+			{
+				text: "Add Quantity Criterion",
+				value: 3,
+				selected: false,
+				description: "Filter Procedure Occurrences  by Quantity."
+					},
+			{
+				text: "Add Procedure Source Concept Criterion",
+				value: 4,
+				selected: false,
+				description: "Filter Procedure Occurrences  by the Procedure Source Concept."
+					},
+			{
+				text: "Add New Diagnosis Criterion",
+				value: 5,
+				selected: false,
+				description: "Limit Procedure Occurrences to new diagnosis."
+					},
+
+			{
+				text: "Add Age at Occurrence Criterion",
+				value: 6,
+				selected: false,
+				description: "Filter Procedure Occurrences by age at occurrence."
+					}, {
+				text: "Add Gender Criterion",
+				value: 7,
+				selected: false,
+				description: "Filter Procedure Occurrences based on Gender."
+					},
+/*
+ 			{
+				text: "Add Prior Observation Duration Criterion",
+				value: 8,
+				selected: false,
+				description: "Filter Procedure Occurrences based on Prior Observation Duration."
+					},
+			{
+				text: "Add Post Observation Duration Criterion",
+				value: 9,
+				selected: false,
+				description: "Filter Procedure Occurrences based on Prior Observation Duration."
+					},
+*/
+			{
+				text: "Add Provider Specialty Criterion",
+				value: 10,
+				selected: false,
+				description: "Filter Procedure Occurrences based on Prior Observation Duration."
+					},
+			{
+				text: "Add Visit Type Criterion",
+				value: 11,
+				selected: false,
+				description: "Filter Procedure Occurrences based on Prior Observation Duration."
+			}
+		];
+
+		self.addCriterionSettings = {
+			selectText: "Add Criterion...",
+			height:300,
+			actionOptions: addActions,
+			onAction: function (data) {
+				var criteriaType = data.selectedData.value;
+				switch (criteriaType) {
+				case 0:
+					if (self.Criteria.OccurrenceStartDate() == null)
+						self.Criteria.OccurrenceStartDate(new Range({Op: "lt"}));
+					break;
+				case 1:
+					if (self.Criteria.Modifier() == null)
+						self.Criteria.Modifier(ko.observableArray());
+					break;
+				case 2:
+					if (self.Criteria.ProcedureType() == null)
+						self.Criteria.ProcedureType(ko.observableArray());
+					break;
+				case 3:
+					if (self.Criteria.Quantity() == null)
+						self.Criteria.Quantity(new Range({Op: "lt"}));
+					break;
+				case 4:
+					if (self.Criteria.ProcedureSourceConcept() == null)
+						self.Criteria.ProcedureSourceConcept(ko.observable());
+					break;
+				case 5:
+					if (self.Criteria.First() == null)
+						self.Criteria.First(true);
+					break;
+				case 6:
+					if (self.Criteria.Age() == null)
+						self.Criteria.Age(new Range());
+					break;
+				case 7:
+					if (self.Criteria.Gender() == null)
+						self.Criteria.Gender(ko.observableArray());
+					break;
+/*
+ 				case 8:
+					if (typeof self.Criteria.PriorEnrollDays() != "number")
+						self.Criteria.PriorEnrollDays(0);
+					break;
+				case 9:
+					if (typeof self.Criteria.AfterEnrollDays() != "number")
+						self.Criteria.AfterEnrollDays(0);
+					break;
+*/
+				case 10:
+					if (self.Criteria.ProviderSpecialty() == null)
+						self.Criteria.ProviderSpecialty(ko.observableArray());
+					break;
+				case 11:
+					if (self.Criteria.VisitType() == null)
+						self.Criteria.VisitType(ko.observableArray());
+					break;
+				}
+			}
+		};
+
+		self.rule = params.rule;
+		self.Criteria = params.criteria.ProcedureOccurrence;
+		self.options = options;
+
+		self.removeCriterion = function (propertyName) {
+			self.Criteria[propertyName](null);
+		}
+
+
+	}
+
+	// return compoonent definition
+	return {
+		viewModel: ProcedureOccurrenceViewModel,
+		template: template
+	};
+});
