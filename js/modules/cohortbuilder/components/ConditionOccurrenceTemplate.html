@@ -5,7 +5,7 @@
 			<col />							
 			<tr>
 				<td colspan="2"> a condition occurrence of 
-					<select data-bind="options: $component.rule.Codesets, 
+					<select data-bind="options: $component.expression.Codesets, 
 						optionsText: function(item) { return item.Name }, 
 						optionsCaption: 'Any Condition', 
 						optionsValue: 'Id',
@@ -46,7 +46,7 @@
 				<td>
 					<div>
 					Condition Source Concept is 
-						<select data-bind="options: $component.rule.Codesets, 
+						<select data-bind="options: $component.expression.Codesets, 
 							optionsText: function(item) { return item.Name }, 
 							optionsCaption: 'Select Codeset...', 
 							optionsValue: 'Id',

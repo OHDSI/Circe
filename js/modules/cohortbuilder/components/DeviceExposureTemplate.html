@@ -5,7 +5,7 @@
 			<col />							
 			<tr>
 				<td colspan="2"> a device exposure of 
-					<select data-bind="options: $component.rule.Codesets, 
+					<select data-bind="options: $component.expression.Codesets, 
 						optionsText: function(item) { return item.Name }, 
 						optionsCaption: 'Any Device Exposure', 
 						optionsValue: 'Id',
@@ -52,7 +52,7 @@
 				<td>
 					<div>
 					Device Source Concept is 
-						<select data-bind="options: $component.rule.Codesets, 
+						<select data-bind="options: $component.expression.Codesets, 
 							optionsText: function(item) { return item.Name }, 
 							optionsCaption: 'Select Codeset...', 
 							optionsValue: 'Id',

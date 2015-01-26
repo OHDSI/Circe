@@ -2,9 +2,6 @@ define([], function () {
 
 	var options = {};
 
-	options.defaultRule
-
-
 	options.dayOptions = ['0', '1', '7', '14', '21', '30', '60', '90', '120', '180', '365', '548', '730', '1095'];
 	options.monthOptions = [1, 3, 6, 9, 12, 24, 36];
 

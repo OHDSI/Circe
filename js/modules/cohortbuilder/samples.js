@@ -1,21 +1,19 @@
 define(['knockout'], function (ko) {
 	var samples = {};
 
-	samples.empty = {
-		name: "Empty",
-		rule: {
-			"Title": "Blank Criteria",
-			"Type": 0,
+	samples.emptyCondition = {
+		"Title": "Blank Condition Criteria",
+		"Type": "SIMPLE_DEFINITION",
+		"Expression": {
 			"PrimaryCriteria": [{
 				"ConditionOccurrence": {}
 			}]
 		}
 	}
 	samples.nqf_0001_denominator = {
-		name: "nqf_0001 Denominator",
-		rule: {
-			"Title": "Asthma Assessment (NQF 0001) [DENOMINATOR]",
-			"Type": "SIMPLE_CRITERIA",
+		"Title": "Asthma Assessment (NQF 0001) [DENOMINATOR]",
+		"Type": "SIMPLE_DEFINITION",
+		"Expression": {
 			"PrimaryCriteria": [
 				{
 					"ConditionOccurrence": {
@@ -78,10 +76,9 @@ define(['knockout'], function (ko) {
 
 
 	samples.nqf_0001_numerator = {
-		name: "nqf_0001 Numerator",
-		rule: {
-			"Title": "Asthma Assessment (NQF 0001) [NUMERATOR]",
-			"Type": "SIMPLE_CRITERIA",
+		"Title": "Asthma Assessment (NQF 0001) [NUMERATOR]",
+		"Type": "SIMPLE_DEFINITION",
+		"Expression": {
 			"PrimaryCriteria": [{
 				"ConditionOccurrence": {
 					"OccurrenceStartDate": {
@@ -169,10 +166,9 @@ define(['knockout'], function (ko) {
 	};
 
 	samples.depression_antidepressants = {
-		name: "Depression and Antidepressants",
-		rule: {
-			"Title": "Depression and Antidepressants",
-			"Type": "SIMPLE_CRITERIA",
+		"Title": "Depression and Antidepressants",
+		"Type": "SIMPLE_DEFINITION",
+		"Expression": {
 			"PrimaryCriteria": [
 				{
 					"ConditionOccurrence": {
@@ -230,140 +226,7 @@ define(['knockout'], function (ko) {
 			}
 		}
 	}
-	samples.nqf_0002_denominator = {
-		name: "nqf_0002 Denominator",
-		rule: {
-			"Title": "Appropriate Testing for Children with Pharyngitis (NQF 0002) [DENOMINATOR]",
-			"Type": "SIMPLE_CRITERIA",
-			"CriteriaGroup": {
-				"Type": "ALL",
-				"CriteriaList": [
-					{
-						"ConditionIndex": {
-							"Codeset": {
-								"Name": "Pharyngitis "
-							},
-							"AgeMin": 2,
-							"AgeMax": 18
-						}
-      }
-    ],
-				"Groups": [
-					{
-						"Type": "ALL",
-						"CriteriaList": [
-							{
-								"DrugExposure": {
-									"Codeset": {
-										"Name": "Pharyngitis Antibiotics"
-									},
-									"AfterIndexDays": 7
-								}
-          },
-							{
-								"DrugExposure": {
-									"Codeset": {
-										"Name": "Pharyngitis Antibiotics"
-									},
-									"Occurrence": {
-										"Type": 1,
-										"Count": 0
-									},
-									"StartWindow": {
-										"Start": {
-											"Days": 30,
-											"Coeff": -1
-										},
-										"End": {
-											"Days": 1,
-											"Coeff": -1
-										}
-									}
-								}
-          }
-        ]
-      }
-    ]
-			}
-		}
-	};
 
-	samples.nqf_0002_numerator = {
-		name: "nqf_0002 Numerator",
-		rule: {
-			"Title": "Appropriate Testing for Children with Pharyngitis (NQF 0002) [NUMERATOR]",
-			"Type": "SIMPLE_CRITERIA",
-			"CriteriaGroup": {
-				"Type": "ALL",
-				"CriteriaList": [
-					{
-						"ConditionIndex": {
-							"Codeset": {
-								"Name": "Pharyngitis "
-							},
-							"AgeMin": 2,
-							"AgeMax": 18
-						}
-      }
-    ],
-				"Groups": [
-					{
-						"Type": "ALL",
-						"CriteriaList": [
-							{
-								"DrugExposure": {
-									"Codeset": {
-										"Name": "Pharyngitis Antibiotics"
-									},
-									"AfterIndexDays": 7
-								}
-          },
-							{
-								"DrugExposure": {
-									"Codeset": {
-										"Name": "Pharyngitis Antibiotics"
-									},
-									"Occurrence": {
-										"Type": 1,
-										"Count": 0
-									},
-									"StartWindow": {
-										"Start": {
-											"Days": 30,
-											"Coeff": -1
-										},
-										"End": {
-											"Days": 1,
-											"Coeff": -1
-										}
-									}
-								}
-          },
-							{
-								"Observation": {
-									"Codeset": {
-										"Name": "group A streptococcus test"
-									},
-									"StartWindow": {
-										"Start": {
-											"Days": 3,
-											"Coeff": -1
-										},
-										"End": {
-											"Days": 4,
-											"Coeff": 1
-										}
-									}
-								}
-          }
-        ]
-      }
-    ]
-			}
-		}
-	};
-
-	//samples.list = [samples.nqf_0001_denominator, samples.nqf_0001_numerator, samples.nqf_0002_denominator, samples.nqf_0002_numerator];
-	samples.list = [samples.empty, samples.depression_antidepressants, samples.nqf_0001_denominator, samples.nqf_0001_numerator];
+	samples.list = [samples.emptyCondition, samples.depression_antidepressants, samples.nqf_0001_denominator, samples.nqf_0001_numerator];
 	return samples;
 });

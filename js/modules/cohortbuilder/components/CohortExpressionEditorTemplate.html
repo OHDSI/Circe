@@ -13,7 +13,7 @@
 			<a data-bind="attr: { title: 'Raw JSON', href: '#raw' }, text: 'Raw JSON'"></a>
 		</li>		
 	</ul>
-	<div data-bind="attr: { id: 'codesets' }, with: rule">
+	<div data-bind="attr: { id: 'codesets' }, with: expression">
 		<div style="padding: 5px">
 			<codeset-builder params="{Codesets: Codesets}"></codeset-builder>
 		</div>
@@ -44,12 +44,12 @@
 					<col span="1" class="rule" />
 					<col span="1" class="delete" />
 				</colgroup>
-				<tbody data-bind="foreach: rule().PrimaryCriteria">
+				<tbody data-bind="foreach: expression().PrimaryCriteria">
 					<tr style="padding-top: 5px">
 						<td>
 							<div data-bind='component: { 
 													name: $component.getCriteriaIndexComponent($data),
-													params: {rule: $component.rule(), criteria: $data}
+													params: {expression: $component.expression(), criteria: $data}
 												}'></div>
 						</td>
 						<td style="vertical-align: top; padding-top: 5px">
@@ -58,16 +58,16 @@
 					</tr>
 				</tbody>
 			</table>
-			<div data-bind="with: rule().ObservationWindow"> with observation at least 
+			<div data-bind="with: expression().ObservationWindow"> with observation at least 
 					<span contenteditable="true" class="numericInputField dropdown" data-bind="htmlValue: PriorDays.numeric(), ko_autocomplete: { source: $component.options.dayOptions, minLength: 0, maxShowItems: 10, scroll: true }" /> days prior 
 				and <span contenteditable="true" class="numericInputField dropdown" data-bind="htmlValue: PostDays.numeric(), ko_autocomplete: { source: $component.options.dayOptions, minLength: 0, maxShowItems: 10, scroll: true }" /> days after index
 			</div>
 		</div>
 
-		<div data-bind="with: rule">
+		<div data-bind="with: expression">
 			<div data-bind="if: AdditionalCriteria">
 				<div style="font-weight: bold">For people matching the Primary Criteria, include:</div>
-				<criteria-group params="{rule: $data, group: AdditionalCriteria}"></criteria-group>
+				<criteria-group params="{expression: $data, group: AdditionalCriteria}"></criteria-group>
 				<button class="button button-flat-primary button-small" data-bind="click: function () { $component.removeAdditionalCriteria() }">Remove Additional Criteria</button>
 			</div>
 			<div data-bind="ifnot: AdditionalCriteria">
@@ -81,6 +81,6 @@
 		</div>
 	</div>
 	<div data-bind="attr: { id: 'raw' }">
-		<textarea style="width: 100%; height: 500px" data-bind="text: getRuleJSON()"></textarea>
+		<textarea style="width: 100%; height: 500px" data-bind="text: getExpressionJSON()"></textarea>
 	</div>
 </div>

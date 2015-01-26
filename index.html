@@ -4,41 +4,48 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link rel="stylesheet" href="js/jqueryui/themes/base/jquery-ui.css"/>
-	<link rel="stylesheet" href="js/jqueryui/themes/base/jquery.ui.datepicker.css"/>
+	<link rel="stylesheet" href="js/jqueryui/themes/base/jquery-ui.css" />
+	<link rel="stylesheet" href="js/jqueryui/themes/base/jquery.ui.datepicker.css" />
 	<script src="js/require.js"></script>
 	<script src="js/main.js"></script>
 </head>
 
 <body>
-	<div>
-		Simple editor:
-		<table>
-			<tr>
-				<td>
-					<select data-bind="options: sampleRules, 
+	<div id="wrapper">
+		<div>
+			Simple editor:
+			<table>
+				<tr>
+					<td>
+						<select data-bind="options: sampleDefinitions, 
 						optionsText: function(item) { return item.Title() }, 
 						optionsCaption: 'Please select...', 
-						value: selectedRule" class="mediumInputField">
-					</select>
-				</td>
-				<td><button data-bind="click: $root.resetForm">Reset Form</button></td>				
-				<td><div data-bind="ddSlickNewCohort: {}"></div></td>
-			</tr>
-		</table>
-	</div>
-	<table width="70%">
-		<col width="100%" />
+						value: selectedDefinition" class="mediumInputField">
+						</select>
+					</td>
+					<td>
+						<button data-bind="click: $root.newDefinition">New Definition</button>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<table width="70%">
+			<col width="100%" />
 			<tr>
 				<td style="vertical-align: top">
-					<div data-bind="if: selectedRule()">
-						<span data-bind="text: selectedRule().Title"></span>
-						<cohort-builder params="rule: selectedRule()"></cohort-builder>
+					<div data-bind="if: selectedDefinition()">
+						Title:
+						<input data-bind="value: selectedDefinition().Title"></input>
+						<cohort-expression-editor params="expression: selectedDefinition().Expression"></cohort-expression-editor>
 						<button data-bind="click: generate">Generate</button>
 					</div>
 				</td>
 			</tr>
-	</table>
+		</table>
+		<div title="Generated Sql..." data-bind="dialog: { isOpen: isGeneratedOpen, modal: true, width:700, height:500 }">
+			<pre data-bind="text: generatedSql"></pre>
+		</div>
+	</div>
 </body>
 
 </html>

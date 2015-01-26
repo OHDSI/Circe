@@ -5,7 +5,7 @@
 			<col />							
 			<tr>
 				<td colspan="2"> a measurement of 
-					<select data-bind="options: $component.rule.Codesets, 
+					<select data-bind="options: $component.expression.Codesets, 
 						optionsText: function(item) { return item.Name }, 
 						optionsCaption: 'Any Measurement', 
 						optionsValue: 'Id',
@@ -88,7 +88,7 @@
 				<td>
 					<div>
 					Measurement Source Concept is 
-						<select data-bind="options: $component.rule.Codesets, 
+						<select data-bind="options: $component.expression.Codesets, 
 							optionsText: function(item) { return item.Name }, 
 							optionsCaption: 'Select Codeset...', 
 							optionsValue: 'Id',

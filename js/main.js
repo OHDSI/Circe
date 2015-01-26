@@ -21,5 +21,5 @@ require.config({
 });
 
 require(['knockout', 'app', ], function (ko, App) {
-	ko.applyBindings(new App());
+	ko.applyBindings(new App(), document.getElementById('wrapper'));
 });

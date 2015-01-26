@@ -27,7 +27,7 @@
 		<div class="additionalCriteria">
 			<div data-bind="component: { 
 									name: $component.getCriteriaComponent($data.Criteria), 
-									params: {rule: $component.rule, criteria: $data.Criteria }
+									params: {expression: $component.expression, criteria: $data.Criteria }
 								}"></div>
 			<div class="occurrenceSection">
 				<span data-bind="if: ($index() > 0)"><span data-bind="	text: $component.group().Type() == 'ALL' ? 'and ' : 'or '"></span></span>with <select data-bind="options: $component.options.occurrenceTypeOptions, optionsText: 'name', optionsValue: 'id', value: Occurrence.Type" /> <select data-bind="options: $component.options.occurrenceCountOptions, value: Occurrence.Count" /> occurrences of:
@@ -39,7 +39,7 @@
 		</div>
 	</div>
 	<div style="padding-top: 5px; position:relative" data-bind="foreach: group().Groups ">
-		<criteria-group params="{rule: $component.rule, group: ko.observable($data)}"></criteria-group>
+		<criteria-group params="{expression: $component.expression, group: ko.observable($data)}"></criteria-group>
 		<button class="deletegroup button button-small button-flat-caution" data-bind="click: function (data, event) { $component.removeCriteria($parent.group().Groups, data) }">Delete Group</button>
 	</div>
 </div>

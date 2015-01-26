@@ -3,7 +3,7 @@ define(['knockout', '../options', '../InputTypes/Range', 'text!./DoseEraTemplate
 	function DoseEraViewModel(params) {
 		
 		var self = this;
-		self.rule = params.rule;
+		self.expression = params.expression;
 		self.Criteria = params.criteria.DoseEra;
 		self.options = options;
 

@@ -151,7 +151,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 			}
 		};
 
-		self.rule = params.rule;
+		self.expression = params.expression;
 		self.Criteria = params.criteria.DeviceExposure;
 		self.options = options;
 

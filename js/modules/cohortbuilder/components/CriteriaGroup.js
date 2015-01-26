@@ -104,7 +104,7 @@ define(['knockout', '../CriteriaTypes','../CriteriaGroup', '../AdditionalCriteri
 			}
 		];
 
-		self.rule = params.rule;
+		self.expression = params.expression;
 		self.group = params.group;
 		self.options = options;
 

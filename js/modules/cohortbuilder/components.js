@@ -8,8 +8,8 @@ define(function (require, exports) {
 	var codesetBuilder = require('cohortbuilder/components/CodesetBuilder');
 	ko.components.register('codeset-builder', codesetBuilder);
 	
-	var cohortBuilder = require('cohortbuilder/components/CohortBuilder');
-	ko.components.register('cohort-builder', cohortBuilder);
+	var expressionEditor = require('cohortbuilder/components/CohortExpressionEditor');
+	ko.components.register('cohort-expression-editor', expressionEditor);
 	
 	var criteriaGroup = require('cohortbuilder/components/CriteriaGroup');
 	ko.components.register('criteria-group', criteriaGroup);

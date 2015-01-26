@@ -3,7 +3,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 	function ConditionOccurrenceViewModel(params) {
 
 		var self = this;
-		self.rule = params.rule;
+		self.expression = params.expression;
 		self.Criteria = params.criteria.ConditionOccurrence;
 		self.options = options;
 

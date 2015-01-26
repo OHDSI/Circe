@@ -2,7 +2,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 
 	function SpecimenViewModel(params) {
 		var self = this;
-		self.rule = params.rule;
+		self.expression = params.expression;
 		self.Criteria = params.criteria.Specimen;
 		self.options = options;
 		

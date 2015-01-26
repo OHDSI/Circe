@@ -1,6 +1,6 @@
-define(['knockout', '../rule', '../options', '../CriteriaTypes', '../CriteriaGroup', 'text!./CohortBuilderTemplate.html', 'knockout-jqueryui/tabs', '../bindings/allBindings', 'css!../css/builder.css', 'css!../css/buttons.css'], function (ko, rule, options, criteriaTypes, CriteriaGroup, cohortBuilderTemplate) {
+define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes', 'text!./CohortExpressionEditorTemplate.html', 'knockout-jqueryui/tabs', '../bindings/allBindings', 'css!../css/builder.css', 'css!../css/buttons.css'], function (ko, options, CriteriaGroup, criteriaTypes, template) {
 
-	function CohortBuilderViewModel(params) {
+	function CohortExpressionEditorViewModel(params) {
 		var self = this;
 
 		var primaryCriteriaOptions = [
@@ -10,7 +10,7 @@ define(['knockout', '../rule', '../options', '../CriteriaTypes', '../CriteriaGro
 				description: "Find patients with specific diagnoses.",
 				imageSrc: "images/cohortbuilder/condition.png",
 				action: function () {				
-					self.rule().PrimaryCriteria.push({
+					self.expression().PrimaryCriteria.push({
 						ConditionOccurrence: new criteriaTypes.ConditionOccurrence
 					}); 
 				}
@@ -21,7 +21,7 @@ define(['knockout', '../rule', '../options', '../CriteriaTypes', '../CriteriaGro
 				description: "Find patients with specific diagosis era.",
 				imageSrc: "images/cohortbuilder/condition.png",
 				action: function () {				
-					self.rule().PrimaryCriteria.push({
+					self.expression().PrimaryCriteria.push({
 						ConditionEra: new criteriaTypes.ConditionEra
 					}); 
 				}
@@ -32,7 +32,7 @@ define(['knockout', '../rule', '../options', '../CriteriaTypes', '../CriteriaGro
 				description: "Find patients with exposure to specific drugs or drug classes.",
 				imageSrc: "images/cohortbuilder/drug.png",
 				action: function () {				
-					self.rule().PrimaryCriteria.push({
+					self.expression().PrimaryCriteria.push({
 						DrugExposure: new criteriaTypes.DrugExposure
 					}); 
 				}
@@ -43,7 +43,7 @@ define(['knockout', '../rule', '../options', '../CriteriaTypes', '../CriteriaGro
 				description: "Find patients with with exposure to drugs over time.",
 				imageSrc: "images/cohortbuilder/drugera.png",
 				action: function () {				
-					self.rule().PrimaryCriteria.push({
+					self.expression().PrimaryCriteria.push({
 						DrugEra: new criteriaTypes.DrugEra
 					}); 
 				}
@@ -54,7 +54,7 @@ define(['knockout', '../rule', '../options', '../CriteriaTypes', '../CriteriaGro
 				description: "Find patients with dose eras.",
 				imageSrc: "images/cohortbuilder/drugera.png",
 				action: function () {				
-					self.rule().PrimaryCriteria.push({
+					self.expression().PrimaryCriteria.push({
 						DoseEra: new criteriaTypes.DoseEra
 					}); 
 				}
@@ -65,7 +65,7 @@ define(['knockout', '../rule', '../options', '../CriteriaTypes', '../CriteriaGro
 				description: "Find patients that experienced a specific procedure.",
 				imageSrc: "images/cohortbuilder/procedures.png",
 				action: function () {				
-					self.rule().PrimaryCriteria.push({
+					self.expression().PrimaryCriteria.push({
 						ProcedureOccurrence: new criteriaTypes.ProcedureOccurrence
 					}); 
 				}
@@ -76,7 +76,7 @@ define(['knockout', '../rule', '../options', '../CriteriaTypes', '../CriteriaGro
 				description: "Find patients based on lab tests or other observations.",
 				imageSrc: "images/cohortbuilder/observation.png",
 				action: function () {				
-					self.rule().PrimaryCriteria.push({
+					self.expression().PrimaryCriteria.push({
 						Observation: new criteriaTypes.Observation
 					}); 
 				}
@@ -87,7 +87,7 @@ define(['knockout', '../rule', '../options', '../CriteriaTypes', '../CriteriaGro
 				description: "Find patients based on visit information.",
 				imageSrc: "images/cohortbuilder/visit.png",
 				action: function () {				
-					self.rule().PrimaryCriteria.push({
+					self.expression().PrimaryCriteria.push({
 						VisitOccurrence: new criteriaTypes.VisitOccurrence
 					}); 
 				}
@@ -98,7 +98,7 @@ define(['knockout', '../rule', '../options', '../CriteriaTypes', '../CriteriaGro
 				description: "Find patients based on device exposure.",
 				imageSrc: "images/cohortbuilder/procedures.png",
 				action: function () {				
-					self.rule().PrimaryCriteria.push({
+					self.expression().PrimaryCriteria.push({
 						DeviceExposure: new criteriaTypes.DeviceExposure
 					}); 
 				}
@@ -109,7 +109,7 @@ define(['knockout', '../rule', '../options', '../CriteriaTypes', '../CriteriaGro
 				description: "Find patients based on Measurement.",
 				imageSrc: "images/cohortbuilder/procedures.png",
 				action: function () {				
-					self.rule().PrimaryCriteria.push({
+					self.expression().PrimaryCriteria.push({
 						Measurement: new criteriaTypes.Measurement
 					}); 
 				}
@@ -120,7 +120,7 @@ define(['knockout', '../rule', '../options', '../CriteriaTypes', '../CriteriaGro
 				description: "Find patients based on Specimen.",
 				imageSrc: "images/cohortbuilder/procedures.png",
 				action: function () {				
-					self.rule().PrimaryCriteria.push({
+					self.expression().PrimaryCriteria.push({
 						Specimen: new criteriaTypes.Specimen
 					}); 
 				}
@@ -131,7 +131,7 @@ define(['knockout', '../rule', '../options', '../CriteriaTypes', '../CriteriaGro
 				description: "Find patients based on Observation Period.",
 				imageSrc: "images/cohortbuilder/procedures.png",
 				action: function () {				
-					self.rule().PrimaryCriteria.push({
+					self.expression().PrimaryCriteria.push({
 						ObservationPeriod: new criteriaTypes.ObservationPeriod
 					}); 
 				}
@@ -142,27 +142,27 @@ define(['knockout', '../rule', '../options', '../CriteriaTypes', '../CriteriaGro
 				description: "Find patients based on device exposure.",
 				imageSrc: "images/cohortbuilder/procedures.png",
 				action: function () {				
-					self.rule().PrimaryCriteria.push({
+					self.expression().PrimaryCriteria.push({
 						Death: new criteriaTypes.Death
 					}); 
 				}
 			}
 		];
 		
-		self.rule = params.rule;
+		self.expression = params.expression;
 		self.options = options;
 
 		self.removeAdditionalCriteria = function () {
-			self.rule().AdditionalCriteria(null);
+			self.expression().AdditionalCriteria(null);
 		};
 
 		self.addAdditionalCriteria = function () {
-			self.rule().AdditionalCriteria(new CriteriaGroup());
+			self.expression().AdditionalCriteria(new CriteriaGroup());
 		};
 
 		self.removePrimaryCriteria = function (criteria)
 		{
-			self.rule().PrimaryCriteria.remove(criteria);	
+			self.expression().PrimaryCriteria.remove(criteria);	
 		}
 		
 		
@@ -208,15 +208,15 @@ define(['knockout', '../rule', '../options', '../CriteriaTypes', '../CriteriaGro
 				return "unknownCriteriaType";
 		};
 
-		self.getRuleJSON = function()
+		self.getExpressionJSON = function()
 		{
-			return ko.toJSON(self.rule(), function (key, value) {if (value === 0 || value ) { return value; } else {return}} , 2)				
+			return ko.toJSON(self.expression(), function (key, value) {if (value === 0 || value ) { return value; } else {return}} , 2)				
 		}		
 	}
 
 	// return factory
 	return {
-		viewModel: CohortBuilderViewModel,
-		template: cohortBuilderTemplate
+		viewModel: CohortExpressionEditorViewModel,
+		template: template
 	};
 });

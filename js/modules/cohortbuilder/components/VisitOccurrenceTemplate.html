@@ -5,7 +5,7 @@
 			<col />							
 			<tr>
 				<td colspan="2"> a visit occurrence of 
-					<select data-bind="options: $component.rule.Codesets, 
+					<select data-bind="options: $component.expression.Codesets, 
 						optionsText: function(item) { return item.Name }, 
 						optionsCaption: 'Any Visit', 
 						optionsValue: 'Id',
@@ -40,7 +40,7 @@
 				<td>
 					<div>
 					Visit Source Concept is 
-						<select data-bind="options: $component.rule.Codesets, 
+						<select data-bind="options: $component.expression.Codesets, 
 							optionsText: function(item) { return item.Name }, 
 							optionsCaption: 'Select Codeset...', 
 							optionsValue: 'Id',

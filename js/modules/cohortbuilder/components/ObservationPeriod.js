@@ -3,7 +3,7 @@ define(['knockout', '../options', '../InputTypes/Range', 'text!./ObservationPeri
 	function ObservationPeriodViewModel(params) {
 		var self = this;
 
-		self.rule = params.rule;
+		self.expression = params.expression;
 		self.Criteria = params.criteria.ObservationPeriod;
 		self.options = options;
 		

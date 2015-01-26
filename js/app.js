@@ -1,78 +1,45 @@
-define(['knockout', 'cohortbuilder/rule', 'cohortbuilder/CriteriaTypes', 'cohortbuilder/CriteriaGroup', 'cohortbuilder/samples', 'cohortbuilder/components'], function (ko, rule, criteriaTypes, CriteriaGroup, samples) {
+define(['knockout', 'cohortbuilder/CohortDefinition', 'cohortbuilder/samples', 'cohortbuilder/components'], function (ko, CohortDefinition, samples) {
 
 	return function App() {
 		var self = this;
-		self.selectedRule = ko.observable();
-		self.sampleRules = ko.observableArray(samples.list.map(function (d) {
-			return new rule(d.rule);
+		self.selectedDefinition = ko.observable();
+		self.sampleDefinitions = ko.observableArray(samples.list.map(function (d) {
+			return new CohortDefinition(d);
 		}));
-		self.hasChildValue = function (obj) {
-			if (typeof obj == 'array') {
-				for (var i = 0; i < obj.length; i++) {
-					if (self.hasChildValue(obj[i]))
-						return true;
-				}
-				return false;
-			} else if (typeof obj === 'object') {
-				for (var prop in obj) {
-					if (self.hasChildValue(obj[prop])) {
-						return true;
-					}
-				}
-				return false;
-			} else {
-				return !(obj === null || obj === false);
-			}
-		}
-
-		self.resetForm = function () {
-			
-		}
 
 		self.generate = function() {
-			var rule = self.selectedRule();
-			
 			$.ajax({
 				url: 'http://localhost:8084/WebAPI/cohortdefinition/generate',
 				method: 'POST',
 				contentType: 'application/json',
-				data: self.getRuleJSON(),
+				data: self.getExpressionJSON(),
 				success: function(results) {
 					console.log(results);
+					self.generatedSql(results.targetSQL);
+					self.isGeneratedOpen(true);
+				},
+				error: function(error) {
+					console.log("Error: " + error);
 				}
 			});
-			
 		}
-		self.newRule = function (ruleType) {
-			var newRule = new rule();
-			var PrimaryCriteria = {};
-			
-			newRule.Title("New Rule");
-			newRule.AdditionalCriteria = new CriteriaGroup();
-			
-			switch (ruleType) {
-			case 0:
-				PrimaryCriteria.ConditionIndex = new CriteriaTypes.ConditionIndex();
-				break;
-			case 1:
-				PrimaryCriteria.DrugIndex = new CriteriaTypes.DrugIndex();
-				break;
-			case 2:
-				PrimaryCriteria.ProcedureIndex = new CriteriaTypes.ProcedureIndex();
-				break;
-			}
+		
+		self.isGeneratedOpen = ko.observable(false);
+		self.generatedSql = ko.observable();
+		
+		self.newDefinition = function () {
+			var newDefinition = new CohortDefinition({
+				"Title": "New Definition",
+				"Type": "SIMPLE_DEFINITION"
+			});
 
-			var newRuleOption = {
-				label: "New Rule",
-				value: newRule
-			};
-			self.sampleRules.push(newRuleOption);
-			self.selectedRule(newRuleOption);
+			self.sampleDefinitions.push(newDefinition);
+			self.selectedDefinition(newDefinition);
 		}
 
-		self.getRuleJSON = function()
+		self.getExpressionJSON = function()
 		{
-			return ko.toJSON(self.selectedRule(), function (key, value) {if (value === 0 || value ) { return value; } else {return}} , 2)				
+			return ko.toJSON(self.selectedDefinition().Expression, function (key, value) {if (value === 0 || value ) { return value; } else {return}} , 2)				
 		}		
 		
 	}

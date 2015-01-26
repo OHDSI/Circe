@@ -3,7 +3,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 	function MeasurementViewModel(params) {
 		var self = this;
 
-		self.rule = params.rule;
+		self.expression = params.expression;
 		self.Criteria = params.criteria.Measurement;
 		self.options = options;
 		
