@@ -5,17 +5,19 @@ define(['knockout'], function (ko) {
 		"Title": "Blank Condition Criteria",
 		"Type": "SIMPLE_DEFINITION",
 		"Expression": {
-			"PrimaryCriteria": [{
-				"ConditionOccurrence": {}
-			}]
+			"PrimaryCriteria": {
+				CriteriaList: [{
+					"ConditionOccurrence": {}
+				}]
+			}
 		}
 	}
 	samples.nqf_0001_denominator = {
 		"Title": "Asthma Assessment (NQF 0001) [DENOMINATOR]",
 		"Type": "SIMPLE_DEFINITION",
 		"Expression": {
-			"PrimaryCriteria": [
-				{
+			"PrimaryCriteria": {
+				CriteriaList: [{
 					"ConditionOccurrence": {
 						"CodesetId": 0,
 						"OccurrenceStartDate": {
@@ -27,11 +29,10 @@ define(['knockout'], function (ko) {
 							"Value": 5,
 							"Extent": 40,
 							"Op": "bt"
-						},
-						"PriorEnrollDays": 0
+						}
 					}
-				}
-			],
+				}]
+			},
 			"AdditionalCriteria": {
 				"Type": "ALL",
 				"CriteriaList": [
@@ -57,9 +58,7 @@ define(['knockout'], function (ko) {
 						}
 					}
 				],
-				"Groups": [
-
-				]
+				"Groups": []
 			},
 			"Codesets": [
 				{
@@ -74,25 +73,26 @@ define(['knockout'], function (ko) {
 		}
 	};
 
-
 	samples.nqf_0001_numerator = {
 		"Title": "Asthma Assessment (NQF 0001) [NUMERATOR]",
 		"Type": "SIMPLE_DEFINITION",
 		"Expression": {
-			"PrimaryCriteria": [{
-				"ConditionOccurrence": {
-					"OccurrenceStartDate": {
-						Op: "bt",
-						Value: "2012-01-01T05:00:00.000Z",
-						Extent: "2013-01-01T05:00:00.000Z"
-					},
-					"Age": {
-						Op: "bt",
-						Value: 5,
-						Extent: 40
+			"PrimaryCriteria": {
+				CriteriaList: [{
+					"ConditionOccurrence": {
+						"OccurrenceStartDate": {
+							Op: "bt",
+							Value: "2012-01-01T05:00:00.000Z",
+							Extent: "2013-01-01T05:00:00.000Z"
+						},
+						"Age": {
+							Op: "bt",
+							Value: 5,
+							Extent: 40
+						}
 					}
-				}
-			}],
+				}]
+			},
 			"AdditionalCriteria": {
 				"Type": "ALL",
 				"CriteriaList": [
@@ -169,21 +169,77 @@ define(['knockout'], function (ko) {
 		"Title": "Depression and Antidepressants",
 		"Type": "SIMPLE_DEFINITION",
 		"Expression": {
-			"PrimaryCriteria": [
-				{
-					"ConditionOccurrence": {
-						"OccurrenceStartDate": {
-							"Value": "2015-1-1",
-							"Op": "lt"
+			"PrimaryCriteria": {
+				"CriteriaList": [
+					{
+						"ConditionOccurrence": {
+							"CodesetId": 1,
+							"OccurrenceStartDate": {
+								"Value": "2010-1-1",
+								"Extent": "2012-1-1",
+								"Op": "bt"
+							},
+							"Age": {
+								"Value": 18,
+								"Extent": 45,
+								"Op": "bt"
+							}
+						}
+      }
+    ],
+				"ObservationWindow": {
+					"PriorDays": 180,
+					"PostDays": 365
+				}
+			},
+			"AdditionalCriteria": {
+				"Type": "ALL",
+				"CriteriaList": [
+					{
+						"Criteria": {
+							"ConditionOccurrence": {
+								"CodesetId": 1
+							}
 						},
-						"OccurrenceEndDate": {
-							"Value": "2015-1-7",
-							"Op": "lt"
+						"StartWindow": {
+							"Start": {
+								"Days": 30,
+								"Coeff": -1
+							},
+							"End": {
+								"Days": 1,
+								"Coeff": -1
+							}
 						},
-						"First": true
-					}
-    }
-  ],
+						"Occurrence": {
+							"Type": 2,
+							"Count": 1
+						}
+      },
+					{
+						"Criteria": {
+							"ConditionOccurrence": {
+								"CodesetId": 1
+							}
+						},
+						"StartWindow": {
+							"Start": {
+								"Days": 1,
+								"Coeff": 1
+							},
+							"End": {
+								"Days": 30,
+								"Coeff": 1
+							}
+						},
+						"Occurrence": {
+							"Type": 2,
+							"Count": 1
+						}
+      }
+    ],
+				"Groups": []
+			},
 			"Codesets": [
 				{
 					"Id": 0,
@@ -219,11 +275,7 @@ define(['knockout'], function (ko) {
       ],
 					"ExcludeDescendents": true
     }
-  ],
-			"ObservationWindow": {
-				"PriorDays": 180,
-				"PostDays": 365
-			}
+  ]
 		}
 	}
 

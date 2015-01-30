@@ -1,23 +1,19 @@
 define(function (require, exports) {
 
 	var ko = require('knockout');
+	var CriteriaGroup = require('./CriteriaGroup');
+	var Codeset = require('./InputTypes/Codeset');
+	var PrimaryCriteria = require('./PrimaryCriteria');
 
 	function CohortExpression(data) {
-		var CriteriaTypes = require('./CriteriaTypes');
-		var CriteriaGroup = require('./CriteriaGroup');
-		var Codeset = require('./InputTypes/Codeset');
-		var Window = require('./InputTypes/Window');
-		
 		var self = this;
 		var data = data || {};
 
-		self.PrimaryCriteria = ko.observableArray(data.PrimaryCriteria && data.PrimaryCriteria.map(function (d) {
-			return CriteriaTypes.GetCriteriaFromObject(d)
-		}));
+		self.PrimaryCriteria = ko.observable(data.PrimaryCriteria && new PrimaryCriteria(data.PrimaryCriteria));
 		self.AdditionalCriteria = ko.observable(data.AdditionalCriteria && new CriteriaGroup(data.AdditionalCriteria));
 		self.Codesets = ko.observableArray(data.Codesets && data.Codesets.map(function(d) { return new Codeset(d) }));
-		self.ObservationWindow = { PriorDays: ko.observable((data.ObservationWindow && data.ObservationWindow.PriorDays) || 0),
-																PostDays: ko.observable((data.ObservationWindow && data.ObservationWindow.PostDays) || 0) };
+		self.ExpressionLimit =  { Type: ko.observable(data.ExpressionLimit || "All") }
+		
 	}
 	return CohortExpression;
 });

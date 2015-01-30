@@ -44,7 +44,7 @@
 					<col span="1" class="rule" />
 					<col span="1" class="delete" />
 				</colgroup>
-				<tbody data-bind="foreach: expression().PrimaryCriteria">
+				<tbody data-bind="foreach: expression().PrimaryCriteria().CriteriaList">
 					<tr style="padding-top: 5px">
 						<td>
 							<div data-bind='component: { 
@@ -58,9 +58,15 @@
 					</tr>
 				</tbody>
 			</table>
-			<div data-bind="with: expression().ObservationWindow"> with observation at least 
+			<div data-bind="with: expression().PrimaryCriteria().ObservationWindow"> with observation at least 
 					<span contenteditable="true" class="numericInputField dropdown" data-bind="htmlValue: PriorDays.numeric(), ko_autocomplete: { source: $component.options.dayOptions, minLength: 0, maxShowItems: 10, scroll: true }" /> days prior 
 				and <span contenteditable="true" class="numericInputField dropdown" data-bind="htmlValue: PostDays.numeric(), ko_autocomplete: { source: $component.options.dayOptions, minLength: 0, maxShowItems: 10, scroll: true }" /> days after index
+			</div>
+			<div style="padding-top: 3px" data-bind="with: expression().PrimaryCriteria().PrimaryCriteriaLimit">Limit primary events to: <select data-bind="options: $component.options.resultLimitOptions, 
+						optionsText: function(item) { return item.name }, 
+						optionsValue: 'id',
+						value: Type">
+					</select> per person.
 			</div>
 		</div>
 
@@ -74,6 +80,13 @@
 				<button class="button button-flat-primary button-small" data-bind="click: function () { $component.addAdditionalCriteria() }">Add Additional Criteria</button>
 			</div>
 		</div>
+		
+		<div style="padding-top: 3px" data-bind="with: expression().ExpressionLimit">Limit cohort expression results to: <select data-bind="options: $component.options.resultLimitOptions, 
+					optionsText: function(item) { return item.name }, 
+					optionsValue: 'id',
+					value: Type">
+				</select> per person.
+		</div>		
 	</div>
 	<div data-bind="attr: { id: 'printfriendly' }">
 		<div style="padding: 5px">

@@ -99,6 +99,17 @@ define([], function () {
 		id: 'ANY',
 		name: 'Any'
 }];
-
+	
+	options.resultLimitOptions = [{
+				name: "All Events",
+				id: "All"
+		}, {
+				name: "Earliest Event",
+				id: "First"
+		}, {
+				name: "Latest Event",
+				id: "Last"
+		}];
+	
 	return options;
 });
