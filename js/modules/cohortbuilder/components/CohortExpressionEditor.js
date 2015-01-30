@@ -10,7 +10,7 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes', 'text!
 				description: "Find patients with specific diagnoses.",
 				imageSrc: "images/cohortbuilder/condition.png",
 				action: function () {				
-					self.expression().PrimaryCriteria.push({
+					self.expression().PrimaryCriteria().CriteriaList.push({
 						ConditionOccurrence: new criteriaTypes.ConditionOccurrence
 					}); 
 				}
@@ -21,7 +21,7 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes', 'text!
 				description: "Find patients with specific diagosis era.",
 				imageSrc: "images/cohortbuilder/condition.png",
 				action: function () {				
-					self.expression().PrimaryCriteria.push({
+					self.expression().PrimaryCriteria().CriteriaList.push({
 						ConditionEra: new criteriaTypes.ConditionEra
 					}); 
 				}
@@ -32,7 +32,7 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes', 'text!
 				description: "Find patients with exposure to specific drugs or drug classes.",
 				imageSrc: "images/cohortbuilder/drug.png",
 				action: function () {				
-					self.expression().PrimaryCriteria.push({
+					self.expression().PrimaryCriteria().CriteriaList.push({
 						DrugExposure: new criteriaTypes.DrugExposure
 					}); 
 				}
@@ -43,7 +43,7 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes', 'text!
 				description: "Find patients with with exposure to drugs over time.",
 				imageSrc: "images/cohortbuilder/drugera.png",
 				action: function () {				
-					self.expression().PrimaryCriteria.push({
+					self.expression().PrimaryCriteria().CriteriaList.push({
 						DrugEra: new criteriaTypes.DrugEra
 					}); 
 				}
@@ -54,7 +54,7 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes', 'text!
 				description: "Find patients with dose eras.",
 				imageSrc: "images/cohortbuilder/drugera.png",
 				action: function () {				
-					self.expression().PrimaryCriteria.push({
+					self.expression().PrimaryCriteria().CriteriaList.push({
 						DoseEra: new criteriaTypes.DoseEra
 					}); 
 				}
@@ -65,7 +65,7 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes', 'text!
 				description: "Find patients that experienced a specific procedure.",
 				imageSrc: "images/cohortbuilder/procedures.png",
 				action: function () {				
-					self.expression().PrimaryCriteria.push({
+					self.expression().PrimaryCriteria().CriteriaList.push({
 						ProcedureOccurrence: new criteriaTypes.ProcedureOccurrence
 					}); 
 				}
@@ -76,7 +76,7 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes', 'text!
 				description: "Find patients based on lab tests or other observations.",
 				imageSrc: "images/cohortbuilder/observation.png",
 				action: function () {				
-					self.expression().PrimaryCriteria.push({
+					self.expression().PrimaryCriteria().CriteriaList.push({
 						Observation: new criteriaTypes.Observation
 					}); 
 				}
@@ -87,7 +87,7 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes', 'text!
 				description: "Find patients based on visit information.",
 				imageSrc: "images/cohortbuilder/visit.png",
 				action: function () {				
-					self.expression().PrimaryCriteria.push({
+					self.expression().PrimaryCriteria().CriteriaList.push({
 						VisitOccurrence: new criteriaTypes.VisitOccurrence
 					}); 
 				}
@@ -98,7 +98,7 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes', 'text!
 				description: "Find patients based on device exposure.",
 				imageSrc: "images/cohortbuilder/procedures.png",
 				action: function () {				
-					self.expression().PrimaryCriteria.push({
+					self.expression().PrimaryCriteria().CriteriaList.push({
 						DeviceExposure: new criteriaTypes.DeviceExposure
 					}); 
 				}
@@ -109,7 +109,7 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes', 'text!
 				description: "Find patients based on Measurement.",
 				imageSrc: "images/cohortbuilder/procedures.png",
 				action: function () {				
-					self.expression().PrimaryCriteria.push({
+					self.expression().PrimaryCriteria().CriteriaList.push({
 						Measurement: new criteriaTypes.Measurement
 					}); 
 				}
@@ -120,7 +120,7 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes', 'text!
 				description: "Find patients based on Specimen.",
 				imageSrc: "images/cohortbuilder/procedures.png",
 				action: function () {				
-					self.expression().PrimaryCriteria.push({
+					self.expression().PrimaryCriteria().CriteriaList.push({
 						Specimen: new criteriaTypes.Specimen
 					}); 
 				}
@@ -131,7 +131,7 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes', 'text!
 				description: "Find patients based on Observation Period.",
 				imageSrc: "images/cohortbuilder/procedures.png",
 				action: function () {				
-					self.expression().PrimaryCriteria.push({
+					self.expression().PrimaryCriteria().CriteriaList.push({
 						ObservationPeriod: new criteriaTypes.ObservationPeriod
 					}); 
 				}
@@ -142,7 +142,7 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes', 'text!
 				description: "Find patients based on device exposure.",
 				imageSrc: "images/cohortbuilder/procedures.png",
 				action: function () {				
-					self.expression().PrimaryCriteria.push({
+					self.expression().PrimaryCriteria().CriteriaList.push({
 						Death: new criteriaTypes.Death
 					}); 
 				}
@@ -162,7 +162,7 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes', 'text!
 
 		self.removePrimaryCriteria = function (criteria)
 		{
-			self.expression().PrimaryCriteria.remove(criteria);	
+			self.expression().PrimaryCriteria().CriteriaList.remove(criteria);	
 		}
 		
 		
