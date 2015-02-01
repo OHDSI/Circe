@@ -3,6 +3,7 @@ define(['knockout', '../InputTypes/Range','../InputTypes/Concept'], function (ko
 		var self = this;
 		data = data || {};
 
+		self.First = ko.observable(data.First || null);
 		self.PeriodStartDate = ko.observable(data.OccurrenceStartDate && new Range(data.PeriodStartDate));
 		self.PeriodEndDate = ko.observable(data.OccurrenceEndDate && new Range(data.PeriodEndDate));
 		self.PeriodType = ko.observable(data.PeriodType && ko.observableArray(data.PeriodType.map(function (d) {

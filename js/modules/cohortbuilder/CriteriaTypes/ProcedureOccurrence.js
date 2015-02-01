@@ -18,7 +18,7 @@ define(['knockout', '../InputTypes/Range','../InputTypes/Concept'], function (ko
 			return new Concept(d);
 		})));
 		
-		self.Quantity = ko.observable(data.Quantity || null);
+		self.Quantity = ko.observable(data.Quantity && new Range(data.Quantity));
 		
 		self.ProcedureSourceConcept = ko.observable(data.ProcedureSourceConcept && ko.observable(data.ProcedureSourceConcept));
 

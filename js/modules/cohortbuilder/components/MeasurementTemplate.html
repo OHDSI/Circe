@@ -44,7 +44,7 @@
 			<tr data-bind="if: ValueAsConcept() != null, visible: ValueAsConcept() != null">
 				<td><img data-bind="click: function() { $component.removeCriterion('ValueAsConcept') }" class="deleteIcon" src="images/cohortbuilder/delete.png" /></td>
 				<td>
-					Value as Concept is: <concept-picker params="DefaultDomain: 'Meas Value Operator', ConceptList: Operator(), DefaultQuery: ''"></concept-picker>
+					Value as Concept is: <concept-picker params="DefaultDomain: 'Meas Value', ConceptList: ValueAsConcept(), DefaultQuery: ''"></concept-picker>
 				</td>									
 			</tr>
 			<tr data-bind="if: Unit() != null, visible: Unit() != null">

@@ -1,4 +1,4 @@
-define(['knockout', '../InputTypes/Range','../InputTypes/Concept'], function (ko, Range, Concept) {
+define(['knockout', '../InputTypes/Range','../InputTypes/Concept', '../InputTypes/Text'], function (ko, Range, Concept, Text) {
 
 	function DrugExposure(data) {
 		var self = this;
@@ -14,10 +14,10 @@ define(['knockout', '../InputTypes/Range','../InputTypes/Concept'], function (ko
 		self.DrugType = ko.observable(data.DrugType && ko.observableArray(data.DrugType.map(function (d) {
 			return new Concept(d);
 		})));
-		self.StopReason = ko.observable(data.StopReason || null);
-		self.Refills = ko.observable(data.Refills || null);
-		self.Quantity = ko.observable(data.Quantity || null);
-		self.DaysSupply = ko.observable(data.DaysSupply || null);
+		self.StopReason = ko.observable(data.StopReason && new Text(data.StopReason));
+		self.Refills = ko.observable(data.Refills && new Range(data.Refills));
+		self.Quantity = ko.observable(data.Quantity && new Range(data.Quantity));
+		self.DaysSupply = ko.observable(data.DaysSupply && new Range(data.DaysSupply));
 		self.RouteConcept = ko.observable(data.RouteConcept && ko.observableArray(data.RouteConcept.map(function (d) {
 			return new Concept(d);
 		})));
@@ -25,7 +25,7 @@ define(['knockout', '../InputTypes/Range','../InputTypes/Concept'], function (ko
 		self.DoseUnit = ko.observable(data.DoseUnit && ko.observableArray(data.DoseUnit.map(function (d) {
 			return new Concept(d);
 		})));
-		self.LotNumber = ko.observable(data.LotNumber || null);
+		self.LotNumber = ko.observable(data.LotNumber && new Text(data.LotNumber));
 		self.DrugSourceConcept = ko.observable(data.DrugSourceConcept && ko.observable(data.DrugSourceConcept));
 
 		// Derived Fields

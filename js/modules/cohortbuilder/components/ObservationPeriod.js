@@ -9,6 +9,16 @@ define(['knockout', '../options', '../InputTypes/Range', 'text!./ObservationPeri
 		
 		var addActions = [
 			{
+				text: "Period Limit Criterion",
+				value: 5,
+				selected: false,
+				description: "Limit Observation Period to first period.",
+				action: function() {
+					if (self.Criteria.First() == null)
+						self.Criteria.First(true);
+				}
+			},
+			{
 				text: "Add Period Start Date Criterion",
 				value: 0,
 				selected: false,
