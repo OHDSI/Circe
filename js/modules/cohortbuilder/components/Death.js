@@ -20,19 +20,19 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 				text: "Add Cause of Death Source Concept Criterion",
 				value: 2,
 				selected: false,
-				description: "Filter Condition Occurrences  by the Condition Source Concept."
+				description: "Filter Death by the Death Source Concept."
 			},
 			{
 				text: "Add Age at Occurrence Criterion",
 				value: 3,
 				selected: false,
-				description: "Filter Condition Occurrences by age at occurrence."
+				description: "Filter by age at death."
 					}, 
 			{
 				text: "Add Gender Criterion",
 				value: 4,
 				selected: false,
-				description: "Filter Condition Occurrences based on Gender."
+				description: "Filter Deaths based on Gender."
 			}
 /*
  			{

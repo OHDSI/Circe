@@ -34,6 +34,10 @@ define(['knockout', '../InputTypes/Range','../InputTypes/Concept', '../InputType
 		self.ProviderSpecialty = ko.observable(data.ProviderSpecialty && ko.observableArray(data.ProviderSpecialty.map(function (d) {
 			return new Concept(d);
 		})));
+
+		self.PlaceOfService = ko.observable(data.PlaceOfService && ko.observableArray(data.PlaceOfService.map(function (d) {
+			return new Concept(d);
+		})));
 	}
 
 	VisitOccurence.prototype.toJSON = function () {

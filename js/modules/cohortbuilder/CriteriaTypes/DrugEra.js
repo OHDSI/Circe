@@ -1,4 +1,4 @@
-define(['knockout', '../InputTypes/Range'], function (ko, Range) {
+define(['knockout', '../InputTypes/Range', '../InputTypes/Concept'], function (ko, Range, Concept) {
 
 	function DrugEra(data) {
 		var self = this;
@@ -9,8 +9,8 @@ define(['knockout', '../InputTypes/Range'], function (ko, Range) {
 		// Verbatim fields
 		self.CodesetId = ko.observable(data.CodesetId);
 
-		self.EraStartDate = ko.observable(data.OccurrenceStartDate && new Range(data.OccurrenceStartDate));
-		self.EraEndDate = ko.observable(data.OccurrenceEndDate && new Range(data.OccurrenceEndDate));
+		self.EraStartDate = ko.observable(data.EraStartDate && new Range(data.EraStartDate));
+		self.EraEndDate = ko.observable(data.EraEndDate && new Range(data.EraEndDate));
 		self.OccurrenceCount = ko.observable(data.OccurrenceCount && new Range(data.OccurrenceCount));
 		self.GapDays = ko.observable(data.GapDays && new Range(data.GapDays));
 		self.EraLength = ko.observable(data.EraLength && new Range(data.EraLength));

@@ -21,7 +21,7 @@ define(['knockout', '../InputTypes/Range','../InputTypes/Concept', '../InputType
 		self.RouteConcept = ko.observable(data.RouteConcept && ko.observableArray(data.RouteConcept.map(function (d) {
 			return new Concept(d);
 		})));
-		self.EffectiveDrugDose = ko.observable(data.EffectiveDrugDose || null);
+		self.EffectiveDrugDose = ko.observable(data.EffectiveDrugDose && new Range(data.EffectiveDrugDose));
 		self.DoseUnit = ko.observable(data.DoseUnit && ko.observableArray(data.DoseUnit.map(function (d) {
 			return new Concept(d);
 		})));

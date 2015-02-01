@@ -680,6 +680,348 @@ define(['knockout'], function (ko) {
             }
           ]
         }
+      },
+      {
+        "DeviceExposure": {
+          "CodesetId": 0,
+          "OccurrenceStartDate": {
+            "Value": "2015-1-1",
+            "Op": "lt"
+          },
+          "OccurrenceEndDate": {
+            "Value": "2015-1-1",
+            "Extent": "2015-1-2",
+            "Op": "bt"
+          },
+          "DeviceType": [
+            {
+              "Id": 44818706,
+              "Name": "Patient reported device"
+            }
+          ],
+          "UniqueDeviceId": {
+            "Op": "contains"
+          },
+          "Quantity": {
+            "Value": 12,
+            "Extent": 15,
+            "Op": "bt"
+          },
+          "DeviceSourceConcept": 0,
+          "First": true,
+          "Age": {
+            "Value": 12,
+            "Op": "eq"
+          },
+          "Gender": [
+            {
+              "Id": 8532,
+              "Name": "FEMALE"
+            },
+            {
+              "Id": 8507,
+              "Name": "MALE"
+            }
+          ],
+          "ProviderSpecialty": [
+            {
+              "Id": 38004679,
+              "Name": " Ambulatory Surgical Center"
+            }
+          ],
+          "VisitType": [
+            {
+              "Id": 44818519,
+              "Name": "Clinical Study visit"
+            },
+            {
+              "Id": 44818518,
+              "Name": "Visit derived from EHR record"
+            },
+            {
+              "Id": 44818517,
+              "Name": "Visit derived from encounter on claim"
+            }
+          ]
+        }
+      },
+      {
+        "Specimen": {
+          "CodesetId": 1,
+          "OccurrenceStartDate": {
+            "Value": "2015-1-1",
+            "Op": "lt"
+          },
+          "SpecimenType": [
+            {
+              "Id": 4120036,
+              "Name": "Inhaling"
+            }
+          ],
+          "Quantity": {
+            "Value": 5.5,
+            "Op": "lt"
+          },
+          "Unit": [
+            {
+              "Id": 8543,
+              "Name": "ampere"
+            }
+          ],
+          "AnatomicSite": [
+            {
+              "Id": 4138664,
+              "Name": "5/6 interchondral joint"
+            }
+          ],
+          "DiseaseStatus": [
+            {
+              "Id": 4120036,
+              "Name": "Inhaling"
+            },
+            {
+              "Id": 4157760,
+              "Name": "Intraocular route"
+            }
+          ],
+          "SourceId": {
+            "Text": "somecode",
+            "Op": "!startsWith"
+          },
+          "First": true,
+          "Age": {
+            "Value": 18,
+            "Extent": 22,
+            "Op": "bt"
+          },
+          "Gender": [
+            {
+              "Id": 8532,
+              "Name": "FEMALE"
+            },
+            {
+              "Id": 8507,
+              "Name": "MALE"
+            }
+          ]
+        }
+      },
+      {
+        "VisitOccurrence": {
+          "CodesetId": 0,
+          "OccurrenceStartDate": {
+            "Value": "2015-1-1",
+            "Op": "lt"
+          },
+          "OccurrenceEndDate": {
+            "Value": "2015-1-1",
+            "Op": "gt"
+          },
+          "VisitType": [
+            {
+              "Id": 44818519,
+              "Name": "Clinical Study visit"
+            }
+          ],
+          "VisitLength": {
+            "Value": 31,
+            "Op": "gt"
+          },
+          "First": true,
+          "Age": {
+            "Value": 20,
+            "Extent": 30,
+            "Op": "bt"
+          },
+          "Gender": [
+            {
+              "Id": 8532,
+              "Name": "FEMALE"
+            },
+            {
+              "Id": 8507,
+              "Name": "MALE"
+            }
+          ],
+          "ProviderSpecialty": [
+            {
+              "Id": 38004688,
+              "Name": " Ambulance Service Provider"
+            },
+            {
+              "Id": 38004679,
+              "Name": " Ambulatory Surgical Center"
+            }
+          ],
+          "PlaceOfService": [
+            {
+              "Id": 8850,
+              "Name": "Ambulance - Air or Water"
+            },
+            {
+              "Id": 8668,
+              "Name": "Ambulance - Land"
+            }
+          ]
+        }
+      },
+      {
+        "Death": {
+          "CodesetId": 0,
+          "OccurrenceStartDate": {
+            "Value": "2015-1-1",
+            "Extent": "2015-1-1",
+            "Op": "bt"
+          },
+          "DeathType": [
+            {
+              "Id": 38003570,
+              "Name": "Death Certificate immediate cause"
+            }
+          ],
+          "Age": {
+            "Value": 40,
+            "Extent": 50,
+            "Op": "bt"
+          },
+          "Gender": [
+            {
+              "Id": 8532,
+              "Name": "FEMALE"
+            },
+            {
+              "Id": 8507,
+              "Name": "MALE"
+            }
+          ]
+        }
+      },
+      {
+        "ConditionEra": {
+          "CodesetId": 1,
+          "EraStartDate": {
+            "Value": "2015-2-1",
+            "Op": "lt"
+          },
+          "EraEndDate": {
+            "Value": "2014-9-1",
+            "Op": "lt"
+          },
+          "OccurrenceCount": {
+            "Value": 4,
+            "Op": "gt"
+          },
+          "EraLength": {
+            "Value": 12,
+            "Op": "gt"
+          },
+          "First": true,
+          "AgeAtStart": {
+            "Value": 20,
+            "Extent": 50,
+            "Op": "bt"
+          },
+          "AgeAtEnd": {
+            "Value": 5,
+            "Extent": 10,
+            "Op": "!bt"
+          },
+          "Gender": [
+            {
+              "Id": 8532,
+              "Name": "FEMALE"
+            },
+            {
+              "Id": 8507,
+              "Name": "MALE"
+            }
+          ]
+        }
+      },
+      {
+        "DrugEra": {
+          "CodesetId": 0,
+          "EraStartDate": {
+            "Value": "2015-1-1",
+            "Op": "lt"
+          },
+          "EraEndDate": {
+            "Value": "2014-12-1",
+            "Op": "lt"
+          },
+          "OccurrenceCount": {
+            "Value": 3,
+            "Extent": 5,
+            "Op": "bt"
+          },
+          "GapDays": {
+            "Value": 20,
+            "Op": "lt"
+          },
+          "EraLength": {
+            "Value": 10,
+            "Op": "gt"
+          },
+          "First": true,
+          "AgeAtStart": {
+            "Value": 10,
+            "Extent": 15,
+            "Op": "bt"
+          },
+          "AgeAtEnd": {
+            "Value": 1,
+            "Extent": 9,
+            "Op": "!bt"
+          },
+          "Gender": [
+            {
+              "Id": 8532,
+              "Name": "FEMALE"
+            }
+          ]
+        }
+      },
+      {
+        "DoseEra": {
+          "CodesetId": 0,
+          "EraStartDate": {
+            "Value": "2015-2-1",
+            "Op": "lte"
+          },
+          "EraEndDate": {
+            "Value": "2015-2-1",
+            "Op": "lt"
+          },
+          "Unit": [
+            {
+              "Id": 8543,
+              "Name": "ampere"
+            }
+          ],
+          "DoseValue": {
+            "Value": 24,
+            "Op": "gt"
+          },
+          "EraLength": {
+            "Value": 15,
+            "Op": "lt"
+          },
+          "First": true,
+          "AgeAtStart": {
+            "Value": 15,
+            "Op": "gt"
+          },
+          "AgeAtEnd": {
+            "Value": 20,
+            "Op": "gt"
+          },
+          "Gender": [
+            {
+              "Id": 8532,
+              "Name": "FEMALE"
+            }
+          ]
+        }
       }
     ],
     "ObservationWindow": {

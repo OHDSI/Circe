@@ -33,14 +33,14 @@
 				<td><img data-bind="click: function() { $component.removeCriterion('Unit') }" class="deleteIcon" src="images/cohortbuilder/delete.png" /></td>
 				<td>
 					<div>
-					with Unit: <concept-picker params="DefaultDomain: 'Condition', ConceptList: Unit(), maxResults: 1000"></concept-picker>
+					with Unit: <concept-picker params="DefaultDomain: 'Unit', ConceptList: Unit(), maxResults: 1000"></concept-picker>
 					</div>
 			 </td>									
 			</tr>	
 			<tr data-bind="if: DoseValue() != null, visible: DoseValue() != null">
 				<td><img data-bind="click: function() { $component.removeCriterion('GapDays') }" class="deleteIcon" src="images/cohortbuilder/delete.png" /></td>
 				<td>
-					with dose value <numeric-range params="Range: DoseValue"></numeric-range> days
+					with dose value <numeric-range params="Range: DoseValue"></numeric-range>
 				</td>
 			</tr>
 			<tr data-bind="if: EraLength() != null, visible: EraLength() != null">
