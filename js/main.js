@@ -1,6 +1,7 @@
 require.config({
 	baseUrl: "js",
 	paths: {
+		"appConfig" : "config",
 		"text": "requirejs/plugins/text",
 		"css": "requirejs/plugins/css",
 		"json": "requirejs/plugins/json",

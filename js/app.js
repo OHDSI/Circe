@@ -1,4 +1,4 @@
-define(['knockout', 'cohortbuilder/CohortDefinition', 'cohortbuilder/samples', 'cohortbuilder/components'], function (ko, CohortDefinition, samples) {
+define(['knockout', 'appConfig', 'cohortbuilder/CohortDefinition', 'cohortbuilder/samples', 'cohortbuilder/components'], function (ko, config, CohortDefinition, samples) {
 
 	return function App() {
 		var self = this;
@@ -9,7 +9,7 @@ define(['knockout', 'cohortbuilder/CohortDefinition', 'cohortbuilder/samples', '
 
 		self.generate = function() {
 			$.ajax({
-				url: 'http://localhost:8084/WebAPI/cohortdefinition/generate',
+				url: config.webAPIRoot + 'cohortdefinition/generate',
 				method: 'POST',
 				contentType: 'application/json',
 				data: self.getExpressionJSON(),

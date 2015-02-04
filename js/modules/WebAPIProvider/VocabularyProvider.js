@@ -1,6 +1,8 @@
 define(function (require, exports) {
 
 	var $ = require('jquery');
+	var config = require('appConfig');
+	
 	var loadedPromise = $.Deferred();
 	loadedPromise.resolve();
 
@@ -14,7 +16,7 @@ define(function (require, exports) {
 		}
 		
 		$.ajax({
-			url: 'http://localhost:8084/WebAPI/vocabulary/search',
+			url: config.webAPIRoot + 'vocabulary/search',
 			method: 'POST',
 			contentType: 'application/json',
 			data: JSON.stringify(search),
@@ -30,7 +32,7 @@ define(function (require, exports) {
 		var domainPromise = $.Deferred();
 		
 		$.ajax({
-			url: 'http://localhost:8084/WebAPI/vocabulary/domains',
+			url: config.webAPIRoot + 'vocabulary/domains',
 			success: function(results) {
 				var domains = [];
 				$.each(results, function(i,v) {

@@ -13,3 +13,6 @@ This repo is bundled with the following javascript library dependencies:
 * knockout-jqueryui (a set of jqueryUI to knockout bindings that we use for some of the UI elements)
 
 The application is configured to access a WebAPI instance running locally on port 8084 (tomcat default in Netbeans IDE).
+
+For deployment, you can alter the webAPI endpoint by editing the js/config.js property: webAPIRoot.
+
