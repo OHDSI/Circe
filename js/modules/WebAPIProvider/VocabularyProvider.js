@@ -44,11 +44,20 @@ define(function (require, exports) {
 			
 		return domainPromise;
 	}
+	
+	function getConcept(id) {
+		var getConceptPromise = $.ajax({
+			url: config.webAPIRoot + 'vocabulary/concept/' + id
+		});
+		
+		return getConceptPromise;
+	}
 
 	var api = {
 		loaded: loadedPromise,
 		search: search,
 		getDomains: getDomains,
+		getConcept: getConcept
 	}
 
 	return api;

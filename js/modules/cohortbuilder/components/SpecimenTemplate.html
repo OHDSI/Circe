@@ -5,10 +5,10 @@
 			<col />							
 			<tr>
 				<td colspan="2"> a specimen of 
-					<select data-bind="options: $component.expression.Codesets, 
-						optionsText: function(item) { return item.Name }, 
+					<select data-bind="options: $component.expression.ConceptSets, 
+						optionsText: function(item) { return item.name }, 
 						optionsCaption: 'Any Specimen', 
-						optionsValue: 'Id',
+						optionsValue: 'id',
 						value: CodesetId" class="mediumInputField">
 					</select>
 				</td>
@@ -27,7 +27,7 @@
 			<tr data-bind="if: SpecimenType() != null, visible: SpecimenType() != null">
 				<td><img data-bind="click: function() { $component.removeCriterion('SpecimenType') }" class="deleteIcon" src="images/cohortbuilder/delete.png" /></td>
 				<td>
-					Specimen Type is: <concept-picker params="DefaultDomain: 'Spec Type', ConceptList: SpecimenType(), DefaultQuery: ''"></concept-picker>
+					Specimen Type is: <concept-list params="PickerParams: { DefaultDomain: 'Spec Type', DefaultQuery: ''}, ConceptList: SpecimenType()"></concept-list>
 				</td>									
 			</tr>
 			<tr data-bind="if: Quantity() != null, visible: Quantity() != null">
@@ -40,7 +40,7 @@
 				<td><img data-bind="click: function() { $component.removeCriterion('Unit') }" class="deleteIcon" src="images/cohortbuilder/delete.png" /></td>
 				<td>
 					<div>
-					with Unit: <concept-picker params="DefaultDomain: 'Unit', ConceptList: Unit()"></concept-picker>
+						with Unit: <concept-list params="PickerParams: { DefaultDomain: 'Unit'}, ConceptList: Unit()"></concept-list>
 					</div>
 			 </td>									
 			</tr>										
@@ -48,7 +48,7 @@
 				<td><img data-bind="click: function() { $component.removeCriterion('AnatomicSite') }" class="deleteIcon" src="images/cohortbuilder/delete.png" /></td>
 				<td>
 					<div>
-					with Anatomic Site: <concept-picker params="DefaultDomain: 'Spec Anatomic Site', ConceptList: AnatomicSite()"></concept-picker>
+						with Anatomic Site: <concept-list params="PickerParams: { DefaultDomain: 'Spec Anatomic Site'}, ConceptList: AnatomicSite()"></concept-list>
 					</div>
 			 </td>									
 			</tr>										
@@ -56,7 +56,7 @@
 				<td><img data-bind="click: function() { $component.removeCriterion('DiseaseStatus') }" class="deleteIcon" src="images/cohortbuilder/delete.png" /></td>
 				<td>
 					<div>
-					with Disease Status: <concept-picker params="DefaultDomain: 'Spec Disease Status', ConceptList: DiseaseStatus()"></concept-picker>
+						with Disease Status: <concept-list params="PickerParams: { DefaultDomain: 'Spec Disease Status'}, ConceptList: DiseaseStatus()"></concept-list>
 					</div>
 			 </td>									
 			</tr>
@@ -76,7 +76,7 @@
 				<td><img data-bind="click: function() { $component.removeCriterion('Gender') }" class="deleteIcon" src="images/cohortbuilder/delete.png" /></td>
 				<td>
 					<div>
-					with a gender of: <concept-picker params="DefaultDomain: 'Gender', ConceptList: Gender(), DefaultQuery: ''"></concept-picker>
+					with a gender of: <concept-list params="PickerParams: { DefaultDomain: 'Gender', DefaultQuery: ''}, ConceptList: Gender()"></concept-list>
 					</div>						
 				</td>
 			</tr>

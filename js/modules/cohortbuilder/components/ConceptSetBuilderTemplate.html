@@ -1,0 +1,46 @@
+<template id="conceptSetTemplate">
+	<select data-bind="options: conceptSets, 
+		optionsText: function(item) { return item.name }, 
+		optionsCaption: 'Please select codeset to modify...', 
+		value: selectedConceptSet" class="mediumInputField">
+	</select>
+	<button class="button button-flat-primary button-small" data-bind="click: function () { $component.createConceptSet() }">New Concept Set</button>
+	<button class="button button-flat-caution button-small" data-bind="visible: selectedConceptSet, click: function () { $component.deleteConceptSet() }">Delete Concept Set</button>
+	<div data-bind="if: selectedConceptSet">
+		<div data-bind="with: selectedConceptSet">
+			<div>Name: <input data-bind="value: name"></input></div>
+			<div class="criteriaGroup">
+				<div class="criteriaHeading"><table><tr><td>Concept Set Expression</td></tr></table></div>
+				<table class="stripe compact hover" cellspacing="0" width="100%" data-bind="dataTable: {
+            data: expression.items,
+						api: $component.dtApi,
+            options: {
+							orderClasses: false,
+							deferRender: true,
+							order: [[2, 'desc']],																																											 	
+              columns: [
+									'select',
+									{ title: 'Concept Id', data: 'concept.CONCEPT_ID'},
+									{ title: 'Concept Code', data: 'concept.CONCEPT_CODE'},
+                  { title: 'Concept Name', data: 'concept.CONCEPT_NAME'},
+                  { title: 'Domain', data: 'concept.DOMAIN_ID' },
+									{ title: 'Vocabulary', data: 'concept.VOCABULARY_ID' },
+									{ title: 'Exclude', class:'text-center', orderable:false, render: function() { return $component.renderCheckbox('isExcluded');} },
+									{ title: 'Descendants', class:'text-center', orderable:false,render: function() { return $component.renderCheckbox('includeDescendants');} },
+									{ title: 'Mapped', class:'text-center', orderable:false,render: function() { return $component.renderCheckbox('includeMapped');} }																																																		 
+              ],
+							language: {
+							  search: 'Filter records:'
+							}
+           }
+        }">
+				</table>
+			</div>
+		</div>
+		<concept-picker params="onAdd: addConcepts"></concept-picker><button class="button button-flat-caution button-small" data-bind="click: function () { $component.removeSelected() }">Remove Selected</button>
+	</div>
+</template>
+<template id="conceptSetTemplate-readonly">
+	This is a readonly template.
+</template>
+<div data-bind="template: { name: 'conceptSetTemplate' }"></div>

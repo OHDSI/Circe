@@ -5,30 +5,41 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel="stylesheet" href="js/jqueryui/themes/base/jquery-ui.css" />
-	<link rel="stylesheet" href="js/jqueryui/themes/base/jquery.ui.datepicker.css" />
+	<link rel="stylesheet" href="css/bootstrap.min.css" />
+	<link rel="stylesheet" href="css/bootstrap-theme.min.css" />
+	<link rel="stylesheet" href="css/circe.boostrap.css" />
+	
 	<script src="js/require.js"></script>
 	<script src="js/main.js"></script>
 </head>
 
 <body>
-	<div id="wrapper">
-		<div>
-			Simple editor:
-			<table>
-				<tr>
-					<td>
-						<select data-bind="options: sampleDefinitions, 
-						optionsText: function(item) { return item.Title() }, 
-						optionsCaption: 'Please select...', 
-						value: selectedDefinition" class="mediumInputField">
-						</select>
-					</td>
-					<td>
-						<button data-bind="click: $root.newDefinition">New Definition</button>
-					</td>
-				</tr>
+	<div id="wrapper" style="display:none" data-bind="visible: selectedView() != null">
+		<div data-bind="visible: selectedView() == 'list'">
+			<button data-bind="click: newDefinition">New Definition</button>
+			<table class="stripe compact hover" cellspacing="0" width="100%" 
+				data-bind="dataTable:{
+					onRowClick: selectDefinition,
+					data: plainDefinitions(),
+					options: {
+						deferRender: true,
+						orderClasses: false,
+						autoWidth: true,
+						order: [ 1, 'asc' ],
+						columns: [
+							{ data: 'Id()', title: 'Id' },
+							{ data: 'Title()', title: 'Title' },
+							{ data: 'Type', title: 'Definition Type' },
+							{ data: 'Description()', title: 'Description'}
+						],
+						language: {
+							search: 'Filter records:'
+						}
+					}
+				 }">
 			</table>
 		</div>
+		<div data-bind="visible: selectedView() == 'detail'">
 		<table width="70%">
 			<col width="100%" />
 			<tr>
@@ -36,14 +47,49 @@
 					<div data-bind="if: selectedDefinition()">
 						Title:
 						<input data-bind="value: selectedDefinition().Title"></input>
+						<button data-bind="click: generate">Show SQL</button>
+						<button data-bind="click: saveAndClose">Save and Close</button>
+						<button data-bind="click: cancel">Cancel</button>
 						<cohort-expression-editor params="expression: selectedDefinition().Expression"></cohort-expression-editor>
-						<button data-bind="click: generate">Generate</button>
+						<button data-bind="click: generate">Show SQL</button>
+						<button data-bind="click: saveAndClose">Save and Close</button>
+						<button data-bind="click: cancel">Cancel</button>
 					</div>
 				</td>
 			</tr>
 		</table>
+	 	<!-- ko if: isGeneratedOpen -->
 		<div title="Generated Sql..." data-bind="dialog: { isOpen: isGeneratedOpen, modal: true, width:700, height:500 }">
-			<pre data-bind="text: generatedSql"></pre>
+			<div class="tabs" data-bind="tabs: { }">
+				<ul>
+					<li data-bind="attr: { 'aria-controls': 'sql_server' }">
+						<a data-bind="attr: { title: 'MSSQL Server', href: '#sql_server' }, text: 'MSSQL Server'"></a>
+					</li>
+					<li data-bind="attr: { 'aria-controls': 'oracle' }">
+						<a data-bind="attr: { title: 'Oracle', href: '#oracle' }, text: 'Oracle'"></a>
+					</li>
+					<li data-bind="attr: { 'aria-controls': 'postgres' }">
+						<a data-bind="attr: { title: 'Postgres', href: '#postgres' }, text: 'Postgres'"></a>
+					</li>
+					<li data-bind="attr: { 'aria-controls': 'redshift' }">
+						<a data-bind="attr: { title: 'Red Shift', href: '#redshift' }, text: 'Red Shift'"></a>
+					</li>
+				</ul>
+				<div data-bind="attr: { id: 'sql_server' }">
+					<pre data-bind="text: generatedSql.mssql"></pre>
+				</div>
+				<div data-bind="attr: { id: 'oracle' }">
+					<pre data-bind="text: generatedSql.oracle"></pre>
+				</div>
+				<div data-bind="attr: { id: 'postgres' }">
+					<pre data-bind="text: generatedSql.postgres"></pre>
+				</div>
+				<div data-bind="attr: { id: 'redshift' }">
+					<pre data-bind="text: generatedSql.redshift"></pre>
+				</div>
+			</div>
+		</div>
+		<!-- /ko -->
 		</div>
 	</div>
 </body>

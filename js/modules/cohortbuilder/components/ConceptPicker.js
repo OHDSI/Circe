@@ -1,8 +1,20 @@
 define(['knockout', 'text!./ConceptPickerTemplate.html', '../InputTypes/Concept', 'vocabularyprovider/VocabularyProvider', 'knockout-jqueryui/dialog', 'css!../css/conceptpicker.css'], function (ko, template, Concept, VocabularyProvider) {
+	
+	function _mapConceptRowToConcept (row)
+	{
+		return new Concept({
+			CONCEPT_ID: row.CONCEPT_ID,
+			CONCEPT_NAME: row.CONCEPT_NAME,
+			CONCEPT_CODE: row.CONCEPT_CODE,
+			DOMAIN_ID: row.DOMAIN_ID,
+			VOCABULARY_ID: row.VOCABULARY_ID
+		});			
+	}
+	
 	function ConceptPickerViewModel(params) {
 		var self = this;
 
-		self.ConceptList = params.$raw.ConceptList();
+		self.addHandler = params.onAdd; // callback function when add is clicked.
 		self.SelectedDomain = params.DefaultDomain;
 		self.DomainOptions = ko.observableArray([params.DefaultDomain]);
 		self.MaxResults = params.MaxResults || 10000;
@@ -10,6 +22,9 @@ define(['knockout', 'text!./ConceptPickerTemplate.html', '../InputTypes/Concept'
 		self.results = ko.observableArray();
 		self.searchText = params.DefaultQuery || "";
 		self.ProviderReady = ko.observable(false);
+		self.isImportEnabled = ko.observable(false);
+		self.importValues = ko.observable("");
+		self.dtApi = ko.observable();
 
 		VocabularyProvider.getDomains().then(function (domains) {
 			self.DomainOptions(domains);
@@ -27,22 +42,15 @@ define(['knockout', 'text!./ConceptPickerTemplate.html', '../InputTypes/Concept'
 		this.isOpen(true);
 	};
 
-	ConceptPickerViewModel.prototype.removeConcept = function (item) {
-		this.ConceptList.remove(item);
-	};
-
 	ConceptPickerViewModel.prototype.add = function (vm) {
-		vm.ConceptList.push.apply(vm.ConceptList, vm.results()
-			.filter(function (item) {
-				return item.selected() == true
-			})
-			.map(function (item) {
-				return new Concept({
-					Id: item.CONCEPT_ID,
-					Name: item.CONCEPT_NAME
-				})
-			})
-		);
+		
+		if (vm.addHandler && vm.dtApi())
+			var concepts = vm.dtApi().getSelectedData()			
+			// first map to a concept
+			var mappedConcepts = concepts.map(function(d) {
+				return _mapConceptRowToConcept(d);
+			});
+			vm.addHandler(mappedConcepts);
 	};
  
  ConceptPickerViewModel.prototype.addAndClose = function(vm) {
@@ -56,13 +64,9 @@ define(['knockout', 'text!./ConceptPickerTemplate.html', '../InputTypes/Concept'
 			domains: [this.SelectedDomain],
 			maxResults: this.MaxResults
 		})
-			.then(function (searchResults) {
-				self.results(searchResults.map(function (d) {
-					return $.extend({
-						selected: ko.observable(false)
-					}, d)
-				}));
-			});
+		.then(function (searchResults) {
+			self.results(searchResults);
+		});
 	}
 
 	ConceptPickerViewModel.prototype.searchKeyUp = function (d, e) {
@@ -70,7 +74,53 @@ define(['knockout', 'text!./ConceptPickerTemplate.html', '../InputTypes/Concept'
 			this.search();
 		}
 	}
-
+	
+	ConceptPickerViewModel.prototype.doImport = function() {
+		var self=this;
+		
+		if (this.importValues().trim().length == 0)
+		{
+			self.isImportEnabled(false);
+			self.importValues("");			
+			return; // Nothing to do, import values is blank.
+		}
+		
+		var importConceptIds = this.importValues().split(',').map(function (e) { return +e; });
+		var uniqueConceptIds = [];
+		$.each(importConceptIds, function(i, el) {
+			if ($.inArray(el, uniqueConceptIds) === -1)
+				uniqueConceptIds.push(el);
+		});
+		
+		console.log(uniqueConceptIds);
+		if (uniqueConceptIds.length > 0)
+		{
+			var results = [];
+			var p = new $.Deferred().resolve();	
+			uniqueConceptIds.forEach(function(cId) {
+				p = p.then(function() {
+					return VocabularyProvider.getConcept(cId);
+				}).then(function(data) {
+					results.push(_mapConceptRowToConcept(data));
+				});
+			});
+			
+			p.then(function(){
+				if (self.addHandler)
+				{
+					self.addHandler(results);
+				}
+				self.isImportEnabled(false);
+				self.importValues("");
+			});
+		}
+		else
+		{
+			self.isImportEnabled(false);
+			self.importValues("");			
+		}
+	}
+	
 	// return compoonent definition
 	return {
 		viewModel: ConceptPickerViewModel,

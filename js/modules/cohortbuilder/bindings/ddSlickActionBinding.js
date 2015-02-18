@@ -3,6 +3,9 @@ define(['knockout', '../jquery.ddslick', 'css!../css/ddslick.criteria.css'], fun
 	function ddSlickInit(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
 		var options = valueAccessor() || {};
 		ddSlickSubInit(element, viewModel, bindingContext, options);
+		return {
+			controlsDescendantBindings: true
+		};			
 	}
 
 	function ddSlickSubInit(element, viewModel, bindingContext, options) {

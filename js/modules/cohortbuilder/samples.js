@@ -2,19 +2,37 @@ define(['knockout'], function (ko) {
 	var samples = {};
 
 	samples.emptyCondition = {
+		"Id": 1,
 		"Title": "Blank Condition Criteria",
 		"Type": "SIMPLE_DEFINITION",
+		"Description": "An empty cohort definition.",
 		"Expression": {
 			"PrimaryCriteria": {
-				CriteriaList: [{
-					"ConditionOccurrence": {}
-				}]
+				"CriteriaList": [
+					{
+						"ConditionOccurrence": {}
+					}
+				],
+				"ObservationWindow": {
+					"PriorDays": 0,
+					"PostDays": 0
+				},
+				"PrimaryCriteriaLimit": {
+					"Type": "All"
+				}
+			},
+			"ConceptSets": [],
+			"ExpressionLimit": {
+				"Type": "All"
 			}
 		}
 	}
+	
 	samples.nqf_0001_denominator = {
+		"Id": 2,
 		"Title": "Asthma Assessment (NQF 0001) [DENOMINATOR]",
 		"Type": "SIMPLE_DEFINITION",
+		"Description": "An example Quality Measure Denominator cohort for Asthma Assessment.",
 		"Expression": {
 			"PrimaryCriteria": {
 				CriteriaList: [{
@@ -60,22 +78,34 @@ define(['knockout'], function (ko) {
 				],
 				"Groups": []
 			},
-			"Codesets": [
+			"ConceptSets": [
 				{
-					"Id": 0,
-					"Name": "Asthma",
-					"TargetConcepts": [{
-						Id: "4125022",
-						Name: "Asthma"
-					}]
+					"id": 0,
+					"name": "Asthma",
+					"expression": {
+						"items": [
+							{
+								"concept": {
+									"CONCEPT_ID": 4125022,
+									"CONCEPT_NAME": "Acute asthma",
+									"CONCEPT_CODE": "304527002",
+									"DOMAIN_ID": "Condition",
+									"VOCABULARY_ID": "SNOMED"
+								},
+								"includeDescendants": true
+							}
+						]
+					}
 				}
 			]
 		}
 	};
 
 	samples.nqf_0001_numerator = {
+		"Id": 3,
 		"Title": "Asthma Assessment (NQF 0001) [NUMERATOR]",
 		"Type": "SIMPLE_DEFINITION",
+		"Description": "An example Quality Measure numerator cohort for Asthma Assessment.",
 		"Expression": {
 			"PrimaryCriteria": {
 				CriteriaList: [{
@@ -161,13 +191,35 @@ define(['knockout'], function (ko) {
 						]
 					}
 				]
-			}
+			},
+			"ConceptSets": [
+				{
+					"id": 0,
+					"name": "Asthma",
+					"expression": {
+						"items": [
+							{
+								"concept": {
+									"CONCEPT_ID": 4125022,
+									"CONCEPT_NAME": "Acute asthma",
+									"CONCEPT_CODE": "304527002",
+									"DOMAIN_ID": "Condition",
+									"VOCABULARY_ID": "SNOMED"
+								},
+								"includeDescendants": true
+							}
+						]
+					}
+				}
+			]
 		}
 	};
 
 	samples.depression_antidepressants = {
+		"Id": 4,
 		"Title": "Depression and Antidepressants",
 		"Type": "SIMPLE_DEFINITION",
+		"Description": "An example Depression and Antidepressants cohort demonstrating concept sets for conditions and drugs.",
 		"Expression": {
 			"PrimaryCriteria": {
 				"CriteriaList": [
@@ -238,50 +290,75 @@ define(['knockout'], function (ko) {
 						}
       }
     ],
-				"Groups": []
+		"Groups": []
 			},
-			"Codesets": [
-				{
-					"Id": 0,
-					"Name": "Antidepressants",
-					"TargetConcepts": [
-						{
-							"Id": 21604686,
-							"Name": "ANTIDEPRESSANTS"
-        },
-						{
-							"Id": 21500526,
-							"Name": "Antidepressants"
-        }
-      ],
-					"UseDescendents": true,
-					"Excluded": []
+  		"ConceptSets": [
+    {
+      "id": 0,
+      "name": "Antidepressants",
+      "expression": {
+        "items": [
+          {
+            "concept": {
+              "CONCEPT_ID": 21500526,
+              "CONCEPT_NAME": "Antidepressants",
+              "CONCEPT_CODE": "526",
+              "DOMAIN_ID": "Drug",
+              "VOCABULARY_ID": "ETC"
+            },
+            "includeDescendants": true
+          },
+          {
+            "concept": {
+              "CONCEPT_ID": 21604686,
+              "CONCEPT_NAME": "ANTIDEPRESSANTS",
+              "CONCEPT_CODE": "N06A",
+              "DOMAIN_ID": "Drug",
+              "VOCABULARY_ID": "ATC"
+            },
+            "includeDescendants": true
+          }
+        ]
+      }
     },
-				{
-					"Id": 1,
-					"Name": "Depression",
-					"TargetConcepts": [
-						{
-							"Id": 440383,
-							"Name": "Depressive disorder"
-        }
-      ],
-					"UseDescendents": true,
-					"Excluded": [
-						{
-							"Id": 436665,
-							"Name": "Bipolar disorder"
-        }
-      ],
-					"ExcludeDescendents": true
-    }
-  ]
+    {
+      "id": 1,
+      "name": "Depression",
+      "expression": {
+        "items": [
+          {
+            "concept": {
+              "CONCEPT_ID": 440383,
+              "CONCEPT_NAME": "Depressive disorder",
+              "CONCEPT_CODE": "35489007",
+              "DOMAIN_ID": "Condition",
+              "VOCABULARY_ID": "SNOMED"
+            },
+            "includeDescendants": true
+          },
+          {
+            "concept": {
+              "CONCEPT_ID": 436665,
+              "CONCEPT_NAME": "Bipolar disorder",
+              "CONCEPT_CODE": "13746004",
+              "DOMAIN_ID": "Condition",
+              "VOCABULARY_ID": "SNOMED"
+            },
+            "isExcluded": true,
+            "includeDescendants": true
+          }
+        ]
 		}
 	}
+	]
+		}
+	};
 	
 	samples.test = {
+		"Id": 5,
 		"Title" : "Test Expression",
 		"Type" : "SIMPLE_DEFINITION",
+		"Description": "A Test Expression representing all criteria types, with all criteria enabled.",
 		"Expression" : {
   "PrimaryCriteria": {
     "CriteriaList": [
@@ -299,8 +376,18 @@ define(['knockout'], function (ko) {
           },
           "ConditionType": [
             {
-              "Id": 38000245,
-              "Name": "EHR problem list entry"
+              "CONCEPT_ID": 38000246,
+              "CONCEPT_NAME": "Condition era - 0 days persistence window",
+              "CONCEPT_CODE": "OMOP generated",
+              "DOMAIN_ID": "Condition Type",
+              "VOCABULARY_ID": "Condition Type"
+            },
+            {
+              "CONCEPT_ID": 38000247,
+              "CONCEPT_NAME": "Condition era - 30 days persistence window",
+              "CONCEPT_CODE": "OMOP generated",
+              "DOMAIN_ID": "Condition Type",
+              "VOCABULARY_ID": "Condition Type"
             }
           ],
           "StopReason": {
@@ -316,32 +403,57 @@ define(['knockout'], function (ko) {
           },
           "Gender": [
             {
-              "Id": 8532,
-              "Name": "FEMALE"
+              "CONCEPT_ID": 8532,
+              "CONCEPT_NAME": "FEMALE",
+              "CONCEPT_CODE": "F",
+              "DOMAIN_ID": "Gender",
+              "VOCABULARY_ID": "Gender"
             },
             {
-              "Id": 8507,
-              "Name": "MALE"
+              "CONCEPT_ID": 8507,
+              "CONCEPT_NAME": "MALE",
+              "CONCEPT_CODE": "M",
+              "DOMAIN_ID": "Gender",
+              "VOCABULARY_ID": "Gender"
             }
           ],
           "ProviderSpecialty": [
             {
-              "Id": 38004688,
-              "Name": " Ambulance Service Provider"
+              "CONCEPT_ID": 44777717,
+              "CONCEPT_NAME": "General surgery",
+              "CONCEPT_CODE": "100",
+              "DOMAIN_ID": "Provider Specialty",
+              "VOCABULARY_ID": "HES Specialty"
             },
             {
-              "Id": 38004693,
-              "Name": " Clinic or Group Practice"
+              "CONCEPT_ID": 44777747,
+              "CONCEPT_NAME": "Urology",
+              "CONCEPT_CODE": "101",
+              "DOMAIN_ID": "Provider Specialty",
+              "VOCABULARY_ID": "HES Specialty"
             }
           ],
           "VisitType": [
             {
-              "Id": 44818519,
-              "Name": "Clinical Study visit"
+              "CONCEPT_ID": 44818519,
+              "CONCEPT_NAME": "Clinical Study visit",
+              "CONCEPT_CODE": "OMOP generated",
+              "DOMAIN_ID": "Visit Type",
+              "VOCABULARY_ID": "Visit Type"
             },
             {
-              "Id": 44818518,
-              "Name": "Visit derived from EHR record"
+              "CONCEPT_ID": 44818518,
+              "CONCEPT_NAME": "Visit derived from EHR record",
+              "CONCEPT_CODE": "OMOP generated",
+              "DOMAIN_ID": "Visit Type",
+              "VOCABULARY_ID": "Visit Type"
+            },
+            {
+              "CONCEPT_ID": 44818517,
+              "CONCEPT_NAME": "Visit derived from encounter on claim",
+              "CONCEPT_CODE": "OMOP generated",
+              "DOMAIN_ID": "Visit Type",
+              "VOCABULARY_ID": "Visit Type"
             }
           ]
         }
@@ -360,8 +472,18 @@ define(['knockout'], function (ko) {
           },
           "DrugType": [
             {
-              "Id": 38000180,
-              "Name": "Inpatient administration"
+              "CONCEPT_ID": 38000180,
+              "CONCEPT_NAME": "Inpatient administration",
+              "CONCEPT_CODE": "OMOP generated",
+              "DOMAIN_ID": "Drug Type",
+              "VOCABULARY_ID": "Drug Type"
+            },
+            {
+              "CONCEPT_ID": 38000176,
+              "CONCEPT_NAME": "Prescription dispensed through mail order",
+              "CONCEPT_CODE": "OMOP generated",
+              "DOMAIN_ID": "Drug Type",
+              "VOCABULARY_ID": "Drug Type"
             }
           ],
           "StopReason": {
@@ -382,12 +504,25 @@ define(['knockout'], function (ko) {
           },
           "RouteConcept": [
             {
-              "Id": 4120036,
-              "Name": "Inhaling"
+              "CONCEPT_ID": 4217202,
+              "CONCEPT_NAME": "Intrathecal route",
+              "CONCEPT_CODE": "72607000",
+              "DOMAIN_ID": "Route",
+              "VOCABULARY_ID": "SNOMED"
             },
             {
-              "Id": 4157760,
-              "Name": "Intraocular route"
+              "CONCEPT_ID": 4233974,
+              "CONCEPT_NAME": "Urethral route",
+              "CONCEPT_CODE": "90028008",
+              "DOMAIN_ID": "Route",
+              "VOCABULARY_ID": "SNOMED"
+            },
+            {
+              "CONCEPT_ID": 4112421,
+              "CONCEPT_NAME": "Intravenous",
+              "CONCEPT_CODE": "255560000",
+              "DOMAIN_ID": "Route",
+              "VOCABULARY_ID": "SNOMED"
             }
           ],
           "EffectiveDrugDose": {
@@ -396,12 +531,18 @@ define(['knockout'], function (ko) {
           },
           "DoseUnit": [
             {
-              "Id": 9276,
-              "Name": "50% cell culture infectious dose"
+              "CONCEPT_ID": 9215,
+              "CONCEPT_NAME": "percent 0 to 3 hours",
+              "CONCEPT_CODE": "%{0'to3'hours}",
+              "DOMAIN_ID": "Unit",
+              "VOCABULARY_ID": "UCUM"
             },
             {
-              "Id": 9414,
-              "Name": "50% tissue culture infectious dose"
+              "CONCEPT_ID": 8687,
+              "CONCEPT_NAME": "percent activity",
+              "CONCEPT_CODE": "%{activity}",
+              "DOMAIN_ID": "Unit",
+              "VOCABULARY_ID": "UCUM"
             }
           ],
           "LotNumber": {
@@ -416,33 +557,45 @@ define(['knockout'], function (ko) {
           },
           "Gender": [
             {
-              "Id": 8532,
-              "Name": "FEMALE"
+              "CONCEPT_ID": 45454912,
+              "CONCEPT_NAME": "Gender unspecified",
+              "CONCEPT_CODE": "1K3..00",
+              "DOMAIN_ID": "Gender",
+              "VOCABULARY_ID": "Read"
             },
             {
-              "Id": 8507,
-              "Name": "MALE"
+              "CONCEPT_ID": 8532,
+              "CONCEPT_NAME": "FEMALE",
+              "CONCEPT_CODE": "F",
+              "DOMAIN_ID": "Gender",
+              "VOCABULARY_ID": "Gender"
             }
           ],
           "ProviderSpecialty": [
             {
-              "Id": 38004688,
-              "Name": " Ambulance Service Provider"
+              "CONCEPT_ID": 38004446,
+              "CONCEPT_NAME": "General Practice",
+              "CONCEPT_CODE": "1",
+              "DOMAIN_ID": "Provider Specialty",
+              "VOCABULARY_ID": "Specialty"
             },
             {
-              "Id": 38004679,
-              "Name": " Ambulatory Surgical Center"
+              "CONCEPT_ID": 38004455,
+              "CONCEPT_NAME": "Gastroenterology",
+              "CONCEPT_CODE": "10",
+              "DOMAIN_ID": "Provider Specialty",
+              "VOCABULARY_ID": "Specialty"
             },
             {
-              "Id": 38004676,
-              "Name": " Anesthesiology Assistant"
+              "CONCEPT_ID": 44777717,
+              "CONCEPT_NAME": "General surgery",
+              "CONCEPT_CODE": "100",
+              "DOMAIN_ID": "Provider Specialty",
+              "VOCABULARY_ID": "HES Specialty"
             }
           ],
           "VisitType": [
-            {
-              "Id": 44818519,
-              "Name": "Clinical Study visit"
-            }
+            {}
           ]
         }
       },
@@ -456,14 +609,34 @@ define(['knockout'], function (ko) {
           },
           "ProcedureType": [
             {
-              "Id": 38000249,
-              "Name": "Inpatient detail - 1st position"
+              "CONCEPT_ID": 38000249,
+              "CONCEPT_NAME": "Inpatient detail - 1st position",
+              "CONCEPT_CODE": "OMOP generated",
+              "DOMAIN_ID": "Procedure Type",
+              "VOCABULARY_ID": "Procedure Type"
+            },
+            {
+              "CONCEPT_ID": 38000248,
+              "CONCEPT_NAME": "Inpatient detail - primary position",
+              "CONCEPT_CODE": "OMOP generated",
+              "DOMAIN_ID": "Procedure Type",
+              "VOCABULARY_ID": "Procedure Type"
             }
           ],
           "Modifier": [
             {
-              "Id": 4210463,
-              "Name": "10 to 19 percent of body surface"
+              "CONCEPT_ID": 4027948,
+              "CONCEPT_NAME": "Structure of fetal part of placenta",
+              "CONCEPT_CODE": "107008",
+              "DOMAIN_ID": "Spec Anatomic Site",
+              "VOCABULARY_ID": "SNOMED"
+            },
+            {
+              "CONCEPT_ID": 4030780,
+              "CONCEPT_NAME": "Entire condylar emissary vein",
+              "CONCEPT_CODE": "108003",
+              "DOMAIN_ID": "Spec Anatomic Site",
+              "VOCABULARY_ID": "SNOMED"
             }
           ],
           "Quantity": {
@@ -480,36 +653,50 @@ define(['knockout'], function (ko) {
           },
           "Gender": [
             {
-              "Id": 8532,
-              "Name": "FEMALE"
+              "CONCEPT_ID": 8532,
+              "CONCEPT_NAME": "FEMALE",
+              "CONCEPT_CODE": "F",
+              "DOMAIN_ID": "Gender",
+              "VOCABULARY_ID": "Gender"
             },
             {
-              "Id": 8507,
-              "Name": "MALE"
+              "CONCEPT_ID": 8507,
+              "CONCEPT_NAME": "MALE",
+              "CONCEPT_CODE": "M",
+              "DOMAIN_ID": "Gender",
+              "VOCABULARY_ID": "Gender"
             }
           ],
           "ProviderSpecialty": [
             {
-              "Id": 38004693,
-              "Name": " Clinic or Group Practice"
+              "CONCEPT_ID": 38004446,
+              "CONCEPT_NAME": "General Practice",
+              "CONCEPT_CODE": "1",
+              "DOMAIN_ID": "Provider Specialty",
+              "VOCABULARY_ID": "Specialty"
             },
             {
-              "Id": 38004692,
-              "Name": " Clinical Laboratory"
+              "CONCEPT_ID": 38004455,
+              "CONCEPT_NAME": "Gastroenterology",
+              "CONCEPT_CODE": "10",
+              "DOMAIN_ID": "Provider Specialty",
+              "VOCABULARY_ID": "Specialty"
             }
           ],
           "VisitType": [
             {
-              "Id": 44818519,
-              "Name": "Clinical Study visit"
+              "CONCEPT_ID": 44818519,
+              "CONCEPT_NAME": "Clinical Study visit",
+              "CONCEPT_CODE": "OMOP generated",
+              "DOMAIN_ID": "Visit Type",
+              "VOCABULARY_ID": "Visit Type"
             },
             {
-              "Id": 44818518,
-              "Name": "Visit derived from EHR record"
-            },
-            {
-              "Id": 44818517,
-              "Name": "Visit derived from encounter on claim"
+              "CONCEPT_ID": 44818518,
+              "CONCEPT_NAME": "Visit derived from EHR record",
+              "CONCEPT_CODE": "OMOP generated",
+              "DOMAIN_ID": "Visit Type",
+              "VOCABULARY_ID": "Visit Type"
             }
           ]
         }
@@ -524,14 +711,27 @@ define(['knockout'], function (ko) {
           },
           "MeasurementType": [
             {
-              "Id": 44818702,
-              "Name": "Lab result"
+              "CONCEPT_ID": 44818702,
+              "CONCEPT_NAME": "Lab result",
+              "CONCEPT_CODE": "OMOP generated",
+              "DOMAIN_ID": "Meas Type",
+              "VOCABULARY_ID": "Meas Type"
+            },
+            {
+              "CONCEPT_ID": 44818703,
+              "CONCEPT_NAME": "Pathology finding",
+              "CONCEPT_CODE": "OMOP generated",
+              "DOMAIN_ID": "Meas Type",
+              "VOCABULARY_ID": "Meas Type"
             }
           ],
           "Operator": [
             {
-              "Id": 4171756,
-              "Name": "<"
+              "CONCEPT_ID": 4171755,
+              "CONCEPT_NAME": ">=",
+              "CONCEPT_CODE": "276138003",
+              "DOMAIN_ID": "Meas Value Operator",
+              "VOCABULARY_ID": "SNOMED"
             }
           ],
           "ValueAsNumber": {
@@ -541,14 +741,34 @@ define(['knockout'], function (ko) {
           },
           "ValueAsConcept": [
             {
-              "Id": 4079377,
-              "Name": "Altered"
+              "CONCEPT_ID": 4079377,
+              "CONCEPT_NAME": "Altered",
+              "CONCEPT_CODE": "18307000",
+              "DOMAIN_ID": "Meas Value",
+              "VOCABULARY_ID": "SNOMED"
+            },
+            {
+              "CONCEPT_ID": 4047870,
+              "CONCEPT_NAME": "Good",
+              "CONCEPT_CODE": "20572008",
+              "DOMAIN_ID": "Meas Value",
+              "VOCABULARY_ID": "SNOMED"
             }
           ],
           "Unit": [
             {
-              "Id": 9276,
-              "Name": "50% cell culture infectious dose"
+              "CONCEPT_ID": 9216,
+              "CONCEPT_NAME": "percent abnormal",
+              "CONCEPT_CODE": "%{abnormal}",
+              "DOMAIN_ID": "Unit",
+              "VOCABULARY_ID": "UCUM"
+            },
+            {
+              "CONCEPT_ID": 8687,
+              "CONCEPT_NAME": "percent activity",
+              "CONCEPT_CODE": "%{activity}",
+              "DOMAIN_ID": "Unit",
+              "VOCABULARY_ID": "UCUM"
             }
           ],
           "RangeLow": {
@@ -574,24 +794,36 @@ define(['knockout'], function (ko) {
           },
           "Gender": [
             {
-              "Id": 8532,
-              "Name": "FEMALE"
-            },
-            {
-              "Id": 8507,
-              "Name": "MALE"
+              "CONCEPT_ID": 8532,
+              "CONCEPT_NAME": "FEMALE",
+              "CONCEPT_CODE": "F",
+              "DOMAIN_ID": "Gender",
+              "VOCABULARY_ID": "Gender"
             }
           ],
           "ProviderSpecialty": [
             {
-              "Id": 38004698,
-              "Name": " All Other Suppliers"
+              "CONCEPT_ID": 44777717,
+              "CONCEPT_NAME": "General surgery",
+              "CONCEPT_CODE": "100",
+              "DOMAIN_ID": "Provider Specialty",
+              "VOCABULARY_ID": "HES Specialty"
             }
           ],
           "VisitType": [
             {
-              "Id": 44818519,
-              "Name": "Clinical Study visit"
+              "CONCEPT_ID": 44818519,
+              "CONCEPT_NAME": "Clinical Study visit",
+              "CONCEPT_CODE": "OMOP generated",
+              "DOMAIN_ID": "Visit Type",
+              "VOCABULARY_ID": "Visit Type"
+            },
+            {
+              "CONCEPT_ID": 44818518,
+              "CONCEPT_NAME": "Visit derived from EHR record",
+              "CONCEPT_CODE": "OMOP generated",
+              "DOMAIN_ID": "Visit Type",
+              "VOCABULARY_ID": "Visit Type"
             }
           ]
         }
@@ -601,12 +833,18 @@ define(['knockout'], function (ko) {
           "First": true,
           "PeriodType": [
             {
-              "Id": 44814724,
-              "Name": "Period covering healthcare encounters"
+              "CONCEPT_ID": 44814724,
+              "CONCEPT_NAME": "Period covering healthcare encounters",
+              "CONCEPT_CODE": "OMOP generated",
+              "DOMAIN_ID": "Obs Period Type",
+              "VOCABULARY_ID": "Obs Period Type"
             },
             {
-              "Id": 44814725,
-              "Name": "Period inferred by algorithm"
+              "CONCEPT_ID": 44814725,
+              "CONCEPT_NAME": "Period inferred by algorithm",
+              "CONCEPT_CODE": "OMOP generated",
+              "DOMAIN_ID": "Obs Period Type",
+              "VOCABULARY_ID": "Obs Period Type"
             }
           ],
           "AgeAtStart": {
@@ -634,12 +872,18 @@ define(['knockout'], function (ko) {
           },
           "ObservationType": [
             {
-              "Id": 38000282,
-              "Name": "Chief complaint"
+              "CONCEPT_ID": 38000282,
+              "CONCEPT_NAME": "Chief complaint",
+              "CONCEPT_CODE": "OMOP generated",
+              "DOMAIN_ID": "Observation Type",
+              "VOCABULARY_ID": "Observation Type"
             },
             {
-              "Id": 44786633,
-              "Name": "HRA Observation Numeric Result"
+              "CONCEPT_ID": 44786633,
+              "CONCEPT_NAME": "HRA Observation Numeric Result",
+              "CONCEPT_CODE": "OMOP generated",
+              "DOMAIN_ID": "Observation Type",
+              "VOCABULARY_ID": "Observation Type"
             }
           ],
           "ValueAsNumber": {
@@ -652,8 +896,11 @@ define(['knockout'], function (ko) {
           },
           "ValueAsConcept": [
             {
-              "Id": 4155143,
-              "Name": "Abnormally low"
+              "CONCEPT_ID": 9191,
+              "CONCEPT_NAME": "Positive",
+              "CONCEPT_CODE": "10828004",
+              "DOMAIN_ID": "Meas Value",
+              "VOCABULARY_ID": "SNOMED"
             }
           ],
           "First": true,
@@ -663,20 +910,43 @@ define(['knockout'], function (ko) {
           },
           "Gender": [
             {
-              "Id": 8532,
-              "Name": "FEMALE"
+              "CONCEPT_ID": 8507,
+              "CONCEPT_NAME": "MALE",
+              "CONCEPT_CODE": "M",
+              "DOMAIN_ID": "Gender",
+              "VOCABULARY_ID": "Gender"
             }
           ],
           "ProviderSpecialty": [
             {
-              "Id": 38004698,
-              "Name": " All Other Suppliers"
+              "CONCEPT_ID": 38003623,
+              "CONCEPT_NAME": "Behavioral Health & Social Service Providers, Counselor",
+              "CONCEPT_CODE": "101Y00000X",
+              "DOMAIN_ID": "Provider Specialty",
+              "VOCABULARY_ID": "NUCC"
+            },
+            {
+              "CONCEPT_ID": 38003624,
+              "CONCEPT_NAME": "Behavioral Health & Social Service Providers, Counselor, Addiction (Substance Use Disorder)",
+              "CONCEPT_CODE": "101YA0400X",
+              "DOMAIN_ID": "Provider Specialty",
+              "VOCABULARY_ID": "NUCC"
             }
           ],
           "VisitType": [
             {
-              "Id": 44818519,
-              "Name": "Clinical Study visit"
+              "CONCEPT_ID": 44818519,
+              "CONCEPT_NAME": "Clinical Study visit",
+              "CONCEPT_CODE": "OMOP generated",
+              "DOMAIN_ID": "Visit Type",
+              "VOCABULARY_ID": "Visit Type"
+            },
+            {
+              "CONCEPT_ID": 44818518,
+              "CONCEPT_NAME": "Visit derived from EHR record",
+              "CONCEPT_CODE": "OMOP generated",
+              "DOMAIN_ID": "Visit Type",
+              "VOCABULARY_ID": "Visit Type"
             }
           ]
         }
@@ -695,11 +965,22 @@ define(['knockout'], function (ko) {
           },
           "DeviceType": [
             {
-              "Id": 44818706,
-              "Name": "Patient reported device"
+              "CONCEPT_ID": 44818707,
+              "CONCEPT_NAME": "EHR Detail",
+              "CONCEPT_CODE": "OMOP generated",
+              "DOMAIN_ID": "Device Type",
+              "VOCABULARY_ID": "Device Type"
+            },
+            {
+              "CONCEPT_ID": 44818705,
+              "CONCEPT_NAME": "Inferred from procedure claim",
+              "CONCEPT_CODE": "OMOP generated",
+              "DOMAIN_ID": "Device Type",
+              "VOCABULARY_ID": "Device Type"
             }
           ],
           "UniqueDeviceId": {
+            "Text": "abcd",
             "Op": "contains"
           },
           "Quantity": {
@@ -715,32 +996,50 @@ define(['knockout'], function (ko) {
           },
           "Gender": [
             {
-              "Id": 8532,
-              "Name": "FEMALE"
+              "CONCEPT_ID": 8532,
+              "CONCEPT_NAME": "FEMALE",
+              "CONCEPT_CODE": "F",
+              "DOMAIN_ID": "Gender",
+              "VOCABULARY_ID": "Gender"
             },
             {
-              "Id": 8507,
-              "Name": "MALE"
+              "CONCEPT_ID": 8507,
+              "CONCEPT_NAME": "MALE",
+              "CONCEPT_CODE": "M",
+              "DOMAIN_ID": "Gender",
+              "VOCABULARY_ID": "Gender"
             }
           ],
           "ProviderSpecialty": [
             {
-              "Id": 38004679,
-              "Name": " Ambulatory Surgical Center"
+              "CONCEPT_ID": 38004455,
+              "CONCEPT_NAME": "Gastroenterology",
+              "CONCEPT_CODE": "10",
+              "DOMAIN_ID": "Provider Specialty",
+              "VOCABULARY_ID": "Specialty"
             }
           ],
           "VisitType": [
             {
-              "Id": 44818519,
-              "Name": "Clinical Study visit"
+              "CONCEPT_ID": 44818519,
+              "CONCEPT_NAME": "Clinical Study visit",
+              "CONCEPT_CODE": "OMOP generated",
+              "DOMAIN_ID": "Visit Type",
+              "VOCABULARY_ID": "Visit Type"
             },
             {
-              "Id": 44818518,
-              "Name": "Visit derived from EHR record"
+              "CONCEPT_ID": 44818518,
+              "CONCEPT_NAME": "Visit derived from EHR record",
+              "CONCEPT_CODE": "OMOP generated",
+              "DOMAIN_ID": "Visit Type",
+              "VOCABULARY_ID": "Visit Type"
             },
             {
-              "Id": 44818517,
-              "Name": "Visit derived from encounter on claim"
+              "CONCEPT_ID": 44818517,
+              "CONCEPT_NAME": "Visit derived from encounter on claim",
+              "CONCEPT_CODE": "OMOP generated",
+              "DOMAIN_ID": "Visit Type",
+              "VOCABULARY_ID": "Visit Type"
             }
           ]
         }
@@ -754,8 +1053,11 @@ define(['knockout'], function (ko) {
           },
           "SpecimenType": [
             {
-              "Id": 4120036,
-              "Name": "Inhaling"
+              "CONCEPT_ID": 4234527,
+              "CONCEPT_NAME": "Eluate",
+              "CONCEPT_CODE": "40511003",
+              "DOMAIN_ID": "Specimen",
+              "VOCABULARY_ID": "SNOMED"
             }
           ],
           "Quantity": {
@@ -764,24 +1066,36 @@ define(['knockout'], function (ko) {
           },
           "Unit": [
             {
-              "Id": 8543,
-              "Name": "ampere"
+              "CONCEPT_ID": 8631,
+              "CONCEPT_NAME": "sperm motility at 60 minutes",
+              "CONCEPT_CODE": "%{sperm'motility'at'60'min}",
+              "DOMAIN_ID": "Unit",
+              "VOCABULARY_ID": "UCUM"
             }
           ],
           "AnatomicSite": [
             {
-              "Id": 4138664,
-              "Name": "5/6 interchondral joint"
+              "CONCEPT_ID": 4024559,
+              "CONCEPT_NAME": "Structure of posterior carpal region",
+              "CONCEPT_CODE": "106004",
+              "DOMAIN_ID": "Spec Anatomic Site",
+              "VOCABULARY_ID": "SNOMED"
             }
           ],
           "DiseaseStatus": [
             {
-              "Id": 4120036,
-              "Name": "Inhaling"
+              "CONCEPT_ID": 4030780,
+              "CONCEPT_NAME": "Entire condylar emissary vein",
+              "CONCEPT_CODE": "108003",
+              "DOMAIN_ID": "Spec Anatomic Site",
+              "VOCABULARY_ID": "SNOMED"
             },
             {
-              "Id": 4157760,
-              "Name": "Intraocular route"
+              "CONCEPT_ID": 4003838,
+              "CONCEPT_NAME": "Structure of visceral layer of Bowman's capsule",
+              "CONCEPT_CODE": "110001",
+              "DOMAIN_ID": "Spec Anatomic Site",
+              "VOCABULARY_ID": "SNOMED"
             }
           ],
           "SourceId": {
@@ -796,12 +1110,18 @@ define(['knockout'], function (ko) {
           },
           "Gender": [
             {
-              "Id": 8532,
-              "Name": "FEMALE"
+              "CONCEPT_ID": 8532,
+              "CONCEPT_NAME": "FEMALE",
+              "CONCEPT_CODE": "F",
+              "DOMAIN_ID": "Gender",
+              "VOCABULARY_ID": "Gender"
             },
             {
-              "Id": 8507,
-              "Name": "MALE"
+              "CONCEPT_ID": 8507,
+              "CONCEPT_NAME": "MALE",
+              "CONCEPT_CODE": "M",
+              "DOMAIN_ID": "Gender",
+              "VOCABULARY_ID": "Gender"
             }
           ]
         }
@@ -819,8 +1139,18 @@ define(['knockout'], function (ko) {
           },
           "VisitType": [
             {
-              "Id": 44818519,
-              "Name": "Clinical Study visit"
+              "CONCEPT_ID": 44818519,
+              "CONCEPT_NAME": "Clinical Study visit",
+              "CONCEPT_CODE": "OMOP generated",
+              "DOMAIN_ID": "Visit Type",
+              "VOCABULARY_ID": "Visit Type"
+            },
+            {
+              "CONCEPT_ID": 44818518,
+              "CONCEPT_NAME": "Visit derived from EHR record",
+              "CONCEPT_CODE": "OMOP generated",
+              "DOMAIN_ID": "Visit Type",
+              "VOCABULARY_ID": "Visit Type"
             }
           ],
           "VisitLength": {
@@ -835,32 +1165,43 @@ define(['knockout'], function (ko) {
           },
           "Gender": [
             {
-              "Id": 8532,
-              "Name": "FEMALE"
-            },
-            {
-              "Id": 8507,
-              "Name": "MALE"
+              "CONCEPT_ID": 8507,
+              "CONCEPT_NAME": "MALE",
+              "CONCEPT_CODE": "M",
+              "DOMAIN_ID": "Gender",
+              "VOCABULARY_ID": "Gender"
             }
           ],
           "ProviderSpecialty": [
             {
-              "Id": 38004688,
-              "Name": " Ambulance Service Provider"
+              "CONCEPT_ID": 38004455,
+              "CONCEPT_NAME": "Gastroenterology",
+              "CONCEPT_CODE": "10",
+              "DOMAIN_ID": "Provider Specialty",
+              "VOCABULARY_ID": "Specialty"
             },
             {
-              "Id": 38004679,
-              "Name": " Ambulatory Surgical Center"
+              "CONCEPT_ID": 44777717,
+              "CONCEPT_NAME": "General surgery",
+              "CONCEPT_CODE": "100",
+              "DOMAIN_ID": "Provider Specialty",
+              "VOCABULARY_ID": "HES Specialty"
             }
           ],
           "PlaceOfService": [
             {
-              "Id": 8850,
-              "Name": "Ambulance - Air or Water"
+              "CONCEPT_ID": 8562,
+              "CONCEPT_NAME": "Pharmacy",
+              "CONCEPT_CODE": "1",
+              "DOMAIN_ID": "Place of Service",
+              "VOCABULARY_ID": "Place of Service"
             },
             {
-              "Id": 8668,
-              "Name": "Ambulance - Land"
+              "CONCEPT_ID": 8537,
+              "CONCEPT_NAME": "School",
+              "CONCEPT_CODE": "3",
+              "DOMAIN_ID": "Place of Service",
+              "VOCABULARY_ID": "Place of Service"
             }
           ]
         }
@@ -875,8 +1216,11 @@ define(['knockout'], function (ko) {
           },
           "DeathType": [
             {
-              "Id": 38003570,
-              "Name": "Death Certificate immediate cause"
+              "CONCEPT_ID": 38003617,
+              "CONCEPT_NAME": "Death Certificate contributory cause",
+              "CONCEPT_CODE": "OMOP generated",
+              "DOMAIN_ID": "Death Type",
+              "VOCABULARY_ID": "Death Type"
             }
           ],
           "Age": {
@@ -886,12 +1230,18 @@ define(['knockout'], function (ko) {
           },
           "Gender": [
             {
-              "Id": 8532,
-              "Name": "FEMALE"
+              "CONCEPT_ID": 8532,
+              "CONCEPT_NAME": "FEMALE",
+              "CONCEPT_CODE": "F",
+              "DOMAIN_ID": "Gender",
+              "VOCABULARY_ID": "Gender"
             },
             {
-              "Id": 8507,
-              "Name": "MALE"
+              "CONCEPT_ID": 8507,
+              "CONCEPT_NAME": "MALE",
+              "CONCEPT_CODE": "M",
+              "DOMAIN_ID": "Gender",
+              "VOCABULARY_ID": "Gender"
             }
           ]
         }
@@ -928,12 +1278,18 @@ define(['knockout'], function (ko) {
           },
           "Gender": [
             {
-              "Id": 8532,
-              "Name": "FEMALE"
+              "CONCEPT_ID": 8532,
+              "CONCEPT_NAME": "FEMALE",
+              "CONCEPT_CODE": "F",
+              "DOMAIN_ID": "Gender",
+              "VOCABULARY_ID": "Gender"
             },
             {
-              "Id": 8507,
-              "Name": "MALE"
+              "CONCEPT_ID": 8507,
+              "CONCEPT_NAME": "MALE",
+              "CONCEPT_CODE": "M",
+              "DOMAIN_ID": "Gender",
+              "VOCABULARY_ID": "Gender"
             }
           ]
         }
@@ -975,8 +1331,11 @@ define(['knockout'], function (ko) {
           },
           "Gender": [
             {
-              "Id": 8532,
-              "Name": "FEMALE"
+              "CONCEPT_ID": 8532,
+              "CONCEPT_NAME": "FEMALE",
+              "CONCEPT_CODE": "F",
+              "DOMAIN_ID": "Gender",
+              "VOCABULARY_ID": "Gender"
             }
           ]
         }
@@ -994,8 +1353,11 @@ define(['knockout'], function (ko) {
           },
           "Unit": [
             {
-              "Id": 8543,
-              "Name": "ampere"
+              "CONCEPT_ID": 9217,
+              "CONCEPT_NAME": "percent basal activity",
+              "CONCEPT_CODE": "%{basal'activity}",
+              "DOMAIN_ID": "Unit",
+              "VOCABULARY_ID": "UCUM"
             }
           ],
           "DoseValue": {
@@ -1017,8 +1379,18 @@ define(['knockout'], function (ko) {
           },
           "Gender": [
             {
-              "Id": 8532,
-              "Name": "FEMALE"
+              "CONCEPT_ID": 8532,
+              "CONCEPT_NAME": "FEMALE",
+              "CONCEPT_CODE": "F",
+              "DOMAIN_ID": "Gender",
+              "VOCABULARY_ID": "Gender"
+            },
+            {
+              "CONCEPT_ID": 8507,
+              "CONCEPT_NAME": "MALE",
+              "CONCEPT_CODE": "M",
+              "DOMAIN_ID": "Gender",
+              "VOCABULARY_ID": "Gender"
             }
           ]
         }
@@ -1032,40 +1404,63 @@ define(['knockout'], function (ko) {
       "Type": "All"
     }
   },
-  "Codesets": [
+  "ConceptSets": [
     {
-      "Id": 0,
-      "Name": "Antidepressants",
-      "TargetConcepts": [
-        {
-          "Id": 21604686,
-          "Name": "ANTIDEPRESSANTS"
-        },
-        {
-          "Id": 21500526,
-          "Name": "Antidepressants"
-        }
-      ],
-      "UseDescendents": true,
-      "Excluded": []
+      "id": 0,
+      "name": "Antidepressants",
+      "expression": {
+        "items": [
+          {
+            "concept": {
+              "CONCEPT_ID": 21500526,
+              "CONCEPT_NAME": "Antidepressants",
+              "CONCEPT_CODE": "526",
+              "DOMAIN_ID": "Drug",
+              "VOCABULARY_ID": "ETC"
+            },
+            "includeDescendants": true
+          },
+          {
+            "concept": {
+              "CONCEPT_ID": 21604686,
+              "CONCEPT_NAME": "ANTIDEPRESSANTS",
+              "CONCEPT_CODE": "N06A",
+              "DOMAIN_ID": "Drug",
+              "VOCABULARY_ID": "ATC"
+            },
+            "includeDescendants": true
+          }
+        ]
+      }
     },
     {
-      "Id": 1,
-      "Name": "Depression",
-      "TargetConcepts": [
-        {
-          "Id": 440383,
-          "Name": "Depressive disorder"
-        }
-      ],
-      "UseDescendents": true,
-      "Excluded": [
-        {
-          "Id": 436665,
-          "Name": "Bipolar disorder"
-        }
-      ],
-      "ExcludeDescendents": true
+      "id": 1,
+      "name": "Depression",
+      "expression": {
+        "items": [
+          {
+            "concept": {
+              "CONCEPT_ID": 440383,
+              "CONCEPT_NAME": "Depressive disorder",
+              "CONCEPT_CODE": "35489007",
+              "DOMAIN_ID": "Condition",
+              "VOCABULARY_ID": "SNOMED"
+            },
+            "includeDescendants": true
+          },
+          {
+            "concept": {
+              "CONCEPT_ID": 436665,
+              "CONCEPT_NAME": "Bipolar disorder",
+              "CONCEPT_CODE": "13746004",
+              "DOMAIN_ID": "Condition",
+              "VOCABULARY_ID": "SNOMED"
+            },
+            "isExcluded": true,
+            "includeDescendants": true
+          }
+        ]
+      }
     }
   ],
   "ExpressionLimit": {

@@ -7,7 +7,7 @@ require.config({
 		"json": "requirejs/plugins/json",
 		"jquery": "jquery-1.11.1.min",
 		"jquery-ui": "jqueryui/jquery-ui.min",
-		"knockout": "knockout-3.2.0",
+		"knockout": "knockout-latest.debug",
 		"cohortbuilder": "modules/cohortbuilder",
 		"datatables": "jqueryui/jquery.dataTables",
 		"vocabularyprovider": "modules/WebAPIProvider",
@@ -22,5 +22,8 @@ require.config({
 });
 
 require(['knockout', 'app', ], function (ko, App) {
-	ko.applyBindings(new App(), document.getElementById('wrapper'));
+	var circeApp = new App();
+	ko.applyBindings(circeApp, document.getElementById('wrapper'));
+	circeApp.selectedView("list");
+	
 });

@@ -5,10 +5,10 @@
 			<col />							
 			<tr>
 				<td colspan="2"> a measurement of 
-					<select data-bind="options: $component.expression.Codesets, 
-						optionsText: function(item) { return item.Name }, 
+					<select data-bind="options: $component.expression.ConceptSets, 
+						optionsText: function(item) { return item.name }, 
 						optionsCaption: 'Any Measurement', 
-						optionsValue: 'Id',
+						optionsValue: 'id',
 						value: CodesetId" class="mediumInputField">
 					</select>
 				</td>
@@ -26,13 +26,13 @@
 			<tr data-bind="if: MeasurementType() != null, visible: MeasurementType() != null">
 				<td><img data-bind="click: function() { $component.removeCriterion('MeasurementType') }" class="deleteIcon" src="images/cohortbuilder/delete.png" /></td>
 				<td>
-					Measurement Type is: <concept-picker params="DefaultDomain: 'Meas Type', ConceptList: MeasurementType(), DefaultQuery: ''"></concept-picker>
+					Measurement Type is: <concept-list params="PickerParams: { DefaultDomain: 'Meas Type', DefaultQuery: ''}, ConceptList: MeasurementType()"></concept-list>
 				</td>									
 			</tr>
 			<tr data-bind="if: Operator() != null, visible: Operator() != null">
 				<td><img data-bind="click: function() { $component.removeCriterion('Operator') }" class="deleteIcon" src="images/cohortbuilder/delete.png" /></td>
 				<td>
-					Measurement Value Operator is: <concept-picker params="DefaultDomain: 'Meas Value Operator', ConceptList: Operator(), DefaultQuery: ''"></concept-picker>
+					Measurement Value Operator is: <concept-list params="PickerParams: { DefaultDomain: 'Meas Value Operator', DefaultQuery: ''}, ConceptList: Operator()"></concept-list>
 				</td>									
 			</tr>
 			<tr data-bind="if: ValueAsNumber() != null, visible: ValueAsNumber() != null">
@@ -44,13 +44,13 @@
 			<tr data-bind="if: ValueAsConcept() != null, visible: ValueAsConcept() != null">
 				<td><img data-bind="click: function() { $component.removeCriterion('ValueAsConcept') }" class="deleteIcon" src="images/cohortbuilder/delete.png" /></td>
 				<td>
-					Value as Concept is: <concept-picker params="DefaultDomain: 'Meas Value', ConceptList: ValueAsConcept(), DefaultQuery: ''"></concept-picker>
+					Value as Concept is: <concept-list params="PickerParams: { DefaultDomain: 'Meas Value', DefaultQuery: ''}, ConceptList: ValueAsConcept()"></concept-list>
 				</td>									
 			</tr>
 			<tr data-bind="if: Unit() != null, visible: Unit() != null">
 				<td><img data-bind="click: function() { $component.removeCriterion('Unit') }" class="deleteIcon" src="images/cohortbuilder/delete.png" /></td>
 				<td>
-					Unit is: <concept-picker params="DefaultDomain: 'Unit', ConceptList: Unit(), DefaultQuery: ''"></concept-picker>
+					Unit is: <concept-list params="PickerParams: { DefaultDomain: 'Unit', DefaultQuery: ''}, ConceptList: Unit()"></concept-list>
 				</td>									
 			</tr>
 			<tr data-bind="if: RangeLow() != null, visible: RangeLow() != null">
@@ -88,10 +88,10 @@
 				<td>
 					<div>
 					Measurement Source Concept is 
-						<select data-bind="options: $component.expression.Codesets, 
-							optionsText: function(item) { return item.Name }, 
-							optionsCaption: 'Select Codeset...', 
-							optionsValue: 'Id',
+						<select data-bind="options: $component.expression.ConceptSets, 
+							optionsText: function(item) { return item.name }, 
+							optionsCaption: 'Select Concept Set...', 
+							optionsValue: 'id',
 							value: MeasurementSourceConcept()" class="mediumInputField">
 						</select>
 					</div>
@@ -107,7 +107,7 @@
 				<td><img data-bind="click: function() { $component.removeCriterion('Gender') }" class="deleteIcon" src="images/cohortbuilder/delete.png" /></td>
 				<td>
 					<div>
-					with a gender of: <concept-picker params="DefaultDomain: 'Gender', ConceptList: Gender(), DefaultQuery: ''"></concept-picker>
+					with a gender of: <concept-list params="PickerParams: { DefaultDomain: 'Gender', DefaultQuery: ''}, ConceptList: Gender()"></concept-list>
 					</div>						
 				</td>
 			</tr>
@@ -129,14 +129,14 @@
 				<td><img data-bind="click: function() { $component.removeCriterion('ProviderSpecialty') }" class="deleteIcon" src="images/cohortbuilder/delete.png" /></td>
 				<td>
 					<div>
-					with a Provider Specialty of: <concept-picker params="DefaultDomain: 'Provider Specialty', ConceptList: ProviderSpecialty()"></concept-picker>
+					with a Provider Specialty of: <concept-list params="PickerParams: { DefaultDomain: 'Provider Specialty', DefaultQuery: ''}, ConceptList: ProviderSpecialty()"></concept-list>
 					</div>
 			  </td>									
 			</tr>	
 			<tr data-bind="if: VisitType() != null, visible: VisitType() != null">
 				<td><img data-bind="click: function() { $component.removeCriterion('VisitType') }" class="deleteIcon" src="images/cohortbuilder/delete.png" /></td>
 				<td>
-					Visit Type is: <concept-picker params="DefaultDomain: 'Visit Type', ConceptList: VisitType(), DefaultQuery: ''"></concept-picker>
+					Visit Type is: <concept-list params="PickerParams: { DefaultDomain: 'Visit Type', DefaultQuery: ''}, ConceptList: VisitType()"></concept-list>
 				</td>									
 			</tr>								
 		</table>

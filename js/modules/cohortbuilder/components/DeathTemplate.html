@@ -5,10 +5,10 @@
 			<col />							
 			<tr>
 				<td colspan="2"> a death occurrence from 
-					<select data-bind="options: $component.expression.Codesets, 
-						optionsText: function(item) { return item.Name }, 
+					<select data-bind="options: $component.expression.ConceptSets, 
+						optionsText: function(item) { return item.name }, 
 						optionsCaption: 'Any Cause of Death', 
-						optionsValue: 'Id',
+						optionsValue: 'id',
 						value: CodesetId" class="mediumInputField">
 					</select>
 				</td>
@@ -22,7 +22,7 @@
 			<tr data-bind="if: DeathType() != null, visible: DeathType() != null">
 				<td><img data-bind="click: function() { $component.removeCriterion('DeathType') }" class="deleteIcon" src="images/cohortbuilder/delete.png" /></td>
 				<td>
-					Death Type is: <concept-picker params="DefaultDomain: 'Death Type', ConceptList: DeathType(), DefaultQuery: ''"></concept-picker>
+					Death Type is: <concept-list params="PickerParams: { DefaultDomain: 'Death Type', DefaultQuery: ''}, ConceptList: DeathType()"></concept-list>
 				</td>									
 			</tr>
 			<tr data-bind="if: DeathSourceConcept() != null, visible: DeathSourceConcept() != null">
@@ -30,10 +30,10 @@
 				<td>
 					<div>
 					Death Source Concept is 
-						<select data-bind="options: $component.expression.Codesets, 
-							optionsText: function(item) { return item.Name }, 
-							optionsCaption: 'Select Codeset...', 
-							optionsValue: 'Id',
+						<select data-bind="options: $component.expression.ConceptSets, 
+							optionsText: function(item) { return item.name }, 
+							optionsCaption: 'Select Concept Set...', 
+							optionsValue: 'id',
 							value: DeathSourceConcept()" class="mediumInputField">
 						</select>
 					</div>
@@ -49,7 +49,7 @@
 				<td><img data-bind="click: function() { $component.removeCriterion('Gender') }" class="deleteIcon" src="images/cohortbuilder/delete.png" /></td>
 				<td>
 					<div>
-					with a gender of: <concept-picker params="DefaultDomain: 'Gender', ConceptList: Gender(), DefaultQuery: ''"></concept-picker>
+						with a gender of: <concept-list params="PickerParams: { DefaultDomain: 'Gender', DefaultQuery: ''}, ConceptList: Gender()"></concept-list>
 					</div>						
 				</td>
 			</tr>

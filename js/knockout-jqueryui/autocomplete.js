@@ -3,8 +3,7 @@ define(
 
     [
         './bindingHandler',
-        './utils',
-        'jquery-ui/autocomplete'
+        './utils'
     ],
 
     function (BindingHandler, utils) {

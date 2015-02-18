@@ -5,8 +5,8 @@ define(function (require, exports) {
 	var conceptPicker = require('cohortbuilder/components/ConceptPicker');
 	ko.components.register('concept-picker', conceptPicker);
 	
-	var codesetBuilder = require('cohortbuilder/components/CodesetBuilder');
-	ko.components.register('codeset-builder', codesetBuilder);
+	var conceptSetBuilder = require('cohortbuilder/components/ConceptSetBuilder');
+	ko.components.register('concept-set-builder', conceptSetBuilder);
 	
 	var expressionEditor = require('cohortbuilder/components/CohortExpressionEditor');
 	ko.components.register('cohort-expression-editor', expressionEditor);
@@ -64,4 +64,8 @@ define(function (require, exports) {
 	
 	var textFilter = require('cohortbuilder/components/TextFilter');
 	ko.components.register('text-filter-input',textFilter);	
+	
+	var conceptList = require('cohortbuilder/components/ConceptList');
+	ko.components.register('concept-list',conceptList);
+	
 });

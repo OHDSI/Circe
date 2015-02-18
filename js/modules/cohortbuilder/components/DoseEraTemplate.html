@@ -5,10 +5,10 @@
 			<col />							
 			<tr>
 				<td colspan="2"> a dose era of 
-					<select data-bind="options: $component.expression.Codesets, 
-						optionsText: function(item) { return item.Name }, 
+					<select data-bind="options: $component.expression.ConceptSets, 
+						optionsText: function(item) { return item.name }, 
 						optionsCaption: 'Any Drug', 
-						optionsValue: 'Id',
+						optionsValue: 'id',
 						value: CodesetId" class="mediumInputField">
 					</select>
 				</td>
@@ -33,7 +33,7 @@
 				<td><img data-bind="click: function() { $component.removeCriterion('Unit') }" class="deleteIcon" src="images/cohortbuilder/delete.png" /></td>
 				<td>
 					<div>
-					with Unit: <concept-picker params="DefaultDomain: 'Unit', ConceptList: Unit(), maxResults: 1000"></concept-picker>
+						with Unit: <concept-list params="PickerParams: { DefaultDomain: 'Unit'}, ConceptList: Unit()"></concept-list>
 					</div>
 			 </td>									
 			</tr>	
@@ -65,7 +65,7 @@
 				<td><img data-bind="click: function() { $component.removeCriterion('Gender') }" class="deleteIcon" src="images/cohortbuilder/delete.png" /></td>
 				<td>
 					<div>
-					with a gender of: <concept-picker params="DefaultDomain: 'Gender', ConceptList: Gender(), DefaultQuery: ''"></concept-picker>
+					with a gender of: <concept-list params="PickerParams: { DefaultDomain: 'Gender', DefaultQuery: ''}, ConceptList: Gender()"></concept-list>
 					</div>						
 				</td>
 			</tr>					
