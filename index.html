@@ -47,13 +47,35 @@
 					<div data-bind="if: selectedDefinition()">
 						Title:
 						<input data-bind="value: selectedDefinition().Title"></input>
-						<button data-bind="click: generate">Show SQL</button>
 						<button data-bind="click: saveAndClose">Save and Close</button>
 						<button data-bind="click: cancel">Cancel</button>
 						<cohort-expression-editor params="expression: selectedDefinition().Expression"></cohort-expression-editor>
 						<button data-bind="click: generate">Show SQL</button>
-						<button data-bind="click: saveAndClose">Save and Close</button>
-						<button data-bind="click: cancel">Cancel</button>
+						<!-- ko if: generateOptions() != null -->
+						<table>
+							<tr>
+								<td>CDM Schema:</td>
+								<td><input data-bind="value: generateOptions().cdmSchema"></input></td>
+							</tr>
+							<tr>
+								<td>Target Schema:</td>
+								<td><input data-bind="value: generateOptions().targetSchema"></input></td>
+							</tr>
+							<tr>
+								<td>Target Table:</td>
+								<td><input data-bind="value: generateOptions().targetTable"></input></td>
+							</tr>
+							<tr>
+								<td>Cohort Def Id:</td>
+								<td><input data-bind="value: generateOptions().cohortId"></input></td>
+							</tr>
+						</table>
+						<button data-bind="click: removeGenerateOptions">Remove Options</button>
+						<!-- /ko -->
+						<!-- ko if: generateOptions() == null -->
+						<button data-bind="click: addGenerateOptions">Add Options</button>
+						<!-- /ko -->
+					
 					</div>
 				</td>
 			</tr>

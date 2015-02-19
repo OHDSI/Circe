@@ -50,6 +50,7 @@ define(['knockout',
 				self.selectedView("detail");
 			};
 
+			self.generateOptions = ko.observable();
 			self.generate = function () {
 				self.generatedSql.mssql = null;
 				self.generatedSql.oracle = null;
@@ -68,9 +69,7 @@ define(['knockout',
 								return
 							}
 						}, 2),
-						options: {
-							targetTable: "testCohort"
-						}
+						options: ko.toJS(self.generateOptions)
 					}),
 					error: function (error) {
 						console.log("Error: " + error);
@@ -78,6 +77,7 @@ define(['knockout',
 				});
 
 				templateSqlPromise.then(function (result) {
+					
 					var mssqlTranslatePromise = translateSql(result.templateSql, 'sql server');
 					mssqlTranslatePromise.then(function (result) {
 						self.generatedSql.mssql = result.targetSQL;
@@ -127,6 +127,19 @@ define(['knockout',
 				self.selectedView("detail");
 			}
 
+			self.addGenerateOptions = function() {
+				self.generateOptions({ 
+					cdmSchema: ko.observable(""),
+					targetSchema: ko.observable(""),
+					targetTable: ko.observable(""),
+					cohortId: ko.observable(""),
+				});
+			}
+			
+			self.removeGenerateOptions = function()  {
+				self.generateOptions(null);	
+			}
+			
 			self.getExpressionJSON = function () {
 				return ko.toJSON(self.selectedDefinition().Expression, function (key, value) {
 					if (value === 0 || value) {
