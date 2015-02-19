@@ -5,75 +5,75 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 
 		var addActions = [
 			{
-				text: "Add Procedure Start Date Criterion",
+				text: "Add Procedure Start Date Filter",
 				value: 0,
 				selected: false,
 				description: "Filter Procedure Occurrences by the Procedure Start Date."
 			},
 			{
-				text: "Add Procedure Type Criterion",
+				text: "Add Procedure Type Filter",
 				value: 2,
 				selected: false,
 				description: "Filter Procedure Occurrences  by the Procedure Type."
 			},
 			{
-				text: "Add Modifier Criterion",
+				text: "Add Modifier Filter",
 				value: 1,
 				selected: false,
 				description: "Filter Procedure Occurrences  by the Modifier."
 			},
 			{
-				text: "Add Quantity Criterion",
+				text: "Add Quantity Filter",
 				value: 3,
 				selected: false,
 				description: "Filter Procedure Occurrences  by Quantity."
 					},
 			{
-				text: "Add Procedure Source Concept Criterion",
+				text: "Add Procedure Source Concept Filter",
 				value: 4,
 				selected: false,
 				description: "Filter Procedure Occurrences  by the Procedure Source Concept."
 					},
 			{
-				text: "Add New Diagnosis Criterion",
+				text: "Add New Diagnosis Filter",
 				value: 5,
 				selected: false,
 				description: "Limit Procedure Occurrences to new diagnosis."
 					},
 
 			{
-				text: "Add Age at Occurrence Criterion",
+				text: "Add Age at Occurrence Filter",
 				value: 6,
 				selected: false,
 				description: "Filter Procedure Occurrences by age at occurrence."
 					}, {
-				text: "Add Gender Criterion",
+				text: "Add Gender Filter",
 				value: 7,
 				selected: false,
 				description: "Filter Procedure Occurrences based on Gender."
 					},
 /*
  			{
-				text: "Add Prior Observation Duration Criterion",
+				text: "Add Prior Observation Duration Filter",
 				value: 8,
 				selected: false,
 				description: "Filter Procedure Occurrences based on Prior Observation Duration."
 					},
 			{
-				text: "Add Post Observation Duration Criterion",
+				text: "Add Post Observation Duration Filter",
 				value: 9,
 				selected: false,
 				description: "Filter Procedure Occurrences based on Prior Observation Duration."
 					},
 */
 			{
-				text: "Add Provider Specialty Criterion",
+				text: "Add Provider Specialty Filter",
 				value: 10,
 				selected: false,
 				description: "Filter Procedure Occurrences based on Prior Observation Duration."
 					},
 			{
-				text: "Add Visit Type Criterion",
+				text: "Add Visit Type Filter",
 				value: 11,
 				selected: false,
 				description: "Filter Procedure Occurrences based on Prior Observation Duration."
@@ -81,7 +81,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 		];
 
 		self.addCriterionSettings = {
-			selectText: "Add Criterion...",
+			selectText: "Add Filter...",
 			height:300,
 			actionOptions: addActions,
 			onAction: function (data) {

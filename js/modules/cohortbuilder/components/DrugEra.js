@@ -9,7 +9,7 @@ define(['knockout', '../options', '../InputTypes/Range', 'text!./DrugEraTemplate
 
 		var addActions = [
 			{
-				text: "Add Era Start Date Criterion",
+				text: "Add Era Start Date Filter",
 				selected: false,
 				description: "Filter Drug Eras by the Era Start Date.",
 				action: function() {
@@ -18,7 +18,7 @@ define(['knockout', '../options', '../InputTypes/Range', 'text!./DrugEraTemplate
 				}
 			},
 			{
-				text: "Add Era End Date Criterion",
+				text: "Add Era End Date Filter",
 				selected: false,
 				description: "Filter Drug Eras  by the Era End Date",
 				action: function() {
@@ -27,7 +27,7 @@ define(['knockout', '../options', '../InputTypes/Range', 'text!./DrugEraTemplate
 				}
 			},
 			{
-				text: "Add Era Exposure Count Criterion",
+				text: "Add Era Exposure Count Filter",
 				selected: false,
 				description: "Filter Drug Eras by the Exposure Count.",
 				action: function() {
@@ -36,7 +36,7 @@ define(['knockout', '../options', '../InputTypes/Range', 'text!./DrugEraTemplate
 				}
 			},
 			{
-				text: "Add Gap Length Criterion",
+				text: "Add Gap Length Filter",
 				selected: false,
 				description: "Filter Drug Eras by the Gap Length.",
 				action: function() {
@@ -45,7 +45,7 @@ define(['knockout', '../options', '../InputTypes/Range', 'text!./DrugEraTemplate
 				}
 			},
 			{
-				text: "Add Era Length Criterion",
+				text: "Add Era Length Filter",
 				selected: false,
 				description: "Filter Drug Eras by the Era duration.",
 				action: function() {
@@ -54,7 +54,7 @@ define(['knockout', '../options', '../InputTypes/Range', 'text!./DrugEraTemplate
 				}
 			},
 			{
-				text: "Add New Exposure Criterion",
+				text: "Add New Exposure Filter",
 				selected: false,
 				description: "Limit Drug Eras to new exposure.",
 				action: function() {
@@ -63,7 +63,7 @@ define(['knockout', '../options', '../InputTypes/Range', 'text!./DrugEraTemplate
 				}
 			},
 			{
-				text: "Add Age at Era Start Criterion",
+				text: "Add Age at Era Start Filter",
 				selected: false,
 				description: "Filter Drug Eras by age at era start.",
 				action: function() {
@@ -72,7 +72,7 @@ define(['knockout', '../options', '../InputTypes/Range', 'text!./DrugEraTemplate
 				}
 			}, 
 			{
-				text: "Add Age at Era End Criterion",
+				text: "Add Age at Era End Filter",
 				selected: false,
 				description: "Filter Drug Eras by age at era end.",
 				action: function() {
@@ -81,7 +81,7 @@ define(['knockout', '../options', '../InputTypes/Range', 'text!./DrugEraTemplate
 				}
 			}, 
 			{
-				text: "Add Gender Criterion",
+				text: "Add Gender Filter",
 				selected: false,
 				description: "Filter Drug Eras based on Gender.",
 				action: function() {
@@ -92,7 +92,7 @@ define(['knockout', '../options', '../InputTypes/Range', 'text!./DrugEraTemplate
 		];
 
 		self.addCriterionSettings = {
-			selectText: "Add Criterion...",
+			selectText: "Add Filter...",
 			height:300,
 			actionOptions: addActions,
 			onAction: function (data) {

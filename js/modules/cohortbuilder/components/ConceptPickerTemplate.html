@@ -7,7 +7,7 @@
 <button class="button button-flat-primary button-small" data-bind="click: doImport">Done</button>
 <!-- /ko -->
 <!-- ko if: isOpen -->
-<div class="conceptsearch" title="Select Concept..." data-bind="dialog: { isOpen: isOpen, modal: true, width:700, height:500 }">
+<div class="conceptsearch" title="Select Concept..." data-bind="dialog: { isOpen: isOpen, modal: true, width:'80%', height:600 }">
 	<div data-bind="if: ProviderReady()">
 		<div style="text-align: left; padding-top: 5px; padding-bottom: 5px">
 			<input placeholder="Search…" data-bind="value: searchText, valueUpdate: 'input', event: { keyup: searchKeyUp }" />
@@ -26,6 +26,7 @@
 													{ data: 'CONCEPT_ID', title: 'Concept Id' },
 													{ data: 'CONCEPT_CODE', title: 'Code' },
 													{ data: 'CONCEPT_NAME', title: 'Concept Name' },
+													{ data: 'STANDARD_CONCEPT', title: 'Standard Type' },
 													{ data: 'VOCABULARY_ID', title: 'Vocabulary' },
 													{ data: 'DOMAIN_ID', title: 'Domain' }											
 												],

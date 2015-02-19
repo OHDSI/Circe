@@ -5,81 +5,81 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 
 		var addActions = [
 			{
-				text: "Add Device Exposure Start Date Criterion",
+				text: "Add Device Exposure Start Date Filter",
 				value: 0,
 				selected: false,
 				description: "Filter Procedure Occurrences by the Procedure Start Date."
 			},
 			{
-				text: "Add Device Exposure End Date Criterion",
+				text: "Add Device Exposure End Date Filter",
 				value: 1,
 				selected: false,
 				description: "Filter Device Exposure by the Procedure Start Date."
 			},			
 			{
-				text: "Add Device Type Criterion",
+				text: "Add Device Type Filter",
 				value: 2,
 				selected: false,
 				description: "Filter Procedure Occurrences  by the Procedure Type."
 			},
 			{
-				text: "Add Unique Id Criterion",
+				text: "Add Unique Id Filter",
 				value: 3,
 				selected: false,
 				description: "Filter Device Exposures by Device Unique Id."
 			},			
 			{
-				text: "Add Quantity Criterion",
+				text: "Add Quantity Filter",
 				value: 4,
 				selected: false,
 				description: "Filter Device Exposures by Quantity."
 					},
 			{
-				text: "Add Device Source Concept Criterion",
+				text: "Add Device Source Concept Filter",
 				value: 5,
 				selected: false,
 				description: "Filter Device Exposures by the Device Source Concept."
 					},
 			{
-				text: "Add New Exposure Criterion",
+				text: "Add New Exposure Filter",
 				value: 6,
 				selected: false,
 				description: "Limit Device Exposures to first exposure."
 			},
 			{
-				text: "Add Age at Occurrence Criterion",
+				text: "Add Age at Occurrence Filter",
 				value: 7,
 				selected: false,
 				description: "Filter Device Exposures by age at occurrence."
 			}, 
 			{
-				text: "Add Gender Criterion",
+				text: "Add Gender Filter",
 				value: 8,
 				selected: false,
 				description: "Filter Device Exposures based on Gender."
 			},
 /*
  			{
-				text: "Add Prior Observation Duration Criterion",
+				text: "Add Prior Observation Duration Filter",
 				value: 8,
 				selected: false,
 				description: "Filter Procedure Occurrences based on Prior Observation Duration."
 					},
 			{
-				text: "Add Post Observation Duration Criterion",
+				text: "Add Post Observation Duration Filter",
 				value: 9,
 				selected: false,
 				description: "Filter Procedure Occurrences based on Prior Observation Duration."
 					},
 */
 			{
-				text: "Add Provider Specialty Criterion",
+				text: "Add Provider Specialty Filter",
 				value: 9,
 				selected: false,
 				description: "Filter Device Exposures based on Prior Observation Duration."
 					},
 			{
-				text: "Add Visit Type Criterion",
+				text: "Add Visit Type Filter",
 				value: 10,
 				selected: false,
 				description: "Filter Device Exposures based on Prior Observation Duration."
@@ -87,7 +87,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 		];
 
 		self.addCriterionSettings = {
-			selectText: "Add Criterion...",
+			selectText: "Add Filter...",
 			height:300,
 			actionOptions: addActions,
 			onAction: function (data) {

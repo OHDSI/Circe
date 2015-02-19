@@ -8,7 +8,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 		
 		var addActions = [
 			{
-				text: "Add Specimen Date Criterion",
+				text: "Add Specimen Date Filter",
 				selected: false,
 				description: "Filter Specimen by Date.",
 				action: function() { 
@@ -17,7 +17,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 				}
 			},
 			{
-				text: "Add Specimen Type Criterion",
+				text: "Add Specimen Type Filter",
 				selected: false,
 				description: "Filter Specimen by the Type.",
 				action: function() {
@@ -26,7 +26,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 				}
 			},
 			{
-				text: "Add Quantity Criterion",
+				text: "Add Quantity Filter",
 				selected: false,
 				description: "Filter Observations  by the Quantity.",
 				action: function() {
@@ -35,7 +35,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 				}
 			},
 			{
-				text: "Add Unit Criterion",
+				text: "Add Unit Filter",
 				selected: false,
 				description: "Filter Specimens by Unit.",
 				action: function() {
@@ -44,7 +44,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 				}
 			},
 			{
-				text: "Add Anatomic Site Criterion",
+				text: "Add Anatomic Site Filter",
 				selected: false,
 				description: "Filter Specimens by the Anatomic Site.",
 				action: function() {
@@ -53,7 +53,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 				}
 			},
 			{
-				text: "Add Disease Status Criterion",
+				text: "Add Disease Status Filter",
 				selected: false,
 				description: "Filter Specimens by the Disease Status.",
 				action: function() {
@@ -62,7 +62,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 				}
 			},
 			{
-				text: "Add Source ID Criterion",
+				text: "Add Source ID Filter",
 				selected: false,
 				description: "Filter Specimens by the Source ID.",
 				action: function() {
@@ -71,7 +71,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 				}
 			},
 			{
-				text: "Add First Observation Criterion",
+				text: "Add First Observation Filter",
 				selected: false,
 				description: "Limit Observations to the first occurrence.",
 				action: function() {
@@ -80,7 +80,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 				}
 			},
 			{
-				text: "Add Age at Occurrence Criterion",
+				text: "Add Age at Occurrence Filter",
 				selected: false,
 				description: "Filter Condition Occurrences by age at occurrence.",
 				action: function() {
@@ -89,7 +89,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 				}
 			}, 
 			{
-				text: "Add Gender Criterion",
+				text: "Add Gender Filter",
 				selected: false,
 				description: "Filter Condition Occurrences based on Gender.",
 				action: function() {
@@ -100,7 +100,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 		];
 
 		self.addCriterionSettings = {
-			selectText: "Add Criterion...",
+			selectText: "Add Filter...",
 			height:300,
 			actionOptions: addActions,
 			onAction: function (data) {

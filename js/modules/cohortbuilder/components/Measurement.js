@@ -9,7 +9,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 		
 		var addActions = [
 			{
-				text: "Add First Measure Criterion",
+				text: "Add First Measure Filter",
 				value: 14,
 				selected: false,
 				description: "Restrict Measures to first occurrence.",
@@ -19,7 +19,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 				}
 			},
 			{
-				text: "Add Measurement Date Criterion",
+				text: "Add Measurement Date Filter",
 				value: 0,
 				selected: false,
 				description: "Filter Measurements by Date.",
@@ -29,7 +29,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 				}
 			},
 			{
-				text: "Add Measurement Type Criterion",
+				text: "Add Measurement Type Filter",
 				value: 1,
 				selected: false,
 				description: "Filter Measurements by the Measurement Type.",
@@ -39,7 +39,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 				}				
 			},
 			{
-				text: "Add Operator Criterion",
+				text: "Add Operator Filter",
 				value: 2,
 				selected: false,
 				description: "Filter Measurements by Operator.",
@@ -49,7 +49,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 				}					
 			},
 			{
-				text: "Add Value as Number Criterion",
+				text: "Add Value as Number Filter",
 				value: 3,
 				selected: false,
 				description: "Filter Measurements by Value as Number.",
@@ -59,7 +59,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 				}
 			},
 			{
-				text: "Add Value as Concept Criterion",
+				text: "Add Value as Concept Filter",
 				value: 4,
 				selected: false,
 				description: "Filter Measurements by Value as Concept.",
@@ -69,7 +69,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 				}
 			},
 			{
-				text: "Add Unit Criterion",
+				text: "Add Unit Filter",
 				value: 5,
 				selected: false,
 				description: "Filter Measurements by the Unit.",
@@ -79,7 +79,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 				}
 			},
 			{
-				text: "Add Low Range Criterion",
+				text: "Add Low Range Filter",
 				value: 6,
 				selected: false,
 				description: "Filter Measurements Low Range.",
@@ -89,7 +89,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 				}
 			},
 			{
-				text: "Add High Range Criterion",
+				text: "Add High Range Filter",
 				value: 7,
 				selected: false,
 				description: "Filter Measurements by the Measurement Type.",
@@ -99,7 +99,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 				}
 			},
 			{
-				text: "Add Measurement Source Concept Criterion",
+				text: "Add Measurement Source Concept Filter",
 				value: 8,
 				selected: false,
 				description: "Filter Measurements by the Measurement Source Concept.",
@@ -109,7 +109,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 				}
 			},
 			{
-				text: "Add Low Range Ratio Criterion",
+				text: "Add Low Range Ratio Filter",
 				value: 9,
 				selected: false,
 				description: "Filter Measurements by the Ratio of Value as Number to Range Low.",
@@ -119,7 +119,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 				}
 			},
 			{
-				text: "Add High Range Ratio Criterion",
+				text: "Add High Range Ratio Filter",
 				value: 10,
 				selected: false,
 				description: "Filter Measurements by the Ratio of Value as Number to Range High.",
@@ -129,7 +129,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 				}
 			},
 			{
-				text: "Add Abnormal Result Criterion",
+				text: "Add Abnormal Result Filter",
 				value: 11,
 				selected: false,
 				description: "Filter Measurements to include those which fall outside of normal range.",
@@ -139,7 +139,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 				}
 			},			
 			{
-				text: "Add Age at Occurrence Criterion",
+				text: "Add Age at Occurrence Filter",
 				value: 12,
 				selected: false,
 				description: "Filter Measurements by age at occurrence.",
@@ -149,7 +149,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 				}
 			}, 
 			{
-				text: "Add Gender Criterion",
+				text: "Add Gender Filter",
 				value: 13,
 				selected: false,
 				description: "Filter Condition Occurrences based on Gender.",
@@ -160,20 +160,20 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 			},
 /*
  			{
-				text: "Add Prior Observation Duration Criterion",
+				text: "Add Prior Observation Duration Filter",
 				value: 8,
 				selected: false,
 				description: "Filter Condition Occurrences based on Prior Observation Duration."
 					},
 			{
-				text: "Add Post Observation Duration Criterion",
+				text: "Add Post Observation Duration Filter",
 				value: 9,
 				selected: false,
 				description: "Filter Condition Occurrences based on Prior Observation Duration."
 					},
 */
 			{
-				text: "Add Provider Specialty Criterion",
+				text: "Add Provider Specialty Filter",
 				value: 14,
 				selected: false,
 				description: "Filter Condition Occurrences based on Prior Observation Duration.",
@@ -183,7 +183,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 				}
 			},
 			{
-				text: "Add Visit Type Criterion",
+				text: "Add Visit Type Filter",
 				value: 15,
 				selected: false,
 				description: "Filter Condition Occurrences based on Prior Observation Duration.",
@@ -195,7 +195,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 		];
 
 		self.addCriterionSettings = {
-			selectText: "Add Criterion...",
+			selectText: "Add Filter...",
 			height:300,
 			actionOptions: addActions,
 			onAction: function (data) {

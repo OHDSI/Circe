@@ -9,7 +9,7 @@ define(['knockout', '../options', '../InputTypes/Range', 'text!./ConditionEraTem
 
 		var addActions = [
 			{
-				text: "Add Era Start Date Criterion",
+				text: "Add Era Start Date Filter",
 				selected: false,
 				description: "Filter Condition Eras by the Era Start Date.",
 				action: function() {
@@ -18,7 +18,7 @@ define(['knockout', '../options', '../InputTypes/Range', 'text!./ConditionEraTem
 				}
 			},
 			{
-				text: "Add Era End Date Criterion",
+				text: "Add Era End Date Filter",
 				selected: false,
 				description: "Filter Condition Eras  by the Era End Date",
 				action: function() {
@@ -27,7 +27,7 @@ define(['knockout', '../options', '../InputTypes/Range', 'text!./ConditionEraTem
 				}
 			},
 			{
-				text: "Add Era Conditon Count Criterion",
+				text: "Add Era Conditon Count Filter",
 				selected: false,
 				description: "Filter Condition Eras by the Condition Count.",
 				action: function() {
@@ -36,7 +36,7 @@ define(['knockout', '../options', '../InputTypes/Range', 'text!./ConditionEraTem
 				}
 			},
 			{
-				text: "Add Era Length Criterion",
+				text: "Add Era Length Filter",
 				selected: false,
 				description: "Filter Condition Eras by the Era duration.",
 				action: function() {
@@ -45,7 +45,7 @@ define(['knockout', '../options', '../InputTypes/Range', 'text!./ConditionEraTem
 				}
 			},
 			{
-				text: "Add New Diagnosis Criterion",
+				text: "Add New Diagnosis Filter",
 				selected: false,
 				description: "Limit Condition Eras to new diagnosis.",
 				action: function() {
@@ -54,7 +54,7 @@ define(['knockout', '../options', '../InputTypes/Range', 'text!./ConditionEraTem
 				}
 			},
 			{
-				text: "Add Age at Era Start Criterion",
+				text: "Add Age at Era Start Filter",
 				selected: false,
 				description: "Filter Condition Eras by age at era start.",
 				action: function() {
@@ -63,7 +63,7 @@ define(['knockout', '../options', '../InputTypes/Range', 'text!./ConditionEraTem
 				}
 			}, 
 			{
-				text: "Add Age at Era End Criterion",
+				text: "Add Age at Era End Filter",
 				selected: false,
 				description: "Filter Condition Eras by age at era end.",
 				action: function() {
@@ -72,7 +72,7 @@ define(['knockout', '../options', '../InputTypes/Range', 'text!./ConditionEraTem
 				}
 			}, 
 			{
-				text: "Add Gender Criterion",
+				text: "Add Gender Filter",
 				selected: false,
 				description: "Filter Condition Eras based on Gender.",
 				action: function() {
@@ -83,7 +83,7 @@ define(['knockout', '../options', '../InputTypes/Range', 'text!./ConditionEraTem
 		];
 
 		self.addCriterionSettings = {
-			selectText: "Add Criterion...",
+			selectText: "Add Condition Filter...",
 			height:300,
 			actionOptions: addActions,
 			onAction: function (data) {

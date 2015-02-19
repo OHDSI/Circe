@@ -5,44 +5,44 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 
 		var addActions = [
 			{
-				text: "Add Death Date Criterion",
+				text: "Add Death Date Filter",
 				value: 0,
 				selected: false,
 				description: "Filter Death by Date."
 			},
 			{
-				text: "Add Death Type Criterion",
+				text: "Add Death Type Filter",
 				value: 1,
 				selected: false,
 				description: "Filter by Death Type."
 			},
 			{
-				text: "Add Cause of Death Source Concept Criterion",
+				text: "Add Cause of Death Source Concept Filter",
 				value: 2,
 				selected: false,
 				description: "Filter Death by the Death Source Concept."
 			},
 			{
-				text: "Add Age at Occurrence Criterion",
+				text: "Add Age at Occurrence Filter",
 				value: 3,
 				selected: false,
 				description: "Filter by age at death."
 					}, 
 			{
-				text: "Add Gender Criterion",
+				text: "Add Gender Filter",
 				value: 4,
 				selected: false,
 				description: "Filter Deaths based on Gender."
 			}
 /*
  			{
-				text: "Add Prior Observation Duration Criterion",
+				text: "Add Prior Observation Duration Filter",
 				value: 8,
 				selected: false,
 				description: "Filter Condition Occurrences based on Prior Observation Duration."
 					},
 			{
-				text: "Add Post Observation Duration Criterion",
+				text: "Add Post Observation Duration Filter",
 				value: 9,
 				selected: false,
 				description: "Filter Condition Occurrences based on Prior Observation Duration."
@@ -51,7 +51,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 		];
 
 		self.addCriterionSettings = {
-			selectText: "Add Criterion...",
+			selectText: "Add Filter...",
 			height:300,
 			actionOptions: addActions,
 			onAction: function (data) {

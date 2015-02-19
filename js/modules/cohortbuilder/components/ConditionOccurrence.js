@@ -9,7 +9,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 
 		var addActions = [
 			{
-				text: "Add Condition Start Date Criterion",
+				text: "Add Condition Start Date Filter",
 				selected: false,
 				description: "Filter Condition Occurrences by the Condition Start Date.",
 				action: function() {
@@ -18,7 +18,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 				}
 			},
 			{
-				text: "Add Condition End Date Criterion",
+				text: "Add Condition End Date Filter",
 				selected: false,
 				description: "Filter Condition Occurrences  by the Condition End Date",
 				action: function() {
@@ -27,7 +27,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 				}
 			},
 			{
-				text: "Add Condition Type Criterion",
+				text: "Add Condition Type Filter",
 				selected: false,
 				description: "Filter Condition Occurrences  by the Condition Type.",
 				action: function() {
@@ -36,7 +36,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 				}
 			},
 			{
-				text: "Add Stop Reason Criterion",
+				text: "Add Stop Reason Filter",
 				selected: false,
 				description: "Filter Condition Occurrences  by the Stop Reason.",
 				action: function() {
@@ -45,7 +45,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 				}
 			},
 			{
-				text: "Add Condition Source Concept Criterion",
+				text: "Add Condition Source Concept Filter",
 				selected: false,
 				description: "Filter Condition Occurrences  by the Condition Source Concept.",
 				action: function() {
@@ -54,7 +54,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 				}
 			},
 			{
-				text: "Add New Diagnosis Criterion",
+				text: "Add New Diagnosis Filter",
 				selected: false,
 				description: "Limit Condition Occurrences to new diagnosis.",
 				action: function() {
@@ -63,7 +63,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 				}
 			},
 			{
-				text: "Add Age at Occurrence Criterion",
+				text: "Add Age at Occurrence Filter",
 				selected: false,
 				description: "Filter Condition Occurrences by age at occurrence.",
 				action: function() {
@@ -72,7 +72,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 				}
 			}, 
 			{
-				text: "Add Gender Criterion",
+				text: "Add Gender Filter",
 				selected: false,
 				description: "Filter Condition Occurrences based on Gender.",
 				action: function() {
@@ -82,7 +82,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 
 			},
 			{
-				text: "Add Provider Specialty Criterion",
+				text: "Add Provider Specialty Filter",
 				selected: false,
 				description: "Filter Condition Occurrences based on Prior Observation Duration.",
 				action: function() {
@@ -91,7 +91,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 				}
 			},
 			{
-				text: "Add Visit Type Criterion",
+				text: "Add Visit Type Filter",
 				selected: false,
 				description: "Filter Condition Occurrences based on Prior Observation Duration.",
 				action: function() {
@@ -102,7 +102,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 		];
 
 		self.addCriterionSettings = {
-			selectText: "Add Criterion...",
+			selectText: "Add Filter...",
 			height:300,
 			actionOptions: addActions,
 			onAction: function (data) {

@@ -3,7 +3,7 @@ define(['knockout'], function (ko) {
 
 	samples.emptyCondition = {
 		"Id": 1,
-		"Title": "Blank Condition Criteria",
+		"Title": "Blank Condition Filter",
 		"Type": "SIMPLE_DEFINITION",
 		"Description": "An empty cohort definition.",
 		"Expression": {

@@ -5,117 +5,117 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 
 		var addActions = [
 			{
-				text: "Add Drug Exposure Start Date Criterion",
+				text: "Add Drug Exposure Start Date Filter",
 				value: 0,
 				selected: false,
 				description: "Filter Drug Exposures by the Drug Exposure Start Date."
 			},
 			{
-				text: "Add Drug Exposure End Date Criterion",
+				text: "Add Drug Exposure End Date Filter",
 				value: 1,
 				selected: false,
 				description: "Filter Drug Exposures  by the Drug Exposure End Date"
 			},
 			{
-				text: "Add Drug Type Criterion",
+				text: "Add Drug Type Filter",
 				value: 2,
 				selected: false,
 				description: "Filter Drug Exposures  by the Drug Type."
 			},
 			{
-				text: "Add Stop Reason Criterion",
+				text: "Add Stop Reason Filter",
 				value: 3,
 				selected: false,
 				description: "Filter Drug Exposures  by the Stop Reason."
 			},
 			{
-				text: "Add Refills Criterion",
+				text: "Add Refills Filter",
 				value: 12,
 				selected: false,
 				description: "Filter Drug Exposures by Refills."
 			},			
 			{
-				text: "Add Quantity Criterion",
+				text: "Add Quantity Filter",
 				value: 13,
 				selected: false,
 				description: "Filter Drug Exposures by Quantity."
 			},
 			{
-				text: "Add Days Supply Criterion",
+				text: "Add Days Supply Filter",
 				value: 14,
 				selected: false,
 				description: "Filter Drug Exposures by Days Supply."
 			},			
 			{
-				text: "Add Route Criterion",
+				text: "Add Route Filter",
 				value: 15,
 				selected: false,
 				description: "Filter Drug Exposures by Route."
 			},
 			{
-				text: "Add Effective Dose Criterion",
+				text: "Add Effective Dose Filter",
 				value: 16,
 				selected: false,
 				description: "Filter Drug Exposures by Effective Dose."
 			},
 			{
-				text: "Add Dose Unit Criterion",
+				text: "Add Dose Unit Filter",
 				value: 17,
 				selected: false,
 				description: "Filter Drug Exposures by Dose Unit."
 			},
 			{
-				text: "Add Lot Number Criterion",
+				text: "Add Lot Number Filter",
 				value: 18,
 				selected: false,
 				description: "Filter Drug Exposures by Lot Number."
 			},				
 			{
-				text: "Add Drug Source Concept Criterion",
+				text: "Add Drug Source Concept Filter",
 				value: 4,
 				selected: false,
 				description: "Filter Drug Exposures by the Drug Source Concept."
 			},
 			{
-				text: "Add New Exposure Criterion",
+				text: "Add New Exposure Filter",
 				value: 5,
 				selected: false,
 				description: "Limit Drug Exposures to new exposure."
 			},
 			{
-				text: "Add Age at Occurrence Criterion",
+				text: "Add Age at Occurrence Filter",
 				value: 6,
 				selected: false,
 				description: "Filter Drug Exposures by age at occurrence."
 			}, 
 			{
-				text: "Add Gender Criterion",
+				text: "Add Gender Filter",
 				value: 7,
 				selected: false,
 				description: "Filter Drug Exposures based on Gender."
 			},
 /*
  			{
-				text: "Add Prior Observation Duration Criterion",
+				text: "Add Prior Observation Duration Filter",
 				value: 8,
 				selected: false,
 				description: "Filter Condition Occurrences based on Prior Observation Duration."
 					},
 			{
-				text: "Add Post Observation Duration Criterion",
+				text: "Add Post Observation Duration Filter",
 				value: 9,
 				selected: false,
 				description: "Filter Condition Occurrences based on Prior Observation Duration."
 					},
 */
 			{
-				text: "Add Provider Specialty Criterion",
+				text: "Add Provider Specialty Filter",
 				value: 10,
 				selected: false,
 				description: "Filter Condition Occurrences based on Prior Observation Duration."
 					},
 			{
-				text: "Add Visit Type Criterion",
+				text: "Add Visit Type Filter",
 				value: 11,
 				selected: false,
 				description: "Filter Condition Occurrences based on Prior Observation Duration."
@@ -124,7 +124,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 				];
 
 		self.addCriterionSettings = {
-			selectText: "Add Criterion...",
+			selectText: "Add Filter...",
 			height:300,
 			actionOptions: addActions,
 			onAction: function (data) {

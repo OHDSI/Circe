@@ -5,7 +5,7 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes', 'text!
 
 		var primaryCriteriaOptions = [
 			{
-				text: "Add Condition Criteria",
+				text: "Add Condition Filters",
 				selected: false,
 				description: "Find patients with specific diagnoses.",
 				imageSrc: "images/cohortbuilder/condition.png",
@@ -16,7 +16,7 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes', 'text!
 				}
 			},
 			{
-				text: "Add Condition Era Criteria",
+				text: "Add Condition Era Filters",
 				selected: false,
 				description: "Find patients with specific diagosis era.",
 				imageSrc: "images/cohortbuilder/condition.png",
@@ -27,7 +27,7 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes', 'text!
 				}
 			},
 			{
-				text: "Add Drug Criteria",
+				text: "Add Drug Filters",
 				selected: false,
 				description: "Find patients with exposure to specific drugs or drug classes.",
 				imageSrc: "images/cohortbuilder/drug.png",
@@ -38,7 +38,7 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes', 'text!
 				}
 			},
 			{
-				text: "Add Drug Era Criteria",
+				text: "Add Drug Era Filters",
 				selected: false,
 				description: "Find patients with with exposure to drugs over time.",
 				imageSrc: "images/cohortbuilder/drugera.png",
@@ -49,7 +49,7 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes', 'text!
 				}
 			},
 			{
-				text: "Add Dose Era Criteria",
+				text: "Add Dose Era Filters",
 				selected: false,
 				description: "Find patients with dose eras.",
 				imageSrc: "images/cohortbuilder/drugera.png",
@@ -60,7 +60,7 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes', 'text!
 				}
 			},
 			{
-				text: "Add Procedure Criteria",
+				text: "Add Procedure Filters",
 				selected: false,
 				description: "Find patients that experienced a specific procedure.",
 				imageSrc: "images/cohortbuilder/procedures.png",
@@ -71,7 +71,7 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes', 'text!
 				}
 			},
 			{
-				text: "Add Observation Criteria",
+				text: "Add Observation Filters",
 				selected: false,
 				description: "Find patients based on lab tests or other observations.",
 				imageSrc: "images/cohortbuilder/observation.png",
@@ -82,7 +82,7 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes', 'text!
 				}
 			},
 			{
-				text: "Add Visit Criteria",
+				text: "Add Visit Filters",
 				selected: false,
 				description: "Find patients based on visit information.",
 				imageSrc: "images/cohortbuilder/visit.png",
@@ -93,7 +93,7 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes', 'text!
 				}
 			},
 			{
-				text: "Add Device Criteria",
+				text: "Add Device Filters",
 				selected: false,
 				description: "Find patients based on device exposure.",
 				imageSrc: "images/cohortbuilder/procedures.png",
@@ -104,7 +104,7 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes', 'text!
 				}
 			},
 			{
-				text: "Add Measurement Criteria",
+				text: "Add Measurement Filters",
 				selected: false,
 				description: "Find patients based on Measurement.",
 				imageSrc: "images/cohortbuilder/procedures.png",
@@ -115,7 +115,7 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes', 'text!
 				}
 			},
 			{
-				text: "Add Specimen Criteria",
+				text: "Add Specimen Filters",
 				selected: false,
 				description: "Find patients based on Specimen.",
 				imageSrc: "images/cohortbuilder/procedures.png",
@@ -126,7 +126,7 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes', 'text!
 				}
 			},
 			{
-				text: "Add Observation Period Criteria",
+				text: "Add Observation Period Filters",
 				selected: false,
 				description: "Find patients based on Observation Period.",
 				imageSrc: "images/cohortbuilder/procedures.png",
@@ -137,7 +137,7 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes', 'text!
 				}
 			},
 			{
-				text: "Add Death Criteria",
+				text: "Add Death Filters",
 				selected: false,
 				description: "Find patients based on device exposure.",
 				imageSrc: "images/cohortbuilder/procedures.png",
@@ -167,8 +167,8 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes', 'text!
 		
 		
 		self.addPrimaryCriteriaOptions = {
-			selectText: "Add Primary Criteria...",
-			width:225,
+			selectText: "Add Primary Event Filters...",
+			width:250,
 			actionOptions: primaryCriteriaOptions,
 			onAction: function(data) {
 				data.selectedData.action();

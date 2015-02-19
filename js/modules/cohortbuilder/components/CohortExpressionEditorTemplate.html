@@ -1,7 +1,7 @@
 <div class="tabs" data-bind="tabs: { }">
 	<ul>
 		<li data-bind="attr: { 'aria-controls': 'criteria' }">
-			<a data-bind="attr: { title: 'Criteria', href: '#criteria' }, text: 'Criteria'"></a>
+			<a data-bind="attr: { title: 'Expression', href: '#criteria' }, text: 'Expression'"></a>
 		</li>
 		<li data-bind="attr: { 'aria-controls': 'conceptsets' }">
 			<a data-bind="attr: { title: 'Concept Sets', href: '#conceptsets' }, text: 'Concept Sets'"></a>
@@ -53,7 +53,7 @@
 												}'></div>
 						</td>
 						<td style="vertical-align: top; padding-top: 5px">
-							<button class="button button-small button-flat-caution" data-bind="click: function (data, event) { $component.removePrimaryCriteria(data) }">Delete Criteria</button>
+							<button class="button button-small button-flat-caution" data-bind="click: function (data, event) { $component.removePrimaryCriteria(data) }">Delete Filter</button>
 						</td>
 					</tr>
 				</tbody>
@@ -72,12 +72,12 @@
 
 		<div data-bind="with: expression">
 			<div data-bind="if: AdditionalCriteria">
-				<div style="font-weight: bold">For people matching the Primary Criteria, include:</div>
+				<div style="font-weight: bold">For people matching the Primary Events, include:</div>
 				<criteria-group params="{expression: $data, group: AdditionalCriteria}"></criteria-group>
-				<button class="button button-flat-primary button-small" data-bind="click: function () { $component.removeAdditionalCriteria() }">Remove Additional Criteria</button>
+				<button class="button button-flat-primary button-small" data-bind="click: function () { $component.removeAdditionalCriteria() }">Remove Additional Filters</button>
 			</div>
 			<div data-bind="ifnot: AdditionalCriteria">
-				<button class="button button-flat-primary button-small" data-bind="click: function () { $component.addAdditionalCriteria() }">Add Additional Criteria</button>
+				<button class="button button-flat-primary button-small" data-bind="click: function () { $component.addAdditionalCriteria() }">Add Additional Filters</button>
 			</div>
 		</div>
 		

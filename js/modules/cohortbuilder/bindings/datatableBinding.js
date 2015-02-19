@@ -6,8 +6,7 @@ define(['jquery', 'knockout', 'datatables'], function ($, ko) {
 	
 	function _getSelectedData(element)
 	{
-		var rows = $(element).find('tr>td.select>span.selected').closest('tr');
-		var selectedRows = $(element).DataTable().rows(rows, {
+		var selectedRows = $(element).DataTable().rows('tr:has(span.selected)', {
 			'search': 'applied'
 		}).data();
 		

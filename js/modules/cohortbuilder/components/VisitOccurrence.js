@@ -5,7 +5,7 @@ define(['knockout', '../options', '../InputTypes/Range', 'text!./VisitOccurrence
 
 		var addActions = [
 			{
-				text: "Add Visit Start Date Criterion",
+				text: "Add Visit Start Date Filter",
 				selected: false,
 				description: "Filter Visit Occurrences by the Condition Start Date.",
 				action: function () {
@@ -14,7 +14,7 @@ define(['knockout', '../options', '../InputTypes/Range', 'text!./VisitOccurrence
 				}
 			},
 			{
-				text: "Add Visit End Date Criterion",
+				text: "Add Visit End Date Filter",
 				selected: false,
 				description: "Filter Visit Occurrences  by the Condition End Date",
 				action: function() {
@@ -23,7 +23,7 @@ define(['knockout', '../options', '../InputTypes/Range', 'text!./VisitOccurrence
 				}
 			},
 			{
-				text: "Add Visit Type Criterion",
+				text: "Add Visit Type Filter",
 				selected: false,
 				description: "Filter Condition Occurrences  by the Condition Type.",
 				action: function() {
@@ -32,7 +32,7 @@ define(['knockout', '../options', '../InputTypes/Range', 'text!./VisitOccurrence
 				}
 			},
 			{
-				text: "Add Visit Source Concept Criterion",
+				text: "Add Visit Source Concept Filter",
 				selected: false,
 				description: "Filter Visit Occurrences by the Visit Source Concept.",
 				action: function() {
@@ -41,7 +41,7 @@ define(['knockout', '../options', '../InputTypes/Range', 'text!./VisitOccurrence
 				}
 			},
 			{
-				text: "Add Visit Length Criterion",
+				text: "Add Visit Length Filter",
 				selected: false,
 				description: "Filter Visit Occurrences by duration.",
 				action: function() {
@@ -50,7 +50,7 @@ define(['knockout', '../options', '../InputTypes/Range', 'text!./VisitOccurrence
 				}
 			},
 			{
-				text: "Add Initial Visit Criterion",
+				text: "Add Initial Visit Filter",
 				selected: false,
 				description: "Limit Visit Occurrences to the first visit.",
 				action: function() {
@@ -59,7 +59,7 @@ define(['knockout', '../options', '../InputTypes/Range', 'text!./VisitOccurrence
 				}
 			},
 			{
-				text: "Add Age at Occurrence Criterion",
+				text: "Add Age at Occurrence Filter",
 				selected: false,
 				description: "Filter Visit Occurrences by age at occurrence.",
 				action: function() {
@@ -68,7 +68,7 @@ define(['knockout', '../options', '../InputTypes/Range', 'text!./VisitOccurrence
 				}
 			}, 
 			{
-				text: "Add Gender Criterion",
+				text: "Add Gender Filter",
 				selected: false,
 				description: "Filter Visit Occurrences based on Gender.",
 				action: function() {
@@ -77,7 +77,7 @@ define(['knockout', '../options', '../InputTypes/Range', 'text!./VisitOccurrence
 				}
 			},
 			{
-				text: "Add Provider Specialty Criterion",
+				text: "Add Provider Specialty Filter",
 				selected: false,
 				description: "Filter Visit Occurrences based on Prior Observation Duration.",
 				action: function() {
@@ -86,7 +86,7 @@ define(['knockout', '../options', '../InputTypes/Range', 'text!./VisitOccurrence
 				}
 			},
 			{
-				text: "Add Place of Service Criterion",
+				text: "Add Place of Service Filter",
 				selected: false,
 				description: "Filter Visit Occurrences based on Place of Service.",
 				action: function() {
@@ -97,7 +97,7 @@ define(['knockout', '../options', '../InputTypes/Range', 'text!./VisitOccurrence
 		];
 
 		self.addCriterionSettings = {
-			selectText: "Add Criterion...",
+			selectText: "Add Filter...",
 			height:300,
 			actionOptions: addActions,
 			onAction: function (data) {

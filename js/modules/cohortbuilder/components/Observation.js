@@ -5,7 +5,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 
 		var addActions = [
 			{
-				text: "Add Observation Date Criterion",
+				text: "Add Observation Date Filter",
 				selected: false,
 				description: "Filter Observations by Date.",
 				action: function() { 
@@ -14,7 +14,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 				}
 			},
 			{
-				text: "Add Observation Type Criterion",
+				text: "Add Observation Type Filter",
 				selected: false,
 				description: "Filter Observations by the Type.",
 				action: function() {
@@ -23,7 +23,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 				}
 			},
 			{
-				text: "Add Value As Number Criterion",
+				text: "Add Value As Number Filter",
 				selected: false,
 				description: "Filter Observations  by the Value As Number.",
 				action: function() {
@@ -32,7 +32,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 				}
 			},
 			{
-				text: "Add Value As String Criterion",
+				text: "Add Value As String Filter",
 				selected: false,
 				description: "Filter Observations by the Value As String.",
 				action: function() {
@@ -41,7 +41,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 				}
 			},
 			{
-				text: "Add Value as Concept Criterion",
+				text: "Add Value as Concept Filter",
 				selected: false,
 				description: "Filter Observations by the Value As Concept.",
 				action: function() {
@@ -50,7 +50,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 				}
 			},
 			{
-				text: "Add Qualifier Criterion",
+				text: "Add Qualifier Filter",
 				selected: false,
 				description: "Filter Observations by Qualifier.",
 				action: function() {
@@ -59,7 +59,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 				}
 			},
 			{
-				text: "Add Unit Criterion",
+				text: "Add Unit Filter",
 				selected: false,
 				description: "Filter Observations by Unit.",
 				action: function() {
@@ -68,7 +68,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 				}
 			},
 			{
-				text: "Add Observation Source Concept Criterion",
+				text: "Add Observation Source Concept Filter",
 				selected: false,
 				description: "Filter Observations by the Source Concept.",
 				action: function() {
@@ -77,7 +77,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 				}
 			},
 			{
-				text: "Add First Observation Criterion",
+				text: "Add First Observation Filter",
 				selected: false,
 				description: "Limit Observations to the first occurrence.",
 				action: function() {
@@ -86,7 +86,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 				}
 			},
 			{
-				text: "Add Age at Occurrence Criterion",
+				text: "Add Age at Occurrence Filter",
 				selected: false,
 				description: "Filter Condition Occurrences by age at occurrence.",
 				action: function() {
@@ -95,7 +95,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 				}
 			}, 
 			{
-				text: "Add Gender Criterion",
+				text: "Add Gender Filter",
 				selected: false,
 				description: "Filter Condition Occurrences based on Gender.",
 				action: function() {
@@ -105,20 +105,20 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 			},
 /*
  			{
-				text: "Add Prior Observation Duration Criterion",
+				text: "Add Prior Observation Duration Filter",
 				value: 8,
 				selected: false,
 				description: "Filter Condition Occurrences based on Prior Observation Duration."
 					},
 			{
-				text: "Add Post Observation Duration Criterion",
+				text: "Add Post Observation Duration Filter",
 				value: 9,
 				selected: false,
 				description: "Filter Condition Occurrences based on Prior Observation Duration."
 					},
 */
 			{
-				text: "Add Provider Specialty Criterion",
+				text: "Add Provider Specialty Filter",
 				selected: false,
 				description: "Filter Condition Occurrences based on Prior Observation Duration.",
 				action: function() {
@@ -127,7 +127,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 				}
 			},
 			{
-				text: "Add Visit Type Criterion",
+				text: "Add Visit Type Filter",
 				selected: false,
 				description: "Filter Condition Occurrences based on Prior Observation Duration.",
 				action: function() {
@@ -138,7 +138,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 		];
 
 		self.addCriterionSettings = {
-			selectText: "Add Criterion...",
+			selectText: "Add Filter...",
 			height:300,
 			actionOptions: addActions,
 			onAction: function (data) {
