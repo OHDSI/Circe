@@ -30,7 +30,12 @@
 									params: {expression: $component.expression, criteria: $data.Criteria }
 								}"></div>
 			<div class="occurrenceSection">
-				<span data-bind="if: ($index() > 0)"><span data-bind="	text: $component.group().Type() == 'ALL' ? 'and ' : 'or '"></span></span>with <select data-bind="options: $component.options.occurrenceTypeOptions, optionsText: 'name', optionsValue: 'id', value: Occurrence.Type" /> <select data-bind="options: $component.options.occurrenceCountOptions, value: Occurrence.Count" /> occurrences of:
+				<span data-bind="if: ($index() > 0)"><span data-bind="	text: $component.group().Type() == 'ALL' ? 'and ' : 'or '"></span></span>
+				with 
+				<select data-bind="options: $component.options.occurrenceTypeOptions, optionsText: 'name', optionsValue: 'id', value: Occurrence.Type" /> 
+				<select data-bind="options: $component.options.occurrenceCountOptions, value: Occurrence.Count" /> 
+				<button data-bind="click: function() { Occurrence.IsDistinct(!Occurrence.IsDistinct())}, text: Occurrence.IsDistinct() ? 'using distinct' : 'using all'"></button>
+				occurrences of:
 			</div>
 			<div class="indexWindowSection">
 				occurring between <window-input params="Window: StartWindow"></window-input> index

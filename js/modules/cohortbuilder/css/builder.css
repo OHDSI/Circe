@@ -27,6 +27,9 @@ div.criteriaGroup div.occurrenceSection {
 	top: .5em;
 	left: 1em;
 }
+div.criteriaGroup div.occurrenceSection button {
+	line-height: 1.1em;	
+}
 div.criteriaGroup div.indexWindowSection {
 	position: absolute;
 	bottom: .5em;
