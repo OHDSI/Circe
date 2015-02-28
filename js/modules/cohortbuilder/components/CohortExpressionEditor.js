@@ -1,4 +1,4 @@
-define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes', 'text!./CohortExpressionEditorTemplate.html', 'knockout-jqueryui/tabs', '../bindings/allBindings', 'css!../css/builder.css', 'css!../css/buttons.css'], function (ko, options, CriteriaGroup, criteriaTypes, template) {
+define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes','../CohortExpression', 'text!./CohortExpressionEditorTemplate.html', 'knockout-jqueryui/tabs', '../bindings/allBindings', 'css!../css/builder.css', 'css!../css/buttons.css'], function (ko, options, CriteriaGroup, criteriaTypes, CohortExpression, template) {
 
 	function CohortExpressionEditorViewModel(params) {
 		var self = this;
@@ -150,6 +150,17 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes', 'text!
 		];
 		
 		self.expression = params.expression;
+		self.modifiedJSON = "";
+		
+		self.expressionJSON = ko.pureComputed({
+			read: function () {
+				return ko.toJSON(self.expression(), function (key, value) {if (value === 0 || value ) { return value; } else {return}} , 2);
+			},
+			write: function(value) {
+				self.modifiedJSON = value;
+			}
+		});
+		
 		self.options = options;
 
 		self.removeAdditionalCriteria = function () {
@@ -211,7 +222,13 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes', 'text!
 		self.getExpressionJSON = function()
 		{
 			return ko.toJSON(self.expression(), function (key, value) {if (value === 0 || value ) { return value; } else {return}} , 2)				
-		}		
+		}
+		
+		self.reload = function()
+		{
+			var updatedExpression = JSON.parse(self.modifiedJSON);
+			self.expression(new CohortExpression(updatedExpression));
+		}
 	}
 
 	// return factory

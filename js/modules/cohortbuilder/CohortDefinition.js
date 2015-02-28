@@ -12,7 +12,7 @@ define(function (require, exports) {
 		self.Title = ko.observable(data.Title || null);
 		self.Description = ko.observable(data.Description || null);
 		self.Type = "SIMPLE_DEFINITION";
-		self.Expression = new CohortExpression(data.Expression);
+		self.Expression = ko.observable(new CohortExpression(data.Expression));
 	}
 	return CohortDefinition;
 });
