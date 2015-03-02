@@ -20,17 +20,17 @@
 			<table class="stripe compact hover" cellspacing="0" width="100%" 
 				data-bind="dataTable:{
 					onRowClick: selectDefinition,
-					data: plainDefinitions(),
+					data: definitions(),
 					options: {
 						deferRender: true,
 						orderClasses: false,
 						autoWidth: true,
 						order: [ 1, 'asc' ],
 						columns: [
-							{ data: 'Id()', title: 'Id' },
-							{ data: 'Title()', title: 'Title' },
-							{ data: 'Type', title: 'Definition Type' },
-							{ data: 'Description()', title: 'Description'}
+							{ data: 'id', title: 'Id' },
+							{ data: 'name', title: 'Title' },
+							{ data: 'expressionType', title: 'Definition Type' },
+							{ data: 'description', title: 'Description'}
 						],
 						language: {
 							search: 'Filter records:'
@@ -46,10 +46,10 @@
 				<td style="vertical-align: top">
 					<div data-bind="if: selectedDefinition()">
 						Title:
-						<input data-bind="value: selectedDefinition().Title"></input>
+						<input data-bind="value: selectedDefinition().name"></input>
 						<button data-bind="click: saveAndClose">Save and Close</button>
 						<button data-bind="click: cancel">Cancel</button>
-						<cohort-expression-editor params="expression: selectedDefinition().Expression"></cohort-expression-editor>
+						<cohort-expression-editor params="expression: selectedDefinition().expression"></cohort-expression-editor>
 						<button data-bind="click: generate">Show SQL</button>
 						<!-- ko if: generateOptions() != null -->
 						<table>

@@ -8,11 +8,11 @@ define(function (require, exports) {
 		var self = this;
 		var data = data || {};
 
-		self.Id = ko.observable(data.Id || null);
-		self.Title = ko.observable(data.Title || null);
-		self.Description = ko.observable(data.Description || null);
-		self.Type = "SIMPLE_DEFINITION";
-		self.Expression = ko.observable(new CohortExpression(data.Expression));
+		self.id = ko.observable(data.id || null);
+		self.name = ko.observable(data.name || null);
+		self.description = ko.observable(data.description || null);
+		self.expressionType = (data.expressionType || "SIMPLE_EXPRESSION");
+		self.expression = ko.observable(new CohortExpression(data.expression))
 	}
 	return CohortDefinition;
 });

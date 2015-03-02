@@ -1,7 +1,7 @@
 define(['knockout',
 				'appConfig',
 				'cohortbuilder/CohortDefinition',
-				'cohortbuilder/samples',
+				'webapi/CohortDefinitionAPI',
 				'cohortbuilder/components',
 				'knockout-jqueryui/tabs',
 				'cohortbuilder/bindings/datatableBinding'
@@ -10,7 +10,7 @@ define(['knockout',
 		ko,
 		config,
 		CohortDefinition,
-		samples) {
+		chortDefinitionAPI) {
 
 		function translateSql(sql, dialect) {
 			translatePromise = $.ajax({
@@ -27,27 +27,32 @@ define(['knockout',
 			});
 			return translatePromise;
 		}
+		
+		function pruneJSON(key, value) {
+			if (value === 0 || value) {
+				return value;
+			} else {
+				return
+			}
+		}
 
 		return function App() {
 			var self = this;
 
 			// model state
 			self.selectedDefinition = ko.observable();
-			self.definitions = ko.observableArray(samples.list.map(function (d) {
-				return new CohortDefinition(d);
-			}));
-			self.plainDefinitions = ko.computed(function() {
-				return self.definitions().map(function(item) { return { Id: item.Id, Title: item.Title, Description: item.Description, Type: item.Type, Definition: item}; });
-			});
-			
+			self.definitions = ko.observableArray();
 			self.selectedView = ko.observable("");
 			self.isGeneratedOpen = ko.observable(false);
 			self.generatedSql = {};
 
 			// model behaviors
 			self.selectDefinition = function (definitionTableItem) {
-				self.selectedDefinition(definitionTableItem.Definition);
-				self.selectedView("detail");
+				chortDefinitionAPI.getCohortDefinition(definitionTableItem.id).then(function(definition) {
+					definition.expression = JSON.parse(definition.expression);
+					self.selectedDefinition(new CohortDefinition(definition));
+					self.selectedView("detail");
+				});
 			};
 
 			self.generateOptions = ko.observable();
@@ -62,13 +67,7 @@ define(['knockout',
 					method: 'POST',
 					contentType: 'application/json',
 					data: JSON.stringify({
-						expression: ko.toJS(self.selectedDefinition().Expression, function (key, value) {
-							if (value === 0 || value) {
-								return value;
-							} else {
-								return
-							}
-						}, 2),
+						expression: ko.toJS(self.selectedDefinition().expression, pruneJSON, 2),
 						options: ko.toJS(self.generateOptions)
 					}),
 					error: function (error) {
@@ -105,11 +104,30 @@ define(['knockout',
 			}
 
 			self.saveAndClose = function () {
-				// post ajax call to save definition
-				self.selectedDefinition(null);
-				self.selectedView("list");
+
+				var definition = ko.toJS(self.selectedDefinition());
+
+				// for saving, we flatten the expresson JS into a JSON string
+				definition.expression = ko.toJSON(definition.expression, pruneJSON);
+				
+				// reset view after save
+				chortDefinitionAPI.saveCohortDefinition(definition).then(function(result) {
+					console.log("Saved...");
+					return self.refreshList();
+				}).then(function () {
+					console.log("Refreshed...");
+					self.selectedView("list");
+				});
 			}
 
+			self.refreshList = function() {
+				var refreshPromise = chortDefinitionAPI.getCohortDefinitionList();
+				refreshPromise.then(function(definitionList) {
+					self.definitions(definitionList);
+				});
+				return refreshPromise;
+			}
+			
 			self.cancel = function () {
 				// add check for changes without saving, prompt to confirm
 				self.selectedDefinition(null);
@@ -141,16 +159,7 @@ define(['knockout',
 			}
 			
 			self.getExpressionJSON = function () {
-				return ko.toJSON(self.selectedDefinition().Expression, function (key, value) {
-					if (value === 0 || value) {
-						return value;
-					} else {
-						return
-					}
-				}, 2)
+				return ko.toJSON(self.selectedDefinition().Expression, pruneJSON, 2)
 			}
-
-
-
 		}
 	});

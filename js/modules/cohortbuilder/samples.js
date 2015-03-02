@@ -2,11 +2,11 @@ define(['knockout'], function (ko) {
 	var samples = {};
 
 	samples.emptyCondition = {
-		"Id": 1,
-		"Title": "Blank Condition Filter",
-		"Type": "SIMPLE_DEFINITION",
-		"Description": "An empty cohort definition.",
-		"Expression": {
+		"id": 1,
+		"name": "Blank Condition Filter",
+		"expressionType": "SIMPLE_DEFINITION",
+		"description": "An empty cohort definition.",
+		"expression": {
 			"PrimaryCriteria": {
 				"CriteriaList": [
 					{
@@ -29,13 +29,13 @@ define(['knockout'], function (ko) {
 	}
 	
 	samples.nqf_0001_denominator = {
-		"Id": 2,
-		"Title": "Asthma Assessment (NQF 0001) [DENOMINATOR]",
-		"Type": "SIMPLE_DEFINITION",
-		"Description": "An example Quality Measure Denominator cohort for Asthma Assessment.",
-		"Expression": {
+		"id": 2,
+		"name": "Asthma Assessment (NQF 0001) [DENOMINATOR]",
+		"expressionType": "SIMPLE_DEFINITION",
+		"description": "An example Quality Measure Denominator cohort for Asthma Assessment.",
+		"expression": {
 			"PrimaryCriteria": {
-				CriteriaList: [{
+				"CriteriaList": [{
 					"ConditionOccurrence": {
 						"CodesetId": 0,
 						"OccurrenceStartDate": {
@@ -102,23 +102,23 @@ define(['knockout'], function (ko) {
 	};
 
 	samples.nqf_0001_numerator = {
-		"Id": 3,
-		"Title": "Asthma Assessment (NQF 0001) [NUMERATOR]",
-		"Type": "SIMPLE_DEFINITION",
-		"Description": "An example Quality Measure numerator cohort for Asthma Assessment.",
-		"Expression": {
+		"id": 3,
+		"name": "Asthma Assessment (NQF 0001) [NUMERATOR]",
+		"expressionType": "SIMPLE_DEFINITION",
+		"description": "An example Quality Measure numerator cohort for Asthma Assessment.",
+		"expression": {
 			"PrimaryCriteria": {
-				CriteriaList: [{
+				"CriteriaList": [{
 					"ConditionOccurrence": {
 						"OccurrenceStartDate": {
-							Op: "bt",
-							Value: "2012-01-01T05:00:00.000Z",
-							Extent: "2013-01-01T05:00:00.000Z"
+							"Op": "bt",
+							"Value": "2012-01-01T05:00:00.000Z",
+							"Extent": "2013-01-01T05:00:00.000Z"
 						},
 						"Age": {
-							Op: "bt",
-							Value: 5,
-							Extent: 40
+							"Op": "bt",
+							"Value": 5,
+							"Extent": 40
 						}
 					}
 				}]
@@ -141,7 +141,7 @@ define(['knockout'], function (ko) {
 								"Coeff": 1
 							}
 						},
-						Criteria: {
+						"Criteria": {
 							"VisitOccurrence": {}
 						}
 				}
@@ -161,7 +161,7 @@ define(['knockout'], function (ko) {
 										"Coeff": 1
 									}
 								},
-								Criteria: {
+								"Criteria": {
 									"ProcedureOccurrence": {
 										"Codeset": {
 											"Name": "Asthma Diagnosis Procedure"
@@ -180,7 +180,7 @@ define(['knockout'], function (ko) {
 										"Coeff": 1
 									}
 								},
-								Criteria: {
+								"Criteria": {
 									"Observation": {
 										"Codeset": {
 											"Name": "Asthma Symptom Assessment Tool"
@@ -216,11 +216,11 @@ define(['knockout'], function (ko) {
 	};
 
 	samples.depression_antidepressants = {
-		"Id": 4,
-		"Title": "Depression and Antidepressants",
-		"Type": "SIMPLE_DEFINITION",
-		"Description": "An example Depression and Antidepressants cohort demonstrating concept sets for conditions and drugs.",
-		"Expression": {
+		"id": 4,
+		"name": "Depression and Antidepressants",
+		"expressionType": "SIMPLE_DEFINITION",
+		"description": "An example Depression and Antidepressants cohort demonstrating concept sets for conditions and drugs.",
+		"expression": {
 			"PrimaryCriteria": {
 				"CriteriaList": [
 					{
@@ -355,11 +355,11 @@ define(['knockout'], function (ko) {
 	};
 	
 	samples.test = {
-		"Id": 5,
-		"Title" : "Test Expression",
-		"Type" : "SIMPLE_DEFINITION",
-		"Description": "A Test Expression representing all criteria types, with all criteria enabled.",
-		"Expression" : {
+		"id": 5,
+		"name" : "Test Expression",
+		"expressionType" : "SIMPLE_DEFINITION",
+		"description": "A Test Expression representing all criteria types, with all criteria enabled.",
+		"expression" : {
   "PrimaryCriteria": {
     "CriteriaList": [
       {

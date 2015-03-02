@@ -1,4 +1,4 @@
-define(['knockout', 'text!./ConceptPickerTemplate.html', '../InputTypes/Concept', 'vocabularyprovider/VocabularyProvider', 'knockout-jqueryui/dialog', 'css!../css/conceptpicker.css'], function (ko, template, Concept, VocabularyProvider) {
+define(['knockout', 'text!./ConceptPickerTemplate.html', '../InputTypes/Concept', 'vocabularyprovider', 'knockout-jqueryui/dialog', 'css!../css/conceptpicker.css'], function (ko, template, Concept, VocabularyProvider) {
 	
 	function _mapConceptRowToConcept (row)
 	{

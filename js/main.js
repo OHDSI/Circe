@@ -9,8 +9,9 @@ require.config({
 		"jquery-ui": "jqueryui/jquery-ui.min",
 		"knockout": "knockout-3.3.0.debug",
 		"cohortbuilder": "modules/cohortbuilder",
+		"webapi" : "modules/WebAPIProvider",
 		"datatables": "jqueryui/jquery.dataTables",
-		"vocabularyprovider": "modules/WebAPIProvider",
+		"vocabularyprovider": "modules/WebAPIProvider/VocabularyProvider",
 		"ColVis": "jqueryui/dataTables.colVis.min"
 	},
 	deps: ['jquery',
@@ -24,6 +25,7 @@ require.config({
 require(['knockout', 'app', ], function (ko, App) {
 	var circeApp = new App();
 	ko.applyBindings(circeApp, document.getElementById('wrapper'));
-	circeApp.selectedView("list");
-	
+	circeApp.refreshList().then(function (){
+		circeApp.selectedView("list");
+	});
 });
