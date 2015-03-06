@@ -4,7 +4,8 @@ define(['knockout',
 				'webapi/CohortDefinitionAPI',
 				'cohortbuilder/components',
 				'knockout-jqueryui/tabs',
-				'cohortbuilder/bindings/datatableBinding'
+				'cohortbuilder/bindings/datatableBinding',
+				'bindings/jqAutosizeBinding'
 			 ],
 	function (
 		ko,
@@ -63,7 +64,7 @@ define(['knockout',
 				self.generatedSql.redshift = null;
 
 				var templateSqlPromise = $.ajax({
-					url: config.webAPIRoot + 'cohortdefinition/generate',
+					url: config.webAPIRoot + 'cohortdefinition/sql',
 					method: 'POST',
 					contentType: 'application/json',
 					data: JSON.stringify({

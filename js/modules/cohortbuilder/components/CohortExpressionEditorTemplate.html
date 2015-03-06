@@ -1,4 +1,4 @@
-<div class="tabs" data-bind="tabs: { }">
+<div class="tabs" data-bind="tabs: { widget: tabWidget }">
 	<ul>
 		<li data-bind="attr: { 'aria-controls': 'criteria' }">
 			<a data-bind="attr: { title: 'Expression', href: '#criteria' }, text: 'Expression'"></a>
@@ -15,10 +15,10 @@
 	</ul>
 	<div data-bind="attr: { id: 'conceptsets' }, with: expression">
 		<div style="padding: 5px">
-			<concept-set-builder params="{conceptSets: ConceptSets}"></concept-set-builder>
+			<concept-set-builder params="{conceptSets: ConceptSets, ref: $component.conceptSetBuilder}"></concept-set-builder>
 		</div>
 	</div>
-	<div data-bind="attr: { id: 'criteria' }">
+	<div data-bind="attr: { id: 'criteria' }, eventListener: { event: 'click', selector: '.addConceptSet', callback: addConceptSet}">
 		<div class="criteriaGroup">
 			<div class="criteriaHeading">
 				<table>

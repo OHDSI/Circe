@@ -1,0 +1,16 @@
+.inputField
+{
+	background-color: #eee;
+	border-bottom: solid 1px #ccc;
+	border-left: none;
+	border-top: none;
+	border-right: none;
+	padding: 3px;
+	padding-left: 10px;
+	outline: none;
+}
+
+button:focus
+{
+	outline:none !important;
+}

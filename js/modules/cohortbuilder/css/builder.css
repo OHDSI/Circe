@@ -57,6 +57,8 @@ div.criteriaSection > div.addCriterion {
 }
 input.dateField {
 	width: 90px;
+	padding: 0px;
+	line-height: .9em;
 }
 input.codeInput {
 	width: 100px;
@@ -124,7 +126,6 @@ table.criteriaTable tbody tr td:first-child {
 	border-right: none;
 	padding: 3px;
 	padding-left: 10px;
-	font-weight: bold;
 	outline: none;
 }
 button.icon {
@@ -147,6 +148,18 @@ button.deletecriteria {
 	bottom: 5px;
 	right: 10px;
 }
+
+button.addConceptSet
+{
+	font-size: .6em;
+	height: 21px;
+	padding: 0px 4px;
+	margin-bottom: 3px;
+	margin-left: -1px;
+	border-bottom-left-radius: 0;
+	border-top-left-radius: 0;
+}
+
 span.conceptList {
 	line-height: 2em;
 }

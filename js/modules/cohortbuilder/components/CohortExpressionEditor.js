@@ -150,6 +150,11 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes','../Coh
 		];
 		
 		self.expression = params.expression;
+		
+		self.conceptSetBuilder = ko.observable();
+		
+		self.tabWidget = ko.observable();
+		
 		self.modifiedJSON = "";
 		
 		self.expressionJSON = ko.pureComputed({
@@ -171,8 +176,7 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes','../Coh
 			self.expression().AdditionalCriteria(new CriteriaGroup());
 		};
 
-		self.removePrimaryCriteria = function (criteria)
-		{
+		self.removePrimaryCriteria = function (criteria) {
 			self.expression().PrimaryCriteria().CriteriaList.remove(criteria);	
 		}
 		
@@ -219,18 +223,34 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes','../Coh
 				return "unknownCriteriaType";
 		};
 
-		self.getExpressionJSON = function()
-		{
+		self.getExpressionJSON = function() {
 			return ko.toJSON(self.expression(), function (key, value) {if (value === 0 || value ) { return value; } else {return}} , 2)				
 		}
 		
-		self.reload = function()
-		{
+		self.reload = function() {
 			var updatedExpression = JSON.parse(self.modifiedJSON);
 			self.expression(new CohortExpression(updatedExpression));
 		}
+		
+		self.addConceptSet = function(item) {
+			var fieldObservable = item.CodesetId;
+			var newConceptId = self.conceptSetBuilder().createConceptSet().id;
+			fieldObservable(newConceptId);
+			self.tabWidget().tabs("option", "active", 1); // index 1 is the Concept Set Tab.
+		}
 	}
 
+	// TODO: this is generic enough that it could be made a common binding
+	ko.bindingHandlers.eventListener = {
+		init: function (element, valueAccessor, allBindings, viewModel, bindingContext)
+		{
+			var params = ko.utils.unwrapObservable(valueAccessor());
+			$(element).on(params.event,params.selector, function() {
+				params.callback(ko.dataFor(this));
+			});
+		}
+	}
+	
 	// return factory
 	return {
 		viewModel: CohortExpressionEditorViewModel,

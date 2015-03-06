@@ -113,8 +113,13 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 		self.removeCriterion = function (propertyName) {
 			self.Criteria[propertyName](null);
 		}
-
-
+		
+		self.newCodeset = function(item)
+		{
+			// need to do something with self.Criteria.CodesetId
+			console.log("From ConditionOccurrence");
+			console.log(item);
+		}
 	}
 
 	// return compoonent definition

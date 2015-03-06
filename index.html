@@ -8,15 +8,24 @@
 	<link rel="stylesheet" href="css/bootstrap.min.css" />
 	<link rel="stylesheet" href="css/bootstrap-theme.min.css" />
 	<link rel="stylesheet" href="css/circe.boostrap.css" />
+	<link rel="stylesheet" href="css/circe.css" />
 	
 	<script src="js/require.js"></script>
 	<script src="js/main.js"></script>
 </head>
 
 <body>
-	<div id="wrapper" style="display:none" data-bind="visible: selectedView() != null">
+	<table>
+		<tr>
+			<td style="padding: 3px"><img src="images/ohdsi_logo.png" alt="OHDSI"></td>
+			<td style="padding: 3px">
+				<div style="font-family: Arial; font-size: 18px; color: #777; line-height: 18px">CIRCE</div>
+				<div style="font-family: Arial; font-size: 10px; color: #777; line-height: 10px">Cohort Inclusion and Restriction Criteria Expression</div>
+			</td>
+		</tr>
+	</table>
+	<div id="wrapper" style="display:none" data-bind="visible: selectedView() != null" class="container">
 		<div data-bind="visible: selectedView() == 'list'">
-			<button data-bind="click: newDefinition">New Definition</button>
 			<table class="stripe compact hover" cellspacing="0" width="100%" 
 				data-bind="dataTable:{
 					onRowClick: selectDefinition,
@@ -38,17 +47,36 @@
 					}
 				 }">
 			</table>
+			<button data-bind="click: newDefinition">New Definition</button>
 		</div>
 		<div data-bind="visible: selectedView() == 'detail'">
-		<table width="70%">
+		<table width="99%">
 			<col width="100%" />
 			<tr>
 				<td style="vertical-align: top">
 					<div data-bind="if: selectedDefinition()">
-						Title:
-						<input data-bind="value: selectedDefinition().name"></input>
-						<button data-bind="click: saveAndClose">Save and Close</button>
-						<button data-bind="click: cancel">Cancel</button>
+						<table>
+							<tbody>
+								<tr>
+									<td><textarea maxlength="250" rows="1"
+																style="font-size: 18px; width: 500px; resize: none; overflow: hidden; word-wrap: break-word;" 
+																class="inputField" data-bind="value: selectedDefinition().name, jqAutoresize: {}, css: { emptyInput: !(selectedDefinition().name() && (selectedDefinition().name().length > 0)) }"></textarea>
+									</td>
+									<td>
+										<button data-bind="click: saveAndClose">Save and Close</button>
+										<button data-bind="click: cancel">Cancel</button>
+									</td>
+								</tr>
+								<tr>
+									<td colspan=2>Description:<br/>
+										<textarea maxlength="1000" rows="1"
+															style="font-size: 1em; width: 100%; resize: none; overflow: hidden; word-wrap: break-word;" 
+															class="inputField" data-bind="value: selectedDefinition().description, jqAutoresize: {}"></textarea>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						
 						<cohort-expression-editor params="expression: selectedDefinition().expression"></cohort-expression-editor>
 						<button data-bind="click: generate">Show SQL</button>
 						<!-- ko if: generateOptions() != null -->

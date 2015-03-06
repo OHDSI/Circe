@@ -1,4 +1,5 @@
 define([
+	'jquery',
 	'knockout',
 	'text!./ConceptSetBuilderTemplate.html',
 	'../InputTypes/ConceptSet',
@@ -7,6 +8,7 @@ define([
 	'css!../css/buttons.css',
 	'css!../css/tabs.css'],
 	function (
+		$,
 		ko,
 		template,
 		ConceptSet,
@@ -18,6 +20,7 @@ define([
 			self.conceptSets = params.conceptSets;
 			self.selectedConceptSet = ko.observable();
 			self.dtApi = ko.observable(); // store reference to datatable
+			params.ref(this); // assign refrence to self to ref's param
 
 			// model behaviors
 			self.createConceptSet = function () {
@@ -27,6 +30,7 @@ define([
 				})) + 1 : 0;
 				self.conceptSets.push(newConceptSet);
 				self.selectedConceptSet(newConceptSet);
+				return newConceptSet;
 			}
 
 			self.deleteConceptSet = function () {
@@ -53,7 +57,7 @@ define([
 			self.renderCheckbox = function (field) {
 				return '<span data-bind="click: function(d) { d.' + field + '(!d.' + field + '()); } ,css: { selected: ' + field + '} " class="glyphicon glyphicon-ok"></span>';
 			}
-
+			
 		}
 
 		// return compoonent definition

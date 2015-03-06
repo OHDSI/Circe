@@ -12,7 +12,7 @@ define(function (require, exports) {
 		self.PrimaryCriteria = ko.observable(new PrimaryCriteria(data.PrimaryCriteria));
 		self.AdditionalCriteria = ko.observable(data.AdditionalCriteria && new CriteriaGroup(data.AdditionalCriteria));
 		self.ConceptSets = ko.observableArray(data.ConceptSets && data.ConceptSets.map(function(d) { return new ConceptSet(d) }));
-		self.ExpressionLimit =  { Type: ko.observable(data.ExpressionLimit || "All") }
+		self.ExpressionLimit =  { Type: ko.observable(data.ExpressionLimit && data.ExpressionLimit.Type || "All") }
 		
 	}
 	return CohortExpression;
