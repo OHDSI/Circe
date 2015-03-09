@@ -65,6 +65,14 @@
 									<td>
 										<button data-bind="click: saveAndClose">Save and Close</button>
 										<button data-bind="click: cancel">Cancel</button>
+										<!-- ko if: selectedDefinition().id() != null -->
+											<!-- ko if: (info() == null || info().status == "COMPLETE") -->
+										<button data-bind="click: generate">Generate</button>
+											<!-- /ko -->
+											<!-- ko ifnot: (info() == null || info().status == "COMPLETE") -->
+										<img class="spin" src="images/running.png" /> Generating...
+											<!-- /ko -->
+										<!-- /ko -->
 									</td>
 								</tr>
 								<tr>
@@ -78,30 +86,30 @@
 						</table>
 						
 						<cohort-expression-editor params="expression: selectedDefinition().expression"></cohort-expression-editor>
-						<button data-bind="click: generate">Show SQL</button>
-						<!-- ko if: generateOptions() != null -->
+						<button data-bind="click: showSql">Show SQL</button>
+						<!-- ko if: sqlOptions() != null -->
 						<table>
 							<tr>
 								<td>CDM Schema:</td>
-								<td><input data-bind="value: generateOptions().cdmSchema"></input></td>
+								<td><input data-bind="value: sqlOptions().cdmSchema"></input></td>
 							</tr>
 							<tr>
 								<td>Target Schema:</td>
-								<td><input data-bind="value: generateOptions().targetSchema"></input></td>
+								<td><input data-bind="value: sqlOptions().targetSchema"></input></td>
 							</tr>
 							<tr>
 								<td>Target Table:</td>
-								<td><input data-bind="value: generateOptions().targetTable"></input></td>
+								<td><input data-bind="value: sqlOptions().targetTable"></input></td>
 							</tr>
 							<tr>
 								<td>Cohort Def Id:</td>
-								<td><input data-bind="value: generateOptions().cohortId"></input></td>
+								<td><input data-bind="value: sqlOptions().cohortId"></input></td>
 							</tr>
 						</table>
-						<button data-bind="click: removeGenerateOptions">Remove Options</button>
+						<button data-bind="click: removeSqlOptions">Remove Options</button>
 						<!-- /ko -->
-						<!-- ko if: generateOptions() == null -->
-						<button data-bind="click: addGenerateOptions">Add Options</button>
+						<!-- ko if: sqlOptions() == null -->
+						<button data-bind="click: addSqlOptions">Add Options</button>
 						<!-- /ko -->
 					
 					</div>

@@ -38,6 +38,22 @@ define(['knockout',
 		}
 
 		return function App() {
+			
+			var pollTimeout = null;
+			
+			function pollForInfo(info) {
+				if (info && info.status != "COMPLETE") {
+					pollTimeout = setTimeout(function () {
+						chortDefinitionAPI.getInfo(self.selectedDefinition().id()).then(function(newInfo) {
+							pollForInfo(newInfo);
+						});
+					}, 5000);
+				}
+				else {
+					self.info(info);	
+				}
+			}
+											 
 			var self = this;
 
 			// model state
@@ -46,6 +62,7 @@ define(['knockout',
 			self.selectedView = ko.observable("");
 			self.isGeneratedOpen = ko.observable(false);
 			self.generatedSql = {};
+			self.info = ko.observable();
 
 			// model behaviors
 			self.selectDefinition = function (definitionTableItem) {
@@ -53,28 +70,27 @@ define(['knockout',
 					definition.expression = JSON.parse(definition.expression);
 					self.selectedDefinition(new CohortDefinition(definition));
 					self.selectedView("detail");
+				}).then(function() {
+					chortDefinitionAPI.getInfo(definitionTableItem.id).then(function(info) {
+						self.info(info);
+						pollForInfo(self.selectedDefinition().id(), self.info());	
+					});
 				});
 			};
 
-			self.generateOptions = ko.observable();
-			self.generate = function () {
+			self.sqlOptions = ko.observable();
+			
+			self.showSql = function () {
 				self.generatedSql.mssql = null;
 				self.generatedSql.oracle = null;
 				self.generatedSql.postgres = null;
 				self.generatedSql.redshift = null;
+				
 
-				var templateSqlPromise = $.ajax({
-					url: config.webAPIRoot + 'cohortdefinition/sql',
-					method: 'POST',
-					contentType: 'application/json',
-					data: JSON.stringify({
-						expression: ko.toJS(self.selectedDefinition().expression, pruneJSON, 2),
-						options: ko.toJS(self.generateOptions)
-					}),
-					error: function (error) {
-						console.log("Error: " + error);
-					}
-				});
+				var expression = ko.toJS(self.selectedDefinition().expression, pruneJSON);
+				var options = ko.toJS(self.sqlOptions);
+				
+				var templateSqlPromise = chortDefinitionAPI.getSql(expression, options);
 
 				templateSqlPromise.then(function (result) {
 					
@@ -105,6 +121,7 @@ define(['knockout',
 			}
 
 			self.saveAndClose = function () {
+				clearTimeout(pollTimeout);
 
 				var definition = ko.toJS(self.selectedDefinition());
 
@@ -130,6 +147,7 @@ define(['knockout',
 			}
 			
 			self.cancel = function () {
+				clearTimeout(pollTimeout);
 				// add check for changes without saving, prompt to confirm
 				self.selectedDefinition(null);
 				self.selectedView("list");
@@ -146,8 +164,8 @@ define(['knockout',
 				self.selectedView("detail");
 			}
 
-			self.addGenerateOptions = function() {
-				self.generateOptions({ 
+			self.addSqlOptions = function() {
+				self.sqlOptions({ 
 					cdmSchema: ko.observable(""),
 					targetSchema: ko.observable(""),
 					targetTable: ko.observable(""),
@@ -155,8 +173,15 @@ define(['knockout',
 				});
 			}
 			
-			self.removeGenerateOptions = function()  {
-				self.generateOptions(null);	
+			self.removeSqlOptions = function()  {
+				self.sqlOptions(null);	
+			}
+			
+			self.generate = function() {
+				var generatePromise = chortDefinitionAPI.generate(self.selectedDefinition().id());
+				generatePromise.then(function (result) {
+					console.log(result);
+				});
 			}
 			
 			self.getExpressionJSON = function () {
