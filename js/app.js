@@ -41,17 +41,16 @@ define(['knockout',
 			
 			var pollTimeout = null;
 			
-			function pollForInfo(info) {
-				if (info && info.status != "COMPLETE") {
-					pollTimeout = setTimeout(function () {
-						chortDefinitionAPI.getInfo(self.selectedDefinition().id()).then(function(newInfo) {
-							pollForInfo(newInfo);
-						});
-					}, 5000);
-				}
-				else {
-					self.info(info);	
-				}
+			function pollForInfo() {
+				chortDefinitionAPI.getInfo(self.selectedDefinition().id()).then(function(info) {
+					self.info(info);
+					if (info && info.status != "COMPLETE")
+					{
+						pollTimeout = setTimeout(function () {
+							pollForInfo();
+						},5000);
+					}
+				});
 			}
 											 
 			var self = this;
@@ -71,10 +70,7 @@ define(['knockout',
 					self.selectedDefinition(new CohortDefinition(definition));
 					self.selectedView("detail");
 				}).then(function() {
-					chortDefinitionAPI.getInfo(definitionTableItem.id).then(function(info) {
-						self.info(info);
-						pollForInfo(self.selectedDefinition().id(), self.info());	
-					});
+					pollForInfo();
 				});
 			};
 
@@ -180,7 +176,7 @@ define(['knockout',
 			self.generate = function() {
 				var generatePromise = chortDefinitionAPI.generate(self.selectedDefinition().id());
 				generatePromise.then(function (result) {
-					console.log(result);
+					pollForInfo();
 				});
 			}
 			
