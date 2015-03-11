@@ -100,7 +100,7 @@ define(['knockout',
 						self.generatedSql.oracle = result.targetSQL;
 					});
 
-					var postgresTranslatePromise = translateSql(result.templateSql, 'postgres');
+					var postgresTranslatePromise = translateSql(result.templateSql, 'postgresql');
 					postgresTranslatePromise.then(function (result) {
 						self.generatedSql.postgres = result.targetSQL;
 					});
