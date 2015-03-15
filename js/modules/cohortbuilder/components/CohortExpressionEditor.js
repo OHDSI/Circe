@@ -240,17 +240,6 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes','../Coh
 		}
 	}
 
-	// TODO: this is generic enough that it could be made a common binding
-	ko.bindingHandlers.eventListener = {
-		init: function (element, valueAccessor, allBindings, viewModel, bindingContext)
-		{
-			var params = ko.utils.unwrapObservable(valueAccessor());
-			$(element).on(params.event,params.selector, function() {
-				params.callback(ko.dataFor(this));
-			});
-		}
-	}
-	
 	// return factory
 	return {
 		viewModel: CohortExpressionEditorViewModel,

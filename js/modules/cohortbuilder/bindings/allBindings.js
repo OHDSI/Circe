@@ -6,5 +6,6 @@ define(function (require) {
 	var clickToEdit = require("./clickToEditBinding");
 	var datePicker = require("./datepickerBinding");
 	var dataTable = require("./knockout.datatables");
+	var eventListener = require("./eventListenerBinding");
 
 });
