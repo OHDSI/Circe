@@ -62,6 +62,7 @@ define(['knockout',
 			self.isGeneratedOpen = ko.observable(false);
 			self.generatedSql = {};
 			self.info = ko.observable();
+			self.editorWidget = ko.observable();
 
 			// model behaviors
 			self.selectDefinition = function (definitionTableItem) {

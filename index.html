@@ -85,7 +85,7 @@
 							</tbody>
 						</table>
 						
-						<cohort-expression-editor params="expression: selectedDefinition().expression"></cohort-expression-editor>
+						<cohort-expression-editor params="expression: selectedDefinition().expression, widget: editorWidget"></cohort-expression-editor>
 						<button data-bind="click: showSql">Show SQL</button>
 						<!-- ko if: sqlOptions() != null -->
 						<table>

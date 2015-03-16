@@ -3,6 +3,10 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes','../Coh
 	function CohortExpressionEditorViewModel(params) {
 		var self = this;
 
+		if (params.widget)
+		{
+			params.widget(this);
+		}
 		var primaryCriteriaOptions = [
 			{
 				text: "Add Condition Filters",
