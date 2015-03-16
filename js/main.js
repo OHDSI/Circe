@@ -7,10 +7,10 @@ require.config({
 		"json": "requirejs/plugins/json",
 		"jquery": "jquery-1.11.1.min",
 		"jquery-ui": "jqueryui/jquery-ui.min",
-		"knockout": "knockout-3.3.0.debug",
+		"knockout": "knockout-3.3.0",
 		"cohortbuilder": "modules/cohortbuilder",
 		"webapi" : "modules/WebAPIProvider",
-		"datatables": "jqueryui/jquery.dataTables",
+		"datatables": "jqueryui/jquery.dataTables.min",
 		"vocabularyprovider": "modules/WebAPIProvider/VocabularyProvider",
 		"ColVis": "jqueryui/dataTables.colVis.min"
 	},

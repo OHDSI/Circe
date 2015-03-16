@@ -8,11 +8,11 @@
 			<tbody>
 				<tr>
 					<td>
-						<span data-bind="if: $parentContext.hasOwnProperty('$index')">
-							<span data-bind="	if: ($parents[1].group().CriteriaList().length > 0) || $parentContext.$index() > 0"><span data-bind="	text: $parents[1].group().Type() == 'ALL' ? 'And ' : 'Or '"></span>people having</span>
-						<span data-bind="	ifnot: ($parent.CriteriaList().length > 0) || $parentContext.$index() > 0">People having</span>
+						<span data-bind="if: parentGroup">
+							<span data-bind="	if: (parentGroup().CriteriaList().length > 0) || parentGroup().Groups().indexOf(group()) > 0"><span data-bind="	text: parentGroup().Type() == 'ALL' ? 'And ' : 'Or '"></span>people having</span>
+							<span data-bind="	ifnot: (parentGroup().CriteriaList().length > 0) || parentGroup().Groups().indexOf(group()) > 0">People having</span>
 						</span>
-						<span data-bind="ifnot: $parentContext.hasOwnProperty('$index')">People having</span>
+						<span data-bind="ifnot: parentGroup">People having</span>
 						<select data-bind="options: $component.options.groupTypeOptions, optionsText: 'name', optionsValue: 'id', value: group().Type"></select>
 						of the following criteria:
 					</td>
@@ -43,8 +43,10 @@
 			<button class="deletecriteria button button-small button-flat-caution" data-bind="click: function (data, event) { $component.removeCriteria($parent.group().CriteriaList, data) }">Delete Filter</button>
 		</div>
 	</div>
-	<div style="padding-top: 5px; position:relative" data-bind="foreach: group().Groups ">
-		<criteria-group params="{expression: $component.expression, group: ko.observable($data)}"></criteria-group>
+	<!-- ko foreach: group().Groups -->
+	<div style="padding-top: 5px; position:relative">
+		<criteria-group params="{expression: $component.expression, group: ko.observable($data), parentGroup: $parent.group()}"></criteria-group>
 		<button class="deletegroup button button-small button-flat-caution" data-bind="click: function (data, event) { $component.removeCriteria($parent.group().Groups, data) }">Delete Group</button>
 	</div>
+	<!-- /ko -->
 </div>

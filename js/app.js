@@ -155,7 +155,6 @@ define(['knockout',
 					"Type": "SIMPLE_DEFINITION"
 				});
 
-				self.definitions.push(newDefinition);
 				self.selectedDefinition(newDefinition);
 				self.selectedView("detail");
 			}

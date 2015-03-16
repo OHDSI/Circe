@@ -104,8 +104,9 @@ define(['knockout', '../CriteriaTypes','../CriteriaGroup', '../AdditionalCriteri
 			}
 		];
 
-		self.expression = params.expression;
+		self.expression = ko.utils.unwrapObservable(params.expression);
 		self.group = params.group;
+		self.parentGroup = params.parentGroup;
 		self.options = options;
 
 		self.getCriteriaComponent = function (data) {
