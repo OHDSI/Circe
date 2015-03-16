@@ -1,11 +1,15 @@
-	define(['knockout'], function (ko) {
-		ko.bindingHandlers.eventListener = {
-			init: function (element, valueAccessor, allBindings, viewModel, bindingContext)
-			{
-				var params = ko.utils.unwrapObservable(valueAccessor());
-				$(element).on(params.event,params.selector, function() {
-					params.callback(ko.dataFor(this));
-				});
+define(['knockout'], function (ko) {
+	ko.bindingHandlers.eventListener = {
+		init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
+			var params = ko.utils.unwrapObservable(valueAccessor());
+			if (!(params instanceof Array)) {
+				params = [params];
 			}
+			params.forEach(function (param) {
+				$(element).on(param.event, param.selector, function () {
+					param.callback(ko.dataFor(this));
+				});
+			});
 		}
-	});
+	}
+});
