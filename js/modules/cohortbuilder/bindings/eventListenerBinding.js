@@ -6,8 +6,8 @@ define(['knockout'], function (ko) {
 				params = [params];
 			}
 			params.forEach(function (param) {
-				$(element).on(param.event, param.selector, function () {
-					param.callback(ko.dataFor(this));
+				$(element).on(param.event, param.selector, function (event) {
+					param.callback(ko.dataFor(this), event);
 				});
 			});
 		}
