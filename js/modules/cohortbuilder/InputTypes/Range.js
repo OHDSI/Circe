@@ -5,8 +5,8 @@ define(['knockout'], function (ko) {
 		var self = this;
 		data = data || {};
 
-		self.Value = ko.observable(data.Value || null);
-		self.Extent = ko.observable(data.Extent || null);
+		self.Value = ko.observable(data.Value === 0 ? 0 : data.Value || null);
+		self.Extent = ko.observable(data.Extent === 0 ? 0 : data.Extent || null);
 		self.Op = ko.observable(data.Op || 'gt');
 	}
 

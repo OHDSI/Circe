@@ -15,139 +15,141 @@
 </head>
 
 <body>
-	<table>
-		<tr>
-			<td style="padding: 3px"><img src="images/ohdsi_logo.png" alt="OHDSI"></td>
-			<td style="padding: 3px">
-				<div style="font-family: Arial; font-size: 18px; color: #777; line-height: 18px">CIRCE</div>
-				<div style="font-family: Arial; font-size: 10px; color: #777; line-height: 10px">Cohort Inclusion and Restriction Criteria Expression</div>
-			</td>
-		</tr>
-	</table>
-	<div id="wrapper" style="display:none" data-bind="visible: selectedView() != null" class="container">
-		<div data-bind="visible: selectedView() == 'list'">
-			<table class="stripe compact hover" cellspacing="0" width="100%" 
-				data-bind="dataTable:{
-					onRowClick: selectDefinition,
-					data: definitions(),
-					options: {
-						deferRender: true,
-						orderClasses: false,
-						autoWidth: true,
-						order: [ 1, 'asc' ],
-						columns: [
-							{ data: 'id', title: 'Id' },
-							{ data: 'name', title: 'Title' },
-							{ data: 'expressionType', title: 'Definition Type' },
-							{ data: 'description', title: 'Description'}
-						],
-						language: {
-							search: 'Filter records:'
-						}
-					}
-				 }">
-			</table>
-			<button data-bind="click: newDefinition">New Definition</button>
-		</div>
-		<div data-bind="visible: selectedView() == 'detail'">
-		<table width="99%">
-			<col width="100%" />
+	<div data-bind="visible: selectedView() != null" id="wrapper" style="display:none">
+		<table>
 			<tr>
-				<td style="vertical-align: top">
-					<div data-bind="if: selectedDefinition()">
-						<table>
-							<tbody>
-								<tr>
-									<td><textarea maxlength="250" rows="1"
-																style="font-size: 18px; width: 500px; resize: none; overflow: hidden; word-wrap: break-word;" 
-																class="inputField" data-bind="value: selectedDefinition().name, jqAutoresize: {}, css: { emptyInput: !(selectedDefinition().name() && (selectedDefinition().name().length > 0)) }"></textarea>
-									</td>
-									<td>
-										<button data-bind="click: saveAndClose">Save and Close</button>
-										<button data-bind="click: cancel">Cancel</button>
-										<!-- ko if: selectedDefinition().id() != null -->
-											<!-- ko if: (info() == null || info().status == "COMPLETE") -->
-										<button data-bind="click: generate">Generate</button>
-											<!-- /ko -->
-											<!-- ko ifnot: (info() == null || info().status == "COMPLETE") -->
-										<img class="spin" src="images/running.png" /> Generating...
-											<!-- /ko -->
-										<!-- /ko -->
-									</td>
-								</tr>
-								<tr>
-									<td colspan=2>Description:<br/>
-										<textarea maxlength="1000" rows="1"
-															style="font-size: 1em; width: 100%; resize: none; overflow: hidden; word-wrap: break-word;" 
-															class="inputField" data-bind="value: selectedDefinition().description, jqAutoresize: {}"></textarea>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-						
-						<cohort-expression-editor params="expression: selectedDefinition().expression, widget: editorWidget"></cohort-expression-editor>
-						<button data-bind="click: showSql">Show SQL</button>
-						<!-- ko if: sqlOptions() != null -->
-						<table>
-							<tr>
-								<td>CDM Schema:</td>
-								<td><input data-bind="value: sqlOptions().cdmSchema"></input></td>
-							</tr>
-							<tr>
-								<td>Target Schema:</td>
-								<td><input data-bind="value: sqlOptions().targetSchema"></input></td>
-							</tr>
-							<tr>
-								<td>Target Table:</td>
-								<td><input data-bind="value: sqlOptions().targetTable"></input></td>
-							</tr>
-							<tr>
-								<td>Cohort Def Id:</td>
-								<td><input data-bind="value: sqlOptions().cohortId"></input></td>
-							</tr>
-						</table>
-						<button data-bind="click: removeSqlOptions">Remove Options</button>
-						<!-- /ko -->
-						<!-- ko if: sqlOptions() == null -->
-						<button data-bind="click: addSqlOptions">Add Options</button>
-						<!-- /ko -->
-					
-					</div>
+				<td style="padding: 3px"><img src="images/ohdsi_logo.png" alt="OHDSI"></td>
+				<td style="padding: 3px">
+					<div style="font-family: Arial; font-size: 18px; color: #777; line-height: 18px">CIRCE</div>
+					<div style="font-family: Arial; font-size: 10px; color: #777; line-height: 10px">Cohort Inclusion and Restriction Criteria Expression</div>
 				</td>
 			</tr>
 		</table>
-	 	<!-- ko if: isGeneratedOpen -->
-		<div title="Generated Sql..." data-bind="dialog: { isOpen: isGeneratedOpen, modal: true, width:700, height:500 }">
-			<div class="tabs" data-bind="tabs: { }">
-				<ul>
-					<li data-bind="attr: { 'aria-controls': 'sql_server' }">
-						<a data-bind="attr: { title: 'MSSQL Server', href: '#sql_server' }, text: 'MSSQL Server'"></a>
-					</li>
-					<li data-bind="attr: { 'aria-controls': 'oracle' }">
-						<a data-bind="attr: { title: 'Oracle', href: '#oracle' }, text: 'Oracle'"></a>
-					</li>
-					<li data-bind="attr: { 'aria-controls': 'postgres' }">
-						<a data-bind="attr: { title: 'Postgres', href: '#postgres' }, text: 'Postgres'"></a>
-					</li>
-					<li data-bind="attr: { 'aria-controls': 'redshift' }">
-						<a data-bind="attr: { title: 'Red Shift', href: '#redshift' }, text: 'Red Shift'"></a>
-					</li>
-				</ul>
-				<div data-bind="attr: { id: 'sql_server' }">
-					<pre data-bind="text: generatedSql.mssql"></pre>
-				</div>
-				<div data-bind="attr: { id: 'oracle' }">
-					<pre data-bind="text: generatedSql.oracle"></pre>
-				</div>
-				<div data-bind="attr: { id: 'postgres' }">
-					<pre data-bind="text: generatedSql.postgres"></pre>
-				</div>
-				<div data-bind="attr: { id: 'redshift' }">
-					<pre data-bind="text: generatedSql.redshift"></pre>
+		<div class="container">
+			<div data-bind="visible: selectedView() == 'list'">
+				<table class="stripe compact hover" cellspacing="0" width="100%" 
+					data-bind="dataTable:{
+						onRowClick: selectDefinition,
+						data: definitions(),
+						options: {
+							deferRender: true,
+							orderClasses: false,
+							autoWidth: true,
+							order: [ 1, 'asc' ],
+							columns: [
+								{ data: 'id', title: 'Id' },
+								{ data: 'name', title: 'Title' },
+								{ data: 'expressionType', title: 'Definition Type' },
+								{ data: 'description', title: 'Description'}
+							],
+							language: {
+								search: 'Filter records:'
+							}
+						}
+					 }">
+				</table>
+				<button data-bind="click: newDefinition">New Definition</button>
+			</div>
+			<div data-bind="visible: selectedView() == 'detail'">
+			<table width="99%">
+				<col width="100%" />
+				<tr>
+					<td style="vertical-align: top">
+						<div data-bind="if: selectedDefinition()">
+							<table>
+								<tbody>
+									<tr>
+										<td><textarea maxlength="250" rows="1"
+																	style="font-size: 18px; width: 500px; resize: none; overflow: hidden; word-wrap: break-word;" 
+																	class="inputField" data-bind="value: selectedDefinition().name, jqAutoresize: {}, css: { emptyInput: !(selectedDefinition().name() && (selectedDefinition().name().length > 0)) }"></textarea>
+										</td>
+										<td>
+											<button data-bind="click: saveAndClose">Save and Close</button>
+											<button data-bind="click: cancel">Cancel</button>
+											<!-- ko if: selectedDefinition().id() != null -->
+												<!-- ko if: (info() == null || info().status == "COMPLETE") -->
+											<button data-bind="click: generate">Generate</button>
+												<!-- /ko -->
+												<!-- ko ifnot: (info() == null || info().status == "COMPLETE") -->
+											<img class="spin" src="images/running.png" /> Generating...
+												<!-- /ko -->
+											<!-- /ko -->
+										</td>
+									</tr>
+									<tr>
+										<td colspan=2>Description:<br/>
+											<textarea maxlength="1000" rows="1"
+																style="font-size: 1em; width: 100%; resize: none; overflow: hidden; word-wrap: break-word;" 
+																class="inputField" data-bind="value: selectedDefinition().description, jqAutoresize: {}"></textarea>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+
+							<cohort-expression-editor params="expression: selectedDefinition().expression, widget: editorWidget"></cohort-expression-editor>
+							<button data-bind="click: showSql">Show SQL</button>
+							<!-- ko if: sqlOptions() != null -->
+							<table>
+								<tr>
+									<td>CDM Schema:</td>
+									<td><input data-bind="value: sqlOptions().cdmSchema"></input></td>
+								</tr>
+								<tr>
+									<td>Target Schema:</td>
+									<td><input data-bind="value: sqlOptions().targetSchema"></input></td>
+								</tr>
+								<tr>
+									<td>Target Table:</td>
+									<td><input data-bind="value: sqlOptions().targetTable"></input></td>
+								</tr>
+								<tr>
+									<td>Cohort Def Id:</td>
+									<td><input data-bind="value: sqlOptions().cohortId"></input></td>
+								</tr>
+							</table>
+							<button data-bind="click: removeSqlOptions">Remove Options</button>
+							<!-- /ko -->
+							<!-- ko if: sqlOptions() == null -->
+							<button data-bind="click: addSqlOptions">Add Options</button>
+							<!-- /ko -->
+
+						</div>
+					</td>
+				</tr>
+			</table>
+			<!-- ko if: isGeneratedOpen -->
+			<div title="Generated Sql..." data-bind="dialog: { isOpen: isGeneratedOpen, modal: true, width:700, height:500 }">
+				<div class="tabs" data-bind="tabs: { }">
+					<ul>
+						<li data-bind="attr: { 'aria-controls': 'sql_server' }">
+							<a data-bind="attr: { title: 'MSSQL Server', href: '#sql_server' }, text: 'MSSQL Server'"></a>
+						</li>
+						<li data-bind="attr: { 'aria-controls': 'oracle' }">
+							<a data-bind="attr: { title: 'Oracle', href: '#oracle' }, text: 'Oracle'"></a>
+						</li>
+						<li data-bind="attr: { 'aria-controls': 'postgres' }">
+							<a data-bind="attr: { title: 'Postgres', href: '#postgres' }, text: 'Postgres'"></a>
+						</li>
+						<li data-bind="attr: { 'aria-controls': 'redshift' }">
+							<a data-bind="attr: { title: 'Red Shift', href: '#redshift' }, text: 'Red Shift'"></a>
+						</li>
+					</ul>
+					<div data-bind="attr: { id: 'sql_server' }">
+						<pre data-bind="text: generatedSql.mssql"></pre>
+					</div>
+					<div data-bind="attr: { id: 'oracle' }">
+						<pre data-bind="text: generatedSql.oracle"></pre>
+					</div>
+					<div data-bind="attr: { id: 'postgres' }">
+						<pre data-bind="text: generatedSql.postgres"></pre>
+					</div>
+					<div data-bind="attr: { id: 'redshift' }">
+						<pre data-bind="text: generatedSql.redshift"></pre>
+					</div>
 				</div>
 			</div>
-		</div>
-		<!-- /ko -->
+			<!-- /ko -->
+			</div>
 		</div>
 	</div>
 </body>

@@ -83,7 +83,7 @@ define(['knockout', '../options', '../InputTypes/Range', 'text!./ConditionEraTem
 		];
 
 		self.addCriterionSettings = {
-			selectText: "Add Condition Filter...",
+			selectText: "Add Filter...",
 			height:300,
 			actionOptions: addActions,
 			onAction: function (data) {
