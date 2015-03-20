@@ -28,4 +28,10 @@ require(['knockout', 'app', ], function (ko, App) {
 	circeApp.refreshList().then(function (){
 		circeApp.selectedView("list");
 	});
+	
+	$(window).bind('beforeunload', function () {
+			if (circeApp.selectedDefinition() && circeApp.dirtyFlag() && circeApp.dirtyFlag().isDirty())
+					return "Changes will be lost if you do not save.";	
+	});
+	
 });

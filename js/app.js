@@ -13,6 +13,24 @@ define(['knockout',
 		CohortDefinition,
 		chortDefinitionAPI) {
 
+		function dirtyFlag(root, isInitiallyDirty) {
+			var result = function() {},
+					_initialState = ko.observable(ko.toJSON(root,pruneJSON)),
+					_isInitiallyDirty = ko.observable(isInitiallyDirty);
+
+			result.isDirty = ko.pureComputed(function() {
+					return _isInitiallyDirty() || _initialState() !== ko.toJSON(root,pruneJSON);
+			}).extend({rateLimit: 500});;
+
+			result.reset = function() {
+					_initialState(ko.toJSON(root));
+					_isInitiallyDirty(false);
+			};
+
+			return result;
+		}
+
+	
 		function translateSql(sql, dialect) {
 			translatePromise = $.ajax({
 				url: config.webAPIRoot + 'sqlrender/translate',
@@ -63,19 +81,16 @@ define(['knockout',
 			self.generatedSql = {};
 			self.info = ko.observable();
 			self.editorWidget = ko.observable();
-
-			// model behaviors
-			self.selectDefinition = function (definitionTableItem) {
-				chortDefinitionAPI.getCohortDefinition(definitionTableItem.id).then(function(definition) {
-					definition.expression = JSON.parse(definition.expression);
-					self.selectedDefinition(new CohortDefinition(definition));
-					self.selectedView("detail");
-				}).then(function() {
-					pollForInfo();
-				});
-			};
-
+			self.dirtyFlag = ko.observable();
+			self.isRunning = ko.pureComputed(function () {
+				return (self.info() && self.info().status != "COMPLETE");
+			});
+			self.isSaveable = ko.pureComputed(function() {
+				return self.dirtyFlag() && self.dirtyFlag().isDirty() && self.isRunning(); 
+			});
 			self.sqlOptions = ko.observable();
+			
+			// model behaviors
 			
 			self.showSql = function () {
 				self.generatedSql.mssql = null;
@@ -117,7 +132,23 @@ define(['knockout',
 				});
 			}
 
-			self.saveAndClose = function () {
+			self.selectDefinition = function (definitionTableItem) {
+				self.open(definitionTableItem.id);
+			};
+			
+			self.open = function (id) {
+				chortDefinitionAPI.getCohortDefinition(id).then(function(definition) {
+					definition.expression = JSON.parse(definition.expression);
+					var definition = new CohortDefinition(definition);
+					self.dirtyFlag(new dirtyFlag(definition));
+					self.selectedDefinition(definition);
+					self.selectedView("detail");
+				}).then(function() {
+					pollForInfo();
+				});
+			};
+			
+			self.save = function () {
 				clearTimeout(pollTimeout);
 
 				var definition = ko.toJS(self.selectedDefinition());
@@ -128,10 +159,7 @@ define(['knockout',
 				// reset view after save
 				chortDefinitionAPI.saveCohortDefinition(definition).then(function(result) {
 					console.log("Saved...");
-					return self.refreshList();
-				}).then(function () {
-					console.log("Refreshed...");
-					self.selectedView("list");
+					self.open(result.id);
 				});
 			}
 
@@ -144,10 +172,19 @@ define(['knockout',
 			}
 			
 			self.cancel = function () {
+				
+				if (self.dirtyFlag().isDirty() && !confirm("Changes are not saved. Would you like to continue?"))
+				{
+					return;
+				};
+				
 				clearTimeout(pollTimeout);
-				// add check for changes without saving, prompt to confirm
-				self.selectedDefinition(null);
-				self.selectedView("list");
+				self.refreshList().then(function () {
+					console.log("Refreshed...");
+					self.selectedDefinition(null);
+					self.info(null);
+					self.selectedView("list");
+				});
 			}
 
 			self.newDefinition = function () {

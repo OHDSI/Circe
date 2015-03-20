@@ -23,6 +23,8 @@
 					<div style="font-family: Arial; font-size: 18px; color: #777; line-height: 18px">CIRCE</div>
 					<div style="font-family: Arial; font-size: 10px; color: #777; line-height: 10px">Cohort Inclusion and Restriction Criteria Expression</div>
 				</td>
+				<td style="padding-left: 75px;"><a href="#" data-bind="click: cancel" class="menu-link">Cohort Definition List</a></td>
+				<td style="padding-left:75px"><a href="#" class="menu-link">Help</a></td>				
 			</tr>
 		</table>
 		<div class="container">
@@ -48,7 +50,7 @@
 						}
 					 }">
 				</table>
-				<button data-bind="click: newDefinition">New Definition</button>
+				<button class="button-flat-primary" data-bind="click: newDefinition">New Definition</button>
 			</div>
 			<div data-bind="visible: selectedView() == 'detail'">
 			<table width="99%">
@@ -61,26 +63,25 @@
 									<tr>
 										<td><textarea maxlength="250" rows="1"
 																	style="font-size: 18px; width: 500px; resize: none; overflow: hidden; word-wrap: break-word;" 
-																	class="inputField" data-bind="value: selectedDefinition().name, jqAutoresize: {}, css: { emptyInput: !(selectedDefinition().name() && (selectedDefinition().name().length > 0)) }"></textarea>
+																	class="inputField" data-bind="jqAutoresize: {}, textInput: selectedDefinition().name, css: { emptyInput: !(selectedDefinition().name() && (selectedDefinition().name().length > 0)) }"></textarea>
 										</td>
 										<td>
-											<button data-bind="click: saveAndClose">Save and Close</button>
-											<button data-bind="click: cancel">Cancel</button>
+											<button class="button button-small" data-bind="click: save, enable: (dirtyFlag().isDirty() && !isRunning()), css: {'button-flat-primary': !dirtyFlag().isDirty, 'button-flat-caution': dirtyFlag().isDirty}">Save</button>
 											<!-- ko if: selectedDefinition().id() != null -->
-												<!-- ko if: (info() == null || info().status == "COMPLETE") -->
-											<button data-bind="click: generate">Generate</button>
-												<!-- /ko -->
-												<!-- ko ifnot: (info() == null || info().status == "COMPLETE") -->
-											<img class="spin" src="images/running.png" /> Generating...
-												<!-- /ko -->
+											<!-- ko ifnot: isRunning -->
+											<button class="button button-flat-primary button-small" data-bind="click: generate, css: {disable: dirtyFlag().isDirty}, disable: dirtyFlag().isDirty">Generate</button>
 											<!-- /ko -->
+											<!-- ko if: isRunning -->
+											<img class="spin" src="images/running.png" />Generating...
+											<!-- /ko -->
+											<!-- /ko -->											
 										</td>
 									</tr>
 									<tr>
 										<td colspan=2>Description:<br/>
 											<textarea maxlength="1000" rows="1"
 																style="font-size: 1em; width: 100%; resize: none; overflow: hidden; word-wrap: break-word;" 
-																class="inputField" data-bind="value: selectedDefinition().description, jqAutoresize: {}"></textarea>
+																class="inputField" data-bind="jqAutoresize: {}, textInput: selectedDefinition().description"></textarea>
 										</td>
 									</tr>
 								</tbody>

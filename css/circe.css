@@ -1,3 +1,14 @@
+*:focus 
+{
+	outline: none !important;
+}
+
+body 
+{
+	margin: 0px;
+	font-family: Arial;
+}
+
 .inputField
 {
 	background-color: #eee;
@@ -8,11 +19,6 @@
 	padding: 3px;
 	padding-left: 10px;
 	outline: none;
-}
-
-button:focus
-{
-	outline:none !important;
 }
 
 img.spin {
@@ -31,3 +37,13 @@ img.spin {
         -webkit-transform: rotate(359deg);
     }
 }
+
+.menu-link {
+    font-size: 16px;
+    color: #818285 !important;
+    text-decoration: none;
+}
+	.menu-link:hover {
+			text-decoration: underline;
+	}
+
