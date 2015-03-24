@@ -3,7 +3,14 @@
 	license: MIT
 	http://www.jacklmoore.com/autosize
 */
-(function ($) {
+(function (root, factory) {
+	if (typeof define === 'function' && define.amd) {
+		// AMD. Register as an anonymous module with d3 as a dependency.
+		define(["jquery"], factory)
+	} else {
+		factory(root.$);
+	}
+}(this, function ($) {
 	var
 	defaults = {
 		className: 'autosizejs',
@@ -271,4 +278,4 @@
 			adjust();
 		});
 	};
-}(jQuery || $)); // jQuery or jQuery-like library, such as Zepto
+}));

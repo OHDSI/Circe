@@ -137,12 +137,20 @@ define(['knockout',
 			};
 			
 			self.open = function (id) {
+				var currentId = self.selectedDefinition() && self.selectedDefinition().id();
+				
 				chortDefinitionAPI.getCohortDefinition(id).then(function(definition) {
 					definition.expression = JSON.parse(definition.expression);
 					var definition = new CohortDefinition(definition);
 					self.dirtyFlag(new dirtyFlag(definition));
 					self.selectedDefinition(definition);
 					self.selectedView("detail");
+					if (currentId != id)
+					{				
+						setTimeout(function() {
+							self.editorWidget().tabWidget().tabs("option", "active", 0); // index 0 is the Expression tab
+						},0);
+					}
 				}).then(function() {
 					pollForInfo();
 				});
@@ -192,9 +200,13 @@ define(['knockout',
 					"Title": "New Definition",
 					"Type": "SIMPLE_DEFINITION"
 				});
-
+				
+				self.dirtyFlag(new dirtyFlag(newDefinition, true));
 				self.selectedDefinition(newDefinition);
 				self.selectedView("detail");
+				setTimeout(function() {
+					self.editorWidget().tabWidget().tabs("option", "active", 1); // index 1 is the Concept Set tab	
+				},0);
 			}
 
 			self.addSqlOptions = function() {
