@@ -21,11 +21,18 @@ define(['knockout'], function (ko) {
 			var value = ko.utils.unwrapObservable(valueAccessor());
 
 			//handle date data coming via json from Microsoft
-			if (String(value).indexOf('/Date(') == 0) {
-				value = new Date(parseInt(value.replace(/\/Date\((.*?)\)\//gi, "$1")));
+			if (typeof value === "string")
+			{
+				if (String(value).indexOf('/Date(') == 0) {
+					value = new Date(parseInt(value.replace(/\/Date\((.*?)\)\//gi, "$1")));
+				}
+				else
+					value = new Date(value);
+
+				// offset this timezone to UTC
+				var localOffset = value.getTimezoneOffset() * 60000;
+				value = new Date(value.getTime() + localOffset);
 			}
-			else
-				value = new Date(value);
 
 			var current = $(element).datepicker("getDate");
 
