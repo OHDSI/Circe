@@ -97,6 +97,7 @@ define(['knockout',
 				self.generatedSql.oracle = null;
 				self.generatedSql.postgres = null;
 				self.generatedSql.redshift = null;
+				self.generatedSql.msaps = null;
 				
 
 				var expression = ko.toJS(self.selectedDefinition().expression, pruneJSON);
@@ -111,6 +112,11 @@ define(['knockout',
 						self.generatedSql.mssql = result.targetSQL;
 					});
 
+					var msapsTranslatePromise = translateSql(result.templateSql, 'pdw');
+					msapsTranslatePromise.then(function (result) {
+						self.generatedSql.msaps = result.targetSQL;
+					});
+					
 					var oracleTranslatePromise = translateSql(result.templateSql, 'oracle');
 					oracleTranslatePromise.then(function (result) {
 						self.generatedSql.oracle = result.targetSQL;
@@ -126,7 +132,7 @@ define(['knockout',
 						self.generatedSql.redshift = result.targetSQL;
 					});
 
-					$.when(mssqlTranslatePromise, oracleTranslatePromise, postgresTranslatePromise, redshiftTranslatePromise).then(function () {
+					$.when(mssqlTranslatePromise, msapsTranslatePromise, oracleTranslatePromise, postgresTranslatePromise, redshiftTranslatePromise).then(function () {
 						self.isGeneratedOpen(true);
 					});
 				});

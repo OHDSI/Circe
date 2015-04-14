@@ -125,6 +125,9 @@
 						<li data-bind="attr: { 'aria-controls': 'sql_server' }">
 							<a data-bind="attr: { title: 'MSSQL Server', href: '#sql_server' }, text: 'MSSQL Server'"></a>
 						</li>
+						<li data-bind="attr: { 'aria-controls': 'sql_aps' }">
+							<a data-bind="attr: { title: 'MS APS', href: '#ms_aps' }, text: 'MS APS'"></a>
+						</li>
 						<li data-bind="attr: { 'aria-controls': 'oracle' }">
 							<a data-bind="attr: { title: 'Oracle', href: '#oracle' }, text: 'Oracle'"></a>
 						</li>
@@ -137,6 +140,9 @@
 					</ul>
 					<div data-bind="attr: { id: 'sql_server' }">
 						<pre data-bind="text: generatedSql.mssql"></pre>
+					</div>
+					<div data-bind="attr: { id: 'ms_aps' }">
+						<pre data-bind="text: generatedSql.msaps"></pre>
 					</div>
 					<div data-bind="attr: { id: 'oracle' }">
 						<pre data-bind="text: generatedSql.oracle"></pre>
