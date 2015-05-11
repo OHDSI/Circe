@@ -6,7 +6,7 @@ define(['jquery', 'knockout', 'datatables'], function ($, ko) {
 	
 	function _getSelectedData(element)
 	{
-		var selectedRows = $(element).DataTable().rows('tr:has(span.selected)', {
+		var selectedRows = $(element).DataTable().rows('tr:has(td.select:has(span.selected))', {
 			'search': 'applied'
 		}).data();
 		
@@ -37,6 +37,7 @@ define(['jquery', 'knockout', 'datatables'], function ($, ko) {
 					binding.options.columns[0] = { width:'20px', orderable: false, class: 'select', render: renderSelected }	
 					$(element).on("click","td > span.glyphicon-ok-sign", function () {
 						$(this).toggleClass('selected');
+						console.log(this);
 					});
 				}
 

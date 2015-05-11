@@ -1,5 +1,11 @@
-require.config({
+requirejs.config({
 	baseUrl: "js",
+	packages: [
+		{
+			name: "databindings",
+			location: "modules/databindings"
+		}
+	],
 	paths: {
 		"appConfig" : "config",
 		"text": "requirejs/plugins/text",
@@ -9,6 +15,8 @@ require.config({
 		"jquery-ui": "jqueryui/jquery-ui.min",
 		"knockout": "knockout-3.3.0",
 		"cohortbuilder": "modules/cohortbuilder",
+		"conceptsetbuilder": "modules/conceptsetbuilder",
+		"databindings" : "modules/databindings",
 		"webapi" : "modules/WebAPIProvider",
 		"datatables": "jqueryui/jquery.dataTables.min",
 		"vocabularyprovider": "modules/WebAPIProvider/VocabularyProvider",

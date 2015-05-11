@@ -1,100 +1,68 @@
-<div class="tabs" data-bind="tabs: { widget: tabWidget }">
-	<ul>
-		<li data-bind="attr: { 'aria-controls': 'criteria' }">
-			<a data-bind="attr: { title: 'Expression', href: '#criteria' }, text: 'Expression'"></a>
-		</li>
-		<li data-bind="attr: { 'aria-controls': 'conceptsets' }">
-			<a data-bind="attr: { title: 'Concept Sets', href: '#conceptsets' }, text: 'Concept Sets'"></a>
-		</li>
-		<li data-bind="attr: { 'aria-controls': 'printfriendly' }">
-			<a data-bind="attr: { title: 'Print Friendly', href: '#printfriendly' }, text: 'Print Friendly'"></a>
-		</li>
-		<li data-bind="attr: { 'aria-controls': 'raw' }">
-			<a data-bind="attr: { title: 'Raw JSON', href: '#raw' }, text: 'Raw JSON'"></a>
-		</li>		
-	</ul>
-	<div data-bind="attr: { id: 'conceptsets' }, with: expression">
-		<div style="padding: 5px">
-			<concept-set-builder params="{conceptSets: ConceptSets, ref: $component.conceptSetBuilder}"></concept-set-builder>
-		</div>
+<div class="criteriaGroup">
+	<div class="criteriaHeading">
+		<table>
+			<colgroup>
+				<col />
+				<col />
+			</colgroup>
+			<tbody>
+				<tr>
+					<td>
+						People having any of the following:
+					</td>
+					<td>
+						<div data-bind="ddSlickAction: $component.addPrimaryCriteriaOptions"></div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
-	<div data-bind="attr: { id: 'criteria' }, eventListener: { event: 'click', selector: '.addConceptSet', callback: addConceptSet}">
-		<div class="criteriaGroup">
-			<div class="criteriaHeading">
-				<table>
-					<colgroup>
-						<col />
-						<col />
-					</colgroup>
-					<tbody>
-						<tr>
-							<td>
-								People having any of the following:
-							</td>
-							<td>
-								<div data-bind="ddSlickAction: $component.addPrimaryCriteriaOptions"></div>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
 
-			<table class="criteria">
-				<colgroup>
-					<col span="1" class="rule" />
-					<col span="1" class="delete" />
-				</colgroup>
-				<tbody data-bind="foreach: expression().PrimaryCriteria().CriteriaList">
-					<tr style="padding-top: 5px">
-						<td>
-							<div data-bind='component: { 
-													name: $component.getCriteriaIndexComponent($data),
-													params: {expression: $component.expression(), criteria: $data}
-												}'></div>
-						</td>
-						<td style="vertical-align: top; padding-top: 5px">
-							<button class="button button-small button-flat-caution" data-bind="click: function (data, event) { $component.removePrimaryCriteria(data) }">Delete Filter</button>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			<div data-bind="with: expression().PrimaryCriteria().ObservationWindow"> with observation at least 
-					<span contenteditable="true" class="numericInputField dropdown" data-bind="htmlValue: PriorDays.numeric(), ko_autocomplete: { source: $component.options.dayOptions, minLength: 0, maxShowItems: 10, scroll: true }" /> days prior 
-				and <span contenteditable="true" class="numericInputField dropdown" data-bind="htmlValue: PostDays.numeric(), ko_autocomplete: { source: $component.options.dayOptions, minLength: 0, maxShowItems: 10, scroll: true }" /> days after index
-			</div>
-			<div style="padding-top: 3px" data-bind="with: expression().PrimaryCriteria().PrimaryCriteriaLimit">Limit primary events to: <select data-bind="options: $component.options.resultLimitOptions, 
-						optionsText: function(item) { return item.name }, 
-						optionsValue: 'id',
-						value: Type">
-					</select> per person.
-			</div>
-		</div>
-
-		<div data-bind="with: expression">
-			<div data-bind="if: AdditionalCriteria">
-				<div style="font-weight: bold">For people matching the Primary Events, include:</div>
-				<criteria-group params="{expression: $data, group: AdditionalCriteria}"></criteria-group>
-				<button class="button button-flat-primary button-small" data-bind="click: function () { $component.removeAdditionalCriteria() }">Remove Additional Filters</button>
-			</div>
-			<div data-bind="ifnot: AdditionalCriteria">
-				<button class="button button-flat-primary button-small" data-bind="click: function () { $component.addAdditionalCriteria() }">Add Additional Filters</button>
-			</div>
-		</div>
-		
-		<div style="padding-top: 3px" data-bind="with: expression().ExpressionLimit">Limit cohort expression results to: <select data-bind="options: $component.options.resultLimitOptions, 
-					optionsText: function(item) { return item.name }, 
-					optionsValue: 'id',
-					value: Type">
-				</select> per person.
-		</div>		
+	<table class="criteria">
+		<colgroup>
+			<col span="1" class="rule" />
+			<col span="1" class="delete" />
+		</colgroup>
+		<tbody data-bind="foreach: expression().PrimaryCriteria().CriteriaList">
+			<tr style="padding-top: 5px">
+				<td>
+					<div data-bind='component: { 
+											name: $component.getCriteriaIndexComponent($data),
+											params: {expression: $component.expression(), criteria: $data}
+										}'></div>
+				</td>
+				<td style="vertical-align: top; padding-top: 5px">
+					<button class="button button-small button-flat-caution" data-bind="click: function (data, event) { $component.removePrimaryCriteria(data) }">Delete Filter</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<div data-bind="with: expression().PrimaryCriteria().ObservationWindow"> with observation at least 
+			<span contenteditable="true" class="numericInputField dropdown" data-bind="htmlValue: PriorDays.numeric(), ko_autocomplete: { source: $component.options.dayOptions, minLength: 0, maxShowItems: 10, scroll: true }" /> days prior 
+		and <span contenteditable="true" class="numericInputField dropdown" data-bind="htmlValue: PostDays.numeric(), ko_autocomplete: { source: $component.options.dayOptions, minLength: 0, maxShowItems: 10, scroll: true }" /> days after index
 	</div>
-	<div data-bind="attr: { id: 'printfriendly' }">
-		<div style="padding: 5px">
-			Print friendly version of cohort criteria here.
-		</div>
-	</div>
-	<div data-bind="attr: { id: 'raw' }">
-		<textarea style="width: 100%; height: 500px" data-bind="textInput: expressionJSON"></textarea>
-		<div style="text-align: right"><button data-bind="click: reload">Reload</button></div>
+	<div style="padding-top: 3px" data-bind="with: expression().PrimaryCriteria().PrimaryCriteriaLimit">Limit primary events to: <select data-bind="options: $component.options.resultLimitOptions, 
+				optionsText: function(item) { return item.name }, 
+				optionsValue: 'id',
+				value: Type">
+			</select> per person.
 	</div>
 </div>
+
+<div data-bind="with: expression">
+	<div data-bind="if: AdditionalCriteria">
+		<div style="font-weight: bold">For people matching the Primary Events, include:</div>
+		<criteria-group params="{expression: $data, group: AdditionalCriteria}"></criteria-group>
+		<button class="button button-flat-primary button-small" data-bind="click: function () { $component.removeAdditionalCriteria() }">Remove Additional Filters</button>
+	</div>
+	<div data-bind="ifnot: AdditionalCriteria">
+		<button class="button button-flat-primary button-small" data-bind="click: function () { $component.addAdditionalCriteria() }">Add Additional Filters</button>
+	</div>
+</div>
+
+<div style="padding-top: 3px" data-bind="with: expression().ExpressionLimit">Limit cohort expression results to: <select data-bind="options: $component.options.resultLimitOptions, 
+			optionsText: function(item) { return item.name }, 
+			optionsValue: 'id',
+			value: Type">
+		</select> per person.
+</div>		

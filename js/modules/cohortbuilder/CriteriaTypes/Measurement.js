@@ -1,4 +1,4 @@
-define(['knockout', '../InputTypes/Range','../InputTypes/Concept', '../InputTypes/Text'], function (ko, Range, Concept, Text) {
+define(['knockout', '../InputTypes/Range','conceptsetbuilder/InputTypes/Concept', '../InputTypes/Text'], function (ko, Range, Concept, Text) {
 
 	function Measurement(data) {
 		var self = this;

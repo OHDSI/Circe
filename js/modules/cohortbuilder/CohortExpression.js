@@ -2,7 +2,7 @@ define(function (require, exports) {
 
 	var ko = require('knockout');
 	var CriteriaGroup = require('./CriteriaGroup');
-	var ConceptSet = require('./InputTypes/ConceptSet');
+	var ConceptSet = require('conceptsetbuilder/InputTypes/ConceptSet');
 	var PrimaryCriteria = require('./PrimaryCriteria');
 
 	function CohortExpression(data) {

@@ -5,7 +5,8 @@ define(function (require) {
 	var ddSlickAction = require("./ddSlickActionBinding");
 	var clickToEdit = require("./clickToEditBinding");
 	var datePicker = require("./datepickerBinding");
-	var dataTable = require("./knockout.datatables");
+	var dataTable = require("./datatableBinding");
+	var templateDataTable = require("./knockout.datatables");
 	var eventListener = require("./eventListenerBinding");
 
 });

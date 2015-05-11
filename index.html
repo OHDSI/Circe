@@ -87,7 +87,41 @@
 								</tbody>
 							</table>
 
-							<cohort-expression-editor params="expression: selectedDefinition().expression, widget: editorWidget"></cohort-expression-editor>
+<!-- BEGIN PASTE -->
+							<div class="tabs" data-bind="tabs: { widget: tabWidget }">
+								<ul>
+									<li data-bind="attr: { 'aria-controls': 'criteria' }">
+										<a data-bind="attr: { title: 'Expression', href: '#criteria' }, text: 'Expression'"></a>
+									</li>
+									<li data-bind="attr: { 'aria-controls': 'conceptsets' }">
+										<a data-bind="attr: { title: 'Concept Sets', href: '#conceptsets' }, text: 'Concept Sets'"></a>
+									</li>
+									<li data-bind="attr: { 'aria-controls': 'printfriendly' }">
+										<a data-bind="attr: { title: 'Print Friendly', href: '#printfriendly' }, text: 'Print Friendly'"></a>
+									</li>
+									<li data-bind="attr: { 'aria-controls': 'raw' }">
+										<a data-bind="attr: { title: 'Raw JSON', href: '#raw' }, text: 'Raw JSON'"></a>
+									</li>		
+								</ul>
+								<div data-bind="attr: { id: 'conceptsets' }, with: selectedDefinition().expression">
+									<div style="padding: 5px">
+										<concept-set-builder params="{conceptSets: ConceptSets, ref: $root.conceptSetEditor}"></concept-set-builder>
+									</div>
+								</div>
+								<div data-bind="attr: { id: 'criteria' }, eventListener: { event: 'click', selector: '.addConceptSet', callback: addConceptSet}">
+									<cohort-expression-editor params="expression: selectedDefinition().expression, widget: cohortExpressionEditor"></cohort-expression-editor>
+								</div>
+								<div data-bind="attr: { id: 'printfriendly' }">
+									<div style="padding: 5px">
+										Print friendly version of cohort criteria here.
+									</div>
+								</div>
+								<div data-bind="attr: { id: 'raw' }">
+									<textarea style="width: 100%; height: 500px" data-bind="textInput: expressionJSON"></textarea>
+									<div style="text-align: right"><button data-bind="click: reload">Reload</button></div>
+								</div>
+							</div>
+<!-- END PASTE -->							
 							<button data-bind="click: showSql">Show SQL</button>
 							<!-- ko if: sqlOptions() != null -->
 							<table>

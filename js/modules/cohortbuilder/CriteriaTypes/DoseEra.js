@@ -1,4 +1,4 @@
-define(['knockout', '../InputTypes/Range', '../InputTypes/Concept'], function (ko, Range, Concept) {
+define(['knockout', '../InputTypes/Range', 'conceptsetbuilder/InputTypes/Concept'], function (ko, Range, Concept) {
 
 	function DoseEra(data) {
 		var self = this;

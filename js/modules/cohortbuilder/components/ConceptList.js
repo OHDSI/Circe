@@ -1,4 +1,4 @@
-define(['knockout','text!./ConceptListTemplate.html', '../InputTypes/Concept'], function (ko, template, Concept) {
+define(['knockout','text!./ConceptListTemplate.html', 'conceptsetbuilder/InputTypes/Concept'], function (ko, template, Concept) {
 
 	function CocneptListViewModel(params) {
 		var self = this;
