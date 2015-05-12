@@ -16,7 +16,6 @@ requirejs.config({
 		"knockout": "knockout-3.3.0",
 		"cohortbuilder": "modules/cohortbuilder",
 		"conceptsetbuilder": "modules/conceptsetbuilder",
-		"databindings" : "modules/databindings",
 		"webapi" : "modules/WebAPIProvider",
 		"datatables": "jqueryui/jquery.dataTables.min",
 		"vocabularyprovider": "modules/WebAPIProvider/VocabularyProvider",
