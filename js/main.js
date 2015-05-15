@@ -19,7 +19,8 @@ requirejs.config({
 		"webapi" : "modules/WebAPIProvider",
 		"datatables": "jqueryui/jquery.dataTables.min",
 		"vocabularyprovider": "modules/WebAPIProvider/VocabularyProvider",
-		"ColVis": "jqueryui/dataTables.colVis.min"
+		"ColVis": "jqueryui/dataTables.colVis.min",
+		"databindings/knockout.selectOnFocus": "http://cdn.rawgit.com/One-com/knockout-select-on-focus/v0.1.5/lib/knockout.selectOnFocus"
 	},
 	deps: ['jquery',
 				 'jquery-ui',

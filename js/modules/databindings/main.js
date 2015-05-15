@@ -8,5 +8,5 @@ define(function (require) {
 	var dataTable = require("./datatableBinding");
 	var templateDataTable = require("./knockout.datatables");
 	var eventListener = require("./eventListenerBinding");
-
+	var selectOnFocus = require("./knockout.selectOnFocus");
 });

@@ -19,6 +19,7 @@ define([
 
 			self.conceptSets = params.conceptSets;
 			self.selectedConceptSet = ko.observable();
+			self.nameHasFocus = ko.observable();
 			self.dtApi = ko.observable(); // store reference to datatable
 			params.ref(this); // assign refrence to self to ref's param
 
@@ -30,6 +31,7 @@ define([
 				})) + 1 : 0;
 				self.conceptSets.push(newConceptSet);
 				self.selectedConceptSet(newConceptSet);
+				self.nameHasFocus(true);
 				return newConceptSet;
 			}
 

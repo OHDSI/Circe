@@ -106,10 +106,10 @@ define(['knockout',
 			// model behaviors
 			
 			self.addConceptSet = function(item) {
+				self.tabWidget().tabs("option", "active", 1); // index 1 is the Concept Set Tab.
 				var fieldObservable = item.CodesetId;
 				var newConceptId = self.conceptSetEditor().createConceptSet().id;
 				fieldObservable(newConceptId);
-				self.tabWidget().tabs("option", "active", 1); // index 1 is the Concept Set Tab.
 			}
 		
 			self.reload = function() {
@@ -212,7 +212,7 @@ define(['knockout',
 			
 			self.cancel = function () {
 				
-				if (self.dirtyFlag().isDirty() && !confirm("Changes are not saved. Would you like to continue?"))
+				if (self.dirtyFlag() && self.dirtyFlag().isDirty() && !confirm("Changes are not saved. Would you like to continue?"))
 				{
 					return;
 				};
