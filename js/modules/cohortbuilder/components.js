@@ -5,9 +5,6 @@ define(function (require, exports) {
 	var conceptPicker = require('cohortbuilder/components/ConceptPicker');
 	ko.components.register('concept-picker', conceptPicker);
 	
-	var conceptSetBuilder = require('cohortbuilder/components/ConceptSetBuilder');
-	ko.components.register('concept-set-builder', conceptSetBuilder);
-	
 	var expressionEditor = require('cohortbuilder/components/CohortExpressionEditor');
 	ko.components.register('cohort-expression-editor', expressionEditor);
 	

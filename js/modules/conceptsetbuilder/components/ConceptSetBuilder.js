@@ -4,7 +4,7 @@ define([
 	'text!./ConceptSetBuilderTemplate.html',
 	'../InputTypes/ConceptSet',
 	'../InputTypes/ConceptSetItem',
-	'../bindings/datatableBinding',
+	'databindings',
 	'css!../css/buttons.css',
 	'css!../css/tabs.css'],
 	function (

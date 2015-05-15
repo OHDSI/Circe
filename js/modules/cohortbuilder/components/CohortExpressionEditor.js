@@ -1,5 +1,153 @@
-define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes','../CohortExpression', 'text!./CohortExpressionEditorTemplate.html', 'knockout-jqueryui/tabs', '../bindings/allBindings', 'css!../css/builder.css', 'css!../css/buttons.css'], function (ko, options, CriteriaGroup, criteriaTypes, CohortExpression, template) {
+define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes','../CohortExpression', 'text!./CohortExpressionEditorTemplate.html', 'knockout-jqueryui/tabs', 'databindings', 'conceptsetbuilder/components', 'css!../css/builder.css', 'css!../css/buttons.css','css!../css/ddslick.criteria.css'], 
+			 function (ko, options, CriteriaGroup, criteriaTypes, CohortExpression, template) {
+		
+	var primaryCriteriaOptions = [
+		{
+			text: "Add Condition Filters",
+			selected: false,
+			description: "Find patients with specific diagnoses.",
+			imageSrc: "images/cohortbuilder/condition.png",
+			action: function () {				
+				self.expression().PrimaryCriteria().CriteriaList.push({
+					ConditionOccurrence: new criteriaTypes.ConditionOccurrence
+				}); 
+			}
+		},
+		{
+			text: "Add Condition Era Filters",
+			selected: false,
+			description: "Find patients with specific diagosis era.",
+			imageSrc: "images/cohortbuilder/condition.png",
+			action: function () {				
+				self.expression().PrimaryCriteria().CriteriaList.push({
+					ConditionEra: new criteriaTypes.ConditionEra
+				}); 
+			}
+		},
+		{
+			text: "Add Drug Filters",
+			selected: false,
+			description: "Find patients with exposure to specific drugs or drug classes.",
+			imageSrc: "images/cohortbuilder/drug.png",
+			action: function () {				
+				self.expression().PrimaryCriteria().CriteriaList.push({
+					DrugExposure: new criteriaTypes.DrugExposure
+				}); 
+			}
+		},
+		{
+			text: "Add Drug Era Filters",
+			selected: false,
+			description: "Find patients with with exposure to drugs over time.",
+			imageSrc: "images/cohortbuilder/drugera.png",
+			action: function () {				
+				self.expression().PrimaryCriteria().CriteriaList.push({
+					DrugEra: new criteriaTypes.DrugEra
+				}); 
+			}
+		},
+		{
+			text: "Add Dose Era Filters",
+			selected: false,
+			description: "Find patients with dose eras.",
+			imageSrc: "images/cohortbuilder/drugera.png",
+			action: function () {				
+				self.expression().PrimaryCriteria().CriteriaList.push({
+					DoseEra: new criteriaTypes.DoseEra
+				}); 
+			}
+		},
+		{
+			text: "Add Procedure Filters",
+			selected: false,
+			description: "Find patients that experienced a specific procedure.",
+			imageSrc: "images/cohortbuilder/procedures.png",
+			action: function () {				
+				self.expression().PrimaryCriteria().CriteriaList.push({
+					ProcedureOccurrence: new criteriaTypes.ProcedureOccurrence
+				}); 
+			}
+		},
+		{
+			text: "Add Observation Filters",
+			selected: false,
+			description: "Find patients based on lab tests or other observations.",
+			imageSrc: "images/cohortbuilder/observation.png",
+			action: function () {				
+				self.expression().PrimaryCriteria().CriteriaList.push({
+					Observation: new criteriaTypes.Observation
+				}); 
+			}
+		},
+		{
+			text: "Add Visit Filters",
+			selected: false,
+			description: "Find patients based on visit information.",
+			imageSrc: "images/cohortbuilder/visit.png",
+			action: function () {				
+				self.expression().PrimaryCriteria().CriteriaList.push({
+					VisitOccurrence: new criteriaTypes.VisitOccurrence
+				}); 
+			}
+		},
+		{
+			text: "Add Device Filters",
+			selected: false,
+			description: "Find patients based on device exposure.",
+			imageSrc: "images/cohortbuilder/procedures.png",
+			action: function () {				
+				self.expression().PrimaryCriteria().CriteriaList.push({
+					DeviceExposure: new criteriaTypes.DeviceExposure
+				}); 
+			}
+		},
+		{
+			text: "Add Measurement Filters",
+			selected: false,
+			description: "Find patients based on Measurement.",
+			imageSrc: "images/cohortbuilder/procedures.png",
+			action: function () {				
+				self.expression().PrimaryCriteria().CriteriaList.push({
+					Measurement: new criteriaTypes.Measurement
+				}); 
+			}
+		},
+		{
+			text: "Add Specimen Filters",
+			selected: false,
+			description: "Find patients based on Specimen.",
+			imageSrc: "images/cohortbuilder/procedures.png",
+			action: function () {				
+				self.expression().PrimaryCriteria().CriteriaList.push({
+					Specimen: new criteriaTypes.Specimen
+				}); 
+			}
+		},
+		{
+			text: "Add Observation Period Filters",
+			selected: false,
+			description: "Find patients based on Observation Period.",
+			imageSrc: "images/cohortbuilder/procedures.png",
+			action: function () {				
+				self.expression().PrimaryCriteria().CriteriaList.push({
+					ObservationPeriod: new criteriaTypes.ObservationPeriod
+				}); 
+			}
+		},
+		{
+			text: "Add Death Filters",
+			selected: false,
+			description: "Find patients based on device exposure.",
+			imageSrc: "images/cohortbuilder/procedures.png",
+			action: function () {				
+				self.expression().PrimaryCriteria().CriteriaList.push({
+					Death: new criteriaTypes.Death
+				}); 
+			}
+		}
+	];
 
+	
 	function CohortExpressionEditorViewModel(params) {
 		var self = this;
 
@@ -7,168 +155,8 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes','../Coh
 		{
 			params.widget(this);
 		}
-		var primaryCriteriaOptions = [
-			{
-				text: "Add Condition Filters",
-				selected: false,
-				description: "Find patients with specific diagnoses.",
-				imageSrc: "images/cohortbuilder/condition.png",
-				action: function () {				
-					self.expression().PrimaryCriteria().CriteriaList.push({
-						ConditionOccurrence: new criteriaTypes.ConditionOccurrence
-					}); 
-				}
-			},
-			{
-				text: "Add Condition Era Filters",
-				selected: false,
-				description: "Find patients with specific diagosis era.",
-				imageSrc: "images/cohortbuilder/condition.png",
-				action: function () {				
-					self.expression().PrimaryCriteria().CriteriaList.push({
-						ConditionEra: new criteriaTypes.ConditionEra
-					}); 
-				}
-			},
-			{
-				text: "Add Drug Filters",
-				selected: false,
-				description: "Find patients with exposure to specific drugs or drug classes.",
-				imageSrc: "images/cohortbuilder/drug.png",
-				action: function () {				
-					self.expression().PrimaryCriteria().CriteriaList.push({
-						DrugExposure: new criteriaTypes.DrugExposure
-					}); 
-				}
-			},
-			{
-				text: "Add Drug Era Filters",
-				selected: false,
-				description: "Find patients with with exposure to drugs over time.",
-				imageSrc: "images/cohortbuilder/drugera.png",
-				action: function () {				
-					self.expression().PrimaryCriteria().CriteriaList.push({
-						DrugEra: new criteriaTypes.DrugEra
-					}); 
-				}
-			},
-			{
-				text: "Add Dose Era Filters",
-				selected: false,
-				description: "Find patients with dose eras.",
-				imageSrc: "images/cohortbuilder/drugera.png",
-				action: function () {				
-					self.expression().PrimaryCriteria().CriteriaList.push({
-						DoseEra: new criteriaTypes.DoseEra
-					}); 
-				}
-			},
-			{
-				text: "Add Procedure Filters",
-				selected: false,
-				description: "Find patients that experienced a specific procedure.",
-				imageSrc: "images/cohortbuilder/procedures.png",
-				action: function () {				
-					self.expression().PrimaryCriteria().CriteriaList.push({
-						ProcedureOccurrence: new criteriaTypes.ProcedureOccurrence
-					}); 
-				}
-			},
-			{
-				text: "Add Observation Filters",
-				selected: false,
-				description: "Find patients based on lab tests or other observations.",
-				imageSrc: "images/cohortbuilder/observation.png",
-				action: function () {				
-					self.expression().PrimaryCriteria().CriteriaList.push({
-						Observation: new criteriaTypes.Observation
-					}); 
-				}
-			},
-			{
-				text: "Add Visit Filters",
-				selected: false,
-				description: "Find patients based on visit information.",
-				imageSrc: "images/cohortbuilder/visit.png",
-				action: function () {				
-					self.expression().PrimaryCriteria().CriteriaList.push({
-						VisitOccurrence: new criteriaTypes.VisitOccurrence
-					}); 
-				}
-			},
-			{
-				text: "Add Device Filters",
-				selected: false,
-				description: "Find patients based on device exposure.",
-				imageSrc: "images/cohortbuilder/procedures.png",
-				action: function () {				
-					self.expression().PrimaryCriteria().CriteriaList.push({
-						DeviceExposure: new criteriaTypes.DeviceExposure
-					}); 
-				}
-			},
-			{
-				text: "Add Measurement Filters",
-				selected: false,
-				description: "Find patients based on Measurement.",
-				imageSrc: "images/cohortbuilder/procedures.png",
-				action: function () {				
-					self.expression().PrimaryCriteria().CriteriaList.push({
-						Measurement: new criteriaTypes.Measurement
-					}); 
-				}
-			},
-			{
-				text: "Add Specimen Filters",
-				selected: false,
-				description: "Find patients based on Specimen.",
-				imageSrc: "images/cohortbuilder/procedures.png",
-				action: function () {				
-					self.expression().PrimaryCriteria().CriteriaList.push({
-						Specimen: new criteriaTypes.Specimen
-					}); 
-				}
-			},
-			{
-				text: "Add Observation Period Filters",
-				selected: false,
-				description: "Find patients based on Observation Period.",
-				imageSrc: "images/cohortbuilder/procedures.png",
-				action: function () {				
-					self.expression().PrimaryCriteria().CriteriaList.push({
-						ObservationPeriod: new criteriaTypes.ObservationPeriod
-					}); 
-				}
-			},
-			{
-				text: "Add Death Filters",
-				selected: false,
-				description: "Find patients based on device exposure.",
-				imageSrc: "images/cohortbuilder/procedures.png",
-				action: function () {				
-					self.expression().PrimaryCriteria().CriteriaList.push({
-						Death: new criteriaTypes.Death
-					}); 
-				}
-			}
-		];
 		
 		self.expression = params.expression;
-		
-		self.conceptSetBuilder = ko.observable();
-		
-		self.tabWidget = ko.observable();
-		
-		self.modifiedJSON = "";
-		
-		self.expressionJSON = ko.pureComputed({
-			read: function () {
-				return ko.toJSON(self.expression(), function (key, value) {if (value === 0 || value ) { return value; } else {return}} , 2);
-			},
-			write: function(value) {
-				self.modifiedJSON = value;
-			}
-		});
 		
 		self.options = options;
 
@@ -231,17 +219,6 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes','../Coh
 			return ko.toJSON(self.expression(), function (key, value) {if (value === 0 || value ) { return value; } else {return}} , 2)				
 		}
 		
-		self.reload = function() {
-			var updatedExpression = JSON.parse(self.modifiedJSON);
-			self.expression(new CohortExpression(updatedExpression));
-		}
-		
-		self.addConceptSet = function(item) {
-			var fieldObservable = item.CodesetId;
-			var newConceptId = self.conceptSetBuilder().createConceptSet().id;
-			fieldObservable(newConceptId);
-			self.tabWidget().tabs("option", "active", 1); // index 1 is the Concept Set Tab.
-		}
 	}
 
 	// return factory

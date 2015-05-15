@@ -1,16 +1,18 @@
 define(['knockout',
 				'appConfig',
 				'cohortbuilder/CohortDefinition',
+				'cohortbuilder/CohortExpression',
 				'webapi/CohortDefinitionAPI',
 				'cohortbuilder/components',
 				'knockout-jqueryui/tabs',
-				'cohortbuilder/bindings/datatableBinding',
+				'databindings',
 				'bindings/jqAutosizeBinding'
 			 ],
 	function (
 		ko,
 		config,
 		CohortDefinition,
+		CohortExpression,
 		chortDefinitionAPI) {
 
 		function dirtyFlag(root, isInitiallyDirty) {
@@ -30,7 +32,6 @@ define(['knockout',
 			return result;
 		}
 
-	
 		function translateSql(sql, dialect) {
 			translatePromise = $.ajax({
 				url: config.webAPIRoot + 'sqlrender/translate',
@@ -78,9 +79,11 @@ define(['knockout',
 			self.definitions = ko.observableArray();
 			self.selectedView = ko.observable("");
 			self.isGeneratedOpen = ko.observable(false);
+			self.tabWidget = ko.observable();
+			self.conceptSetEditor = ko.observable();
+			self.cohortExpressionEditor = ko.observable();
 			self.generatedSql = {};
 			self.info = ko.observable();
-			self.editorWidget = ko.observable();
 			self.dirtyFlag = ko.observable();
 			self.isRunning = ko.pureComputed(function () {
 				return (self.info() && self.info().status != "COMPLETE");
@@ -90,13 +93,36 @@ define(['knockout',
 			});
 			self.sqlOptions = ko.observable();
 			
+			self.modifiedJSON = "";			
+			self.expressionJSON = ko.pureComputed({
+				read: function () {
+					return ko.toJSON(self.selectedDefinition().expression(), function (key, value) {if (value === 0 || value ) { return value; } else {return}} , 2);
+				},
+				write: function(value) {
+					self.modifiedJSON = value;
+				}
+			});
+			
 			// model behaviors
+			
+			self.addConceptSet = function(item) {
+				var fieldObservable = item.CodesetId;
+				var newConceptId = self.conceptSetEditor().createConceptSet().id;
+				fieldObservable(newConceptId);
+				self.tabWidget().tabs("option", "active", 1); // index 1 is the Concept Set Tab.
+			}
+		
+			self.reload = function() {
+				var updatedExpression = JSON.parse(self.modifiedJSON);
+				self.selectedDefinition().expression(new CohortExpression(updatedExpression));
+			}			
 			
 			self.showSql = function () {
 				self.generatedSql.mssql = null;
 				self.generatedSql.oracle = null;
 				self.generatedSql.postgres = null;
 				self.generatedSql.redshift = null;
+				self.generatedSql.msaps = null;
 				
 
 				var expression = ko.toJS(self.selectedDefinition().expression, pruneJSON);
@@ -111,6 +137,11 @@ define(['knockout',
 						self.generatedSql.mssql = result.targetSQL;
 					});
 
+					var msapsTranslatePromise = translateSql(result.templateSql, 'pdw');
+					msapsTranslatePromise.then(function (result) {
+						self.generatedSql.msaps = result.targetSQL;
+					});
+					
 					var oracleTranslatePromise = translateSql(result.templateSql, 'oracle');
 					oracleTranslatePromise.then(function (result) {
 						self.generatedSql.oracle = result.targetSQL;
@@ -126,7 +157,7 @@ define(['knockout',
 						self.generatedSql.redshift = result.targetSQL;
 					});
 
-					$.when(mssqlTranslatePromise, oracleTranslatePromise, postgresTranslatePromise, redshiftTranslatePromise).then(function () {
+					$.when(mssqlTranslatePromise, msapsTranslatePromise, oracleTranslatePromise, postgresTranslatePromise, redshiftTranslatePromise).then(function () {
 						self.isGeneratedOpen(true);
 					});
 				});
@@ -148,7 +179,7 @@ define(['knockout',
 					if (currentId != id)
 					{				
 						setTimeout(function() {
-							self.editorWidget().tabWidget().tabs("option", "active", 0); // index 0 is the Expression tab
+							self.tabWidget().tabs("option", "active", 0); // index 0 is the Expression tab
 						},0);
 					}
 				}).then(function() {
