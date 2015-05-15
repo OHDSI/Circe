@@ -2,67 +2,64 @@ define(function (require, exports) {
 	
 	var ko = require('knockout')
 	
-	var conceptPicker = require('cohortbuilder/components/ConceptPicker');
-	ko.components.register('concept-picker', conceptPicker);
-	
-	var expressionEditor = require('cohortbuilder/components/CohortExpressionEditor');
+	var expressionEditor = require('./components/CohortExpressionEditor');
 	ko.components.register('cohort-expression-editor', expressionEditor);
 	
-	var criteriaGroup = require('cohortbuilder/components/CriteriaGroup');
+	var criteriaGroup = require('./components/CriteriaGroup');
 	ko.components.register('criteria-group', criteriaGroup);
 
-	var conditionOccurrence = require('cohortbuilder/components/ConditionOccurrence');
+	var conditionOccurrence = require('./components/ConditionOccurrence');
 	ko.components.register('condition-occurrence-criteria', conditionOccurrence);
 
-	var conditionEra = require('cohortbuilder/components/ConditionEra');
+	var conditionEra = require('./components/ConditionEra');
 	ko.components.register('condition-era-criteria', conditionEra);
 
-	var drugExposure = require('cohortbuilder/components/DrugExposure');
+	var drugExposure = require('./components/DrugExposure');
 	ko.components.register('drug-exposure-criteria', drugExposure);
 
-	var drugEra = require('cohortbuilder/components/DrugEra');
+	var drugEra = require('./components/DrugEra');
 	ko.components.register('drug-era-criteria', drugEra);	
 	
-	var doseEra = require('cohortbuilder/components/DoseEra');
+	var doseEra = require('./components/DoseEra');
 	ko.components.register('dose-era-criteria', doseEra);
 	
-	var procedureOccurrence = require('cohortbuilder/components/ProcedureOccurrence');
+	var procedureOccurrence = require('./components/ProcedureOccurrence');
 	ko.components.register('procedure-occurrence-criteria', procedureOccurrence);
 	
-	var observation = require('cohortbuilder/components/Observation');
+	var observation = require('./components/Observation');
 	ko.components.register('observation-criteria', observation);
 	
-	var visitOccurrence = require('cohortbuilder/components/VisitOccurrence');
+	var visitOccurrence = require('./components/VisitOccurrence');
 	ko.components.register('visit-occurrence-criteria', visitOccurrence);
 	
-	var deviceExposure = require('cohortbuilder/components/DeviceExposure');
+	var deviceExposure = require('./components/DeviceExposure');
 	ko.components.register('device-exposure-criteria', deviceExposure);
 
-	var measurement = require('cohortbuilder/components/Measurement');
+	var measurement = require('./components/Measurement');
 	ko.components.register('measurement-criteria', measurement);
 
-	var observationPeriod = require('cohortbuilder/components/ObservationPeriod');
+	var observationPeriod = require('./components/ObservationPeriod');
 	ko.components.register('observation-period-criteria', observationPeriod);
 
-	var specimen = require('cohortbuilder/components/Specimen');
+	var specimen = require('./components/Specimen');
 	ko.components.register('specimen-criteria', specimen);
 	
-	var death = require('cohortbuilder/components/Death');
+	var death = require('./components/Death');
 	ko.components.register('death-criteria', death);
 	
-	var numericRange = require('cohortbuilder/components/NumericRange');
+	var numericRange = require('./components/NumericRange');
 	ko.components.register('numeric-range', numericRange);
 
-	var dateRange = require('cohortbuilder/components/DateRange');
+	var dateRange = require('./components/DateRange');
 	ko.components.register('date-range', dateRange);
 	
-	var windowInput = require('cohortbuilder/components/WindowInput');
+	var windowInput = require('./components/WindowInput');
 	ko.components.register('window-input',windowInput);
 	
-	var textFilter = require('cohortbuilder/components/TextFilter');
+	var textFilter = require('./components/TextFilter');
 	ko.components.register('text-filter-input',textFilter);	
 	
-	var conceptList = require('cohortbuilder/components/ConceptList');
+	var conceptList = require('./components/ConceptList');
 	ko.components.register('concept-list',conceptList);
 	
 });
