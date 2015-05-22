@@ -17,7 +17,7 @@ define(['knockout'], function (ko) {
 		update: function (element, valueAccessor, allBindingsAccessor) {
 			var value = ko.utils.unwrapObservable(valueAccessor());
 			var allBindings = allBindingsAccessor();
-			if ((!value || value.length > 0) && allBindings.defaultValue)
+			if ((value == null || value.length == 0) && allBindings.defaultValue)
 				element.innerHTML = allBindings.defaultValue;
 			else
 				element.innerHTML = value;
