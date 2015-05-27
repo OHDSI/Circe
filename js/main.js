@@ -4,6 +4,10 @@ requirejs.config({
 		{
 			name: "databindings",
 			location: "modules/databindings"
+		},
+		{
+			name: "circe",
+			location: "modules/circe"
 		}
 	],
 	paths: {

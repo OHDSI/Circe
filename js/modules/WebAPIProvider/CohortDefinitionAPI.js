@@ -57,9 +57,9 @@ define(function (require, exports) {
 		return getSqlPromise;
 	}
 	
-	function generate(cohortDefinitionId) {
+	function generate(cohortDefinitionId, sourceKey) {
 		var generatePromise = $.ajax({
-			url: config.webAPIRoot + 'cohortdefinition/' + (cohortDefinitionId || '-1') + '/generate',
+			url: config.webAPIRoot + 'cohortdefinition/' + (cohortDefinitionId || '-1') + '/generate/' + sourceKey,
 			error: function (error) {
 				console.log("Error: " + error);
 			}
