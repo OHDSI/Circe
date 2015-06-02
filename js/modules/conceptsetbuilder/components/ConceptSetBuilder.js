@@ -20,6 +20,8 @@ define([
 			self.conceptSets = params.conceptSets;
 			self.selectedConceptSet = ko.observable();
 			self.nameHasFocus = ko.observable();
+			self.isImportEnabled = ko.observable(false);
+			self.importValues = ko.observable();
 			self.dtApi = ko.observable(); // store reference to datatable
 			params.ref(this); // assign refrence to self to ref's param
 
@@ -34,6 +36,18 @@ define([
 				self.nameHasFocus(true);
 				return newConceptSet;
 			}
+			
+			self.doImport = function() {
+				var parsedItems, importedConceptSetItems;
+				parsedItems = JSON.parse(self.importValues());
+				
+				importedConceptSetItems = parsedItems.items.map(function (item) {
+					return new ConceptSetItem(item);
+				});
+				
+				self.selectedConceptSet().expression.items(self.selectedConceptSet().expression.items().concat(importedConceptSetItems));
+				self.isImportEnabled(false);
+			};
 
 			self.deleteConceptSet = function () {
 				self.conceptSets.remove(self.selectedConceptSet());
