@@ -64,7 +64,7 @@
 									<tr>
 										<td><textarea maxlength="250" rows="1"
 																	style="font-size: 18px; width: 500px; resize: none; overflow: hidden; word-wrap: break-word;" 
-																	class="inputField" data-bind="jqAutoresize: {append: ''}, textInput: selectedDefinition().name, css: { emptyInput: !(selectedDefinition().name() && (selectedDefinition().name().length > 0)) }"></textarea>
+																	class="inputField" data-bind="textInput: selectedDefinition().name, jqAutoresize: {append: ''}, css: { emptyInput: !(selectedDefinition().name() && (selectedDefinition().name().length > 0)) }"></textarea>
 										</td>
 										<td>
 											<button class="button button-small" data-bind="click: save, enable: (dirtyFlag().isDirty() && !isRunning()), css: {'button-flat-primary': !dirtyFlag().isDirty, 'button-flat-caution': dirtyFlag().isDirty}">Save</button>
@@ -82,7 +82,7 @@
 										<td colspan=2>Description:<br/>
 											<textarea maxlength="1000" rows="1"
 																style="font-size: 1em; width: 100%; resize: none; overflow: hidden; word-wrap: break-word;" 
-																class="inputField" data-bind="jqAutoresize: {append: ''}, textInput: selectedDefinition().description"></textarea>
+																class="inputField" data-bind="textInput: selectedDefinition().description, jqAutoresize: {append: ''}"></textarea>
 										</td>
 									</tr>
 								</tbody>
