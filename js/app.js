@@ -205,7 +205,10 @@ define(['knockout',
 			self.refreshList = function() {
 				var refreshPromise = chortDefinitionAPI.getCohortDefinitionList();
 				refreshPromise.then(function(definitionList) {
-					self.definitions(definitionList);
+					var filteredList = definitionList.filter(function (def) {
+						return def.expressionType == "SIMPLE_EXPRESSION";
+					});
+					self.definitions(filteredList);
 				});
 				return refreshPromise;
 			}
