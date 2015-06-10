@@ -238,7 +238,9 @@ define(['jquery',
 					self.refreshList().then(function () {
 						console.log("Refreshed...");
 						self.selectedDefinition(null);
-						self.info(null);
+						self.sources().forEach(function (source) {
+							source.info(null);
+						});
 						self.selectedView("list");
 					});
 				});
@@ -323,10 +325,14 @@ define(['jquery',
 			sourceAPI.getSources().then(function(sources) {
 				var sourceList = [];
 				sources.forEach(function(source) {
-					sourceList.push({
-						source: source,
-						info: ko.observable()
-					});
+					if (source.daimons.filter(function (daimon) { return daimon.daimonType == "CDM"; }).length > 0
+							&& source.daimons.filter(function (daimon) { return daimon.daimonType == "Results"; }).length > 0)
+					{
+						sourceList.push({
+							source: source,
+							info: ko.observable()
+						});
+					}
 				});
 				self.sources(sourceList);
 			});

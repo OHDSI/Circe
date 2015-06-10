@@ -71,7 +71,6 @@
 											<!-- ko if: selectedDefinition().id() != null -->
 											<button class="button button-small button-flat-primary" data-bind="click: copy, enable: !dirtyFlag().isDirty()">Copy</button>
 											<!-- ko ifnot: isRunning -->
-											<button class="button button-flat-primary button-small" data-bind="click: generate, css: {disable: dirtyFlag().isDirty}, disable: dirtyFlag().isDirty">Generate</button>
 											<button class="button button-small button-flat-caution" data-bind="click: $root.delete">Delete</button>
 											<!-- /ko -->
 											<!-- ko if: isRunning -->
