@@ -69,6 +69,11 @@
 										<td>
 											<button class="button button-small" data-bind="click: save, enable: (dirtyFlag().isDirty() && !isRunning()), css: {'button-flat-primary': !dirtyFlag().isDirty, 'button-flat-caution': dirtyFlag().isDirty}">Save</button>
 											<!-- ko if: selectedDefinition().id() != null -->
+											<button class="button button-small button-flat-primary" data-bind="click: copy, enable: !dirtyFlag().isDirty()">Copy</button>
+											<!-- ko ifnot: isRunning -->
+											<button class="button button-flat-primary button-small" data-bind="click: generate, css: {disable: dirtyFlag().isDirty}, disable: dirtyFlag().isDirty">Generate</button>
+											<button class="button button-small button-flat-caution" data-bind="click: $root.delete">Delete</button>
+											<!-- /ko -->
 											<!-- ko if: isRunning -->
 											<img class="spin" src="images/running.png" />Generating...
 											<!-- /ko -->
@@ -78,7 +83,7 @@
 									<tr>
 										<td colspan=2>Description:<br/>
 											<textarea maxlength="1000" rows="1"
-																style="font-size: 1em; width: 100%; resize: none; overflow: hidden; word-wrap: break-word;" 
+																style="font-size: 1em; width: 800px; resize: none; overflow: hidden; word-wrap: break-word;" 
 																class="inputField" data-bind="textInput: selectedDefinition().description, jqAutoresize: {append: ''}"></textarea>
 										</td>
 									</tr>

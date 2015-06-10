@@ -219,10 +219,38 @@ define(['jquery',
 				});
 			}
 
+			self.copy = function () {
+				clearTimeout(pollTimeout);
+
+				// reset view after save
+				chortDefinitionAPI.copyCohortDefinition(self.selectedDefinition().id()).then(function(result) {
+					console.log("Copied...");
+					self.open(result.id);
+				});
+			}
+			
+			self.delete = function () {
+				clearTimeout(pollTimeout);
+
+				// reset view after save
+				chortDefinitionAPI.deleteCohortDefinition(self.selectedDefinition().id()).then(function(result) {
+					console.log("Deleted...");
+					self.refreshList().then(function () {
+						console.log("Refreshed...");
+						self.selectedDefinition(null);
+						self.info(null);
+						self.selectedView("list");
+					});
+				});
+			}			
+			
 			self.refreshList = function() {
 				var refreshPromise = chortDefinitionAPI.getCohortDefinitionList();
 				refreshPromise.then(function(definitionList) {
-					self.definitions(definitionList);
+					var filteredList = definitionList.filter(function (def) {
+						return def.expressionType == "SIMPLE_EXPRESSION";
+					});
+					self.definitions(filteredList);
 				});
 				return refreshPromise;
 			}
