@@ -181,7 +181,7 @@ define(['jquery',
 			}
 
 			self.selectDefinition = function (definitionTableItem) {
-				self.open(definitionTableItem.id);
+				window.location.hash = '/' + definitionTableItem.id; 
 			};
 			
 			self.open = function (id) {
@@ -257,7 +257,7 @@ define(['jquery',
 				return refreshPromise;
 			}
 			
-			self.cancel = function () {
+			self.list = function () {
 				
 				if (self.dirtyFlag() && self.dirtyFlag().isDirty() && !confirm("Changes are not saved. Would you like to continue?"))
 				{
@@ -319,6 +319,11 @@ define(['jquery',
 			self.getExpressionJSON = function () {
 				return ko.toJSON(self.selectedDefinition().Expression, pruneJSON, 2)
 			}
+			
+			self.routes = {
+				'' : self.list,
+				'/:id': self.open
+			};
 			
 			// startup actions
 
