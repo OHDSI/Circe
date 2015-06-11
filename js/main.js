@@ -14,12 +14,16 @@ requirejs.config({
 		"jquery": ["http://cdn.rawgit.com/jquery/jquery/1.11.2/dist/jquery.min","jquery-1.11.1.min"],
 		"jquery-ui": "jqueryui/jquery-ui.min",
 		"knockout": ["http://cdn.rawgit.com/knockout/knockout/v3.3.0/dist/knockout","knockout-3.3.0"],
+		"director": "director.1.2.6.min",
 		"cohortbuilder": "modules/cohortbuilder",
 		"conceptsetbuilder": "modules/conceptsetbuilder",
 		"webapi" : "modules/WebAPIProvider",
 		"datatables": "jqueryui/jquery.dataTables.min",
 		"vocabularyprovider": "modules/WebAPIProvider/VocabularyProvider",
 		"ColVis": "jqueryui/dataTables.colVis.min"
+	},
+	shim: { 
+		"director": { exports: "Router" } 
 	},
 	deps: ['jquery',
 				 'jquery-ui',
@@ -29,13 +33,13 @@ requirejs.config({
 				]
 });
 
-require(['knockout', 'app', ], function (ko, App) {
+require(['knockout', 'app', 'director' ], function (ko, App, Router) {
 	var circeApp = new App();
 	ko.applyBindings(circeApp, document.getElementById('wrapper'));
-	circeApp.refreshList().then(function (){
-		circeApp.selectedView("list");
-	});
 	
+	var router = Router(circeApp.routes);
+	router.init('/');
+
 	$(window).bind('beforeunload', function () {
 			if (circeApp.selectedDefinition() && circeApp.dirtyFlag() && circeApp.dirtyFlag().isDirty())
 					return "Changes will be lost if you do not save.";	
