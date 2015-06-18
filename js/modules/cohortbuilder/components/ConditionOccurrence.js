@@ -84,16 +84,16 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 			{
 				text: "Add Provider Specialty Filter",
 				selected: false,
-				description: "Filter Condition Occurrences based on Prior Observation Duration.",
+				description: "Filter Condition Occurrences based on provider specialty.",
 				action: function() {
 					if (self.Criteria.ProviderSpecialty() == null)
 						self.Criteria.ProviderSpecialty(ko.observableArray());				
 				}
 			},
 			{
-				text: "Add Visit Type Filter",
+				text: "Add Visit Filter",
 				selected: false,
-				description: "Filter Condition Occurrences based on Prior Observation Duration.",
+				description: "Filter Condition Occurrences based on visit occurrence of diagnosis.",
 				action: function() {
 					if (self.Criteria.VisitType() == null)
 						self.Criteria.VisitType(ko.observableArray());				

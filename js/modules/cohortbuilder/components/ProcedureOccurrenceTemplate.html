@@ -94,7 +94,7 @@
 			<tr data-bind="if: VisitType() != null, visible: VisitType() != null">
 				<td><img data-bind="click: function() { $component.removeCriterion('VisitType') }" class="deleteIcon" src="images/cohortbuilder/delete.png" /></td>
 				<td>
-					Visit Type is: <concept-list params="PickerParams: { DefaultDomain: 'Visit Type', DefaultQuery: ''}, ConceptList: VisitType()"></concept-list>
+					with a Visit occurrance of: <concept-list params="PickerParams: { DefaultDomain: 'Visit', DefaultQuery: ''}, ConceptList: VisitType()"></concept-list>
 				</td>									
 			</tr>								
 		</table>

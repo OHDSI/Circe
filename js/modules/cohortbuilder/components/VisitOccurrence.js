@@ -79,7 +79,7 @@ define(['knockout', '../options', '../InputTypes/Range', 'text!./VisitOccurrence
 			{
 				text: "Add Provider Specialty Filter",
 				selected: false,
-				description: "Filter Visit Occurrences based on Prior Observation Duration.",
+				description: "Filter Visit Occurrences based on provider specialty.",
 				action: function() {
 					if (self.Criteria.ProviderSpecialty() == null)
 						self.Criteria.ProviderSpecialty(ko.observableArray());

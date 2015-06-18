@@ -99,26 +99,26 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 				text: "Add Prior Observation Duration Filter",
 				value: 8,
 				selected: false,
-				description: "Filter Condition Occurrences based on Prior Observation Duration."
+				description: "Filter Drug Exposures based on Prior Observation Duration."
 					},
 			{
 				text: "Add Post Observation Duration Filter",
 				value: 9,
 				selected: false,
-				description: "Filter Condition Occurrences based on Prior Observation Duration."
+				description: "Filter Drug Exposures based on Prior Observation Duration."
 					},
 */
 			{
 				text: "Add Provider Specialty Filter",
 				value: 10,
 				selected: false,
-				description: "Filter Condition Occurrences based on Prior Observation Duration."
+				description: "Filter Drug Exposures based on provider specialty."
 					},
 			{
-				text: "Add Visit Type Filter",
+				text: "Add Visit Filter",
 				value: 11,
 				selected: false,
-				description: "Filter Condition Occurrences based on Prior Observation Duration."
+				description: "Filter Drug Exposures based on visit occurrence of drug exposure."
 					}
 
 				];
