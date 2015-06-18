@@ -70,13 +70,13 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 				text: "Add Provider Specialty Filter",
 				value: 10,
 				selected: false,
-				description: "Filter Procedure Occurrences based on Prior Observation Duration."
+				description: "Filter Procedure Occurrences based on provider specialty."
 					},
 			{
-				text: "Add Visit Type Filter",
+				text: "Add Visit Filter",
 				value: 11,
 				selected: false,
-				description: "Filter Procedure Occurrences based on Prior Observation Duration."
+				description: "Filter Procedure Occurrences based on visit occurrence of procedure."
 			}
 		];
 

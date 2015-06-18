@@ -76,13 +76,13 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 				text: "Add Provider Specialty Filter",
 				value: 9,
 				selected: false,
-				description: "Filter Device Exposures based on Prior Observation Duration."
+				description: "Filter Device Exposures based on provider specialty."
 					},
 			{
-				text: "Add Visit Type Filter",
+				text: "Add Visit Filter",
 				value: 10,
 				selected: false,
-				description: "Filter Device Exposures based on Prior Observation Duration."
+				description: "Filter Device Exposures based on visit occurrence of exposure."
 			}
 		];
 

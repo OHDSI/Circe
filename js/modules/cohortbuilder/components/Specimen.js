@@ -73,7 +73,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 			{
 				text: "Add First Observation Filter",
 				selected: false,
-				description: "Limit Observations to the first occurrence.",
+				description: "Limit Specimen to the first occurrence.",
 				action: function() {
 					if (self.Criteria.First() == null)
 						self.Criteria.First(true);					
@@ -82,7 +82,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 			{
 				text: "Add Age at Occurrence Filter",
 				selected: false,
-				description: "Filter Condition Occurrences by age at occurrence.",
+				description: "Filter specimens by age at occurrence.",
 				action: function() {
 					if (self.Criteria.Age() == null)
 						self.Criteria.Age(new Range());					
@@ -91,7 +91,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 			{
 				text: "Add Gender Filter",
 				selected: false,
-				description: "Filter Condition Occurrences based on Gender.",
+				description: "Filter specimens based on Gender.",
 				action: function() {
 					if (self.Criteria.Gender() == null)
 						self.Criteria.Gender(ko.observableArray());					

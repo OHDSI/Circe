@@ -152,7 +152,7 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 				text: "Add Gender Filter",
 				value: 13,
 				selected: false,
-				description: "Filter Condition Occurrences based on Gender.",
+				description: "Filter Measurements based on Gender.",
 				action: function() { 
 					if (self.Criteria.Gender() == null)
 						self.Criteria.Gender(ko.observableArray());
@@ -176,17 +176,17 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 				text: "Add Provider Specialty Filter",
 				value: 14,
 				selected: false,
-				description: "Filter Condition Occurrences based on Prior Observation Duration.",
+				description: "Filter Measurements based on provider specialty.",
 				action: function() { 
 					if (self.Criteria.ProviderSpecialty() == null)
 						self.Criteria.ProviderSpecialty(ko.observableArray());
 				}
 			},
 			{
-				text: "Add Visit Type Filter",
+				text: "Add Visit Filter",
 				value: 15,
 				selected: false,
-				description: "Filter Condition Occurrences based on Prior Observation Duration.",
+				description: "Filter Measurements based on visit occurrence of measurement.",
 				action: function() { 
 					if (self.Criteria.VisitType() == null)
 						self.Criteria.VisitType(ko.observableArray());
