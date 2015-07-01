@@ -21,6 +21,7 @@ define([
 			self.selectedConceptSet = ko.observable();
 			self.nameHasFocus = ko.observable();
 			self.isImportEnabled = ko.observable(false);
+			self.isExportEnabled = ko.observable(false);
 			self.importValues = ko.observable();
 			self.dtApi = ko.observable(); // store reference to datatable
 			params.ref(this); // assign refrence to self to ref's param
@@ -72,6 +73,14 @@ define([
 			
 			self.renderCheckbox = function (field) {
 				return '<span data-bind="click: function(d) { d.' + field + '(!d.' + field + '()); } ,css: { selected: ' + field + '} " class="glyphicon glyphicon-ok"></span>';
+			}
+			
+			self.getConceptSetJson = function()
+			{
+				if (self.selectedConceptSet())
+					return ko.toJSON(self.selectedConceptSet().expression, null, 2);
+				else
+					return "";
 			}
 			
 		}
