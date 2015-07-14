@@ -20,7 +20,7 @@
 			<tr data-bind="if: OccurrenceStartDate() != null, visible: OccurrenceStartDate() != null">
 				<td><img data-bind="click: function() { $component.removeCriterion('OccurrenceStartDate') }" class="deleteIcon" src="images/cohortbuilder/delete.png" /></td>
 				<td>
-					occurrence start is: <date-range params="Range: OccurrenceStartDate"></numeric-range>
+					occurrence start is: <date-range params="Range: OccurrenceStartDate"></date-range>
 				</td>									
 			</tr>
 
