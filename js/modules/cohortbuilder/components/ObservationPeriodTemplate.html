@@ -14,13 +14,13 @@
 			<tr data-bind="if: PeriodStartDate() != null, visible: PeriodStartDate() != null">
 				<td><img data-bind="click: function() { $component.removeCriterion('PeriodStartDate') }" class="deleteIcon" src="images/cohortbuilder/delete.png" /></td>
 				<td>
-					observation period start is: <date-range params="Range: PeriodStartDate"></numeric-range>
+					observation period start is: <date-range params="Range: PeriodStartDate"></date-range>
 				</td>									
 			</tr>
 			<tr data-bind="if: PeriodEndDate() != null, visible: PeriodEndDate() != null">
 				<td><img data-bind="click: function() { $component.removeCriterion('PeriodEndDate') }" class="deleteIcon" src="images/cohortbuilder/delete.png" /></td>
 				<td>
-					observation period end is: <date-range params="Range: PeriodEndDate"></numeric-range>
+					observation period end is: <date-range params="Range: PeriodEndDate"></date-range>
 				</td>									
 			</tr>
 			<tr data-bind="if: PeriodType() != null, visible: PeriodType() != null">

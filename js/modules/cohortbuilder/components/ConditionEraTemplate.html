@@ -20,13 +20,13 @@
 			<tr data-bind="if: EraStartDate() != null, visible: EraStartDate() != null">
 				<td><img data-bind="click: function() { $component.removeCriterion('EraStartDate') }" class="deleteIcon" src="images/cohortbuilder/delete.png" /></td>
 				<td>
-					era start is: <date-range params="Range: EraStartDate"></numeric-range>
+					era start is: <date-range params="Range: EraStartDate"></date-range>
 				</td>									
 			</tr>
 			<tr data-bind="if: EraEndDate() != null, visible: EraEndDate() != null">
 				<td><img data-bind="click: function() { $component.removeCriterion('EraEndDate') }" class="deleteIcon" src="images/cohortbuilder/delete.png" /></td>
 				<td>
-					era end is: <date-range params="Range: EraEndDate"></numeric-range>
+					era end is: <date-range params="Range: EraEndDate"></date-range>
 				</td>									
 			</tr>
 			<tr data-bind="if: OccurrenceCount() != null, visible: OccurrenceCount() != null">
