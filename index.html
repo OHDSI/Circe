@@ -71,7 +71,6 @@
 											<!-- ko if: selectedDefinition().id() != null -->
 											<button class="button button-small button-flat-primary" data-bind="click: copy, enable: !dirtyFlag().isDirty()">Copy</button>
 											<!-- ko ifnot: isRunning -->
-											<button class="button button-flat-primary button-small" data-bind="click: generate, css: {disable: dirtyFlag().isDirty}, disable: dirtyFlag().isDirty">Generate</button>
 											<button class="button button-small button-flat-caution" data-bind="click: $root.delete">Delete</button>
 											<!-- /ko -->
 											<!-- ko if: isRunning -->
@@ -103,6 +102,11 @@
 									<li data-bind="attr: { 'aria-controls': 'raw' }">
 										<a data-bind="attr: { title: 'Raw JSON', href: '#raw' }, text: 'Raw JSON'"></a>
 									</li>		
+									<li data-bind="attr: { 'aria-controls': 'generate' }">
+										<a data-bind="attr: { title: 'Generate', href: '#generate' }">
+											<span data-bind="text: 'Generate'"></span> <img data-bind="visible: isRunning" class="spin" src="images/running.png" />
+										</a>
+									</li>		
 								</ul>
 								<div data-bind="attr: { id: 'conceptsets' }, with: selectedDefinition().expression">
 									<div style="padding: 5px">
@@ -120,6 +124,26 @@
 								<div data-bind="attr: { id: 'raw' }">
 									<textarea style="width: 100%; height: 500px" data-bind="textInput: expressionJSON"></textarea>
 									<div style="text-align: right"><button data-bind="click: reload">Reload</button></div>
+								</div>
+								<div data-bind="attr: { id: 'generate' }, eventListener: { event: 'click', selector: '.generate', callback: onGenerate}">
+									<div style="padding: 5px">
+										<table class="sourceTable">
+											<thead>
+												<th>Source</th>
+												<th>Name</th>
+												<th>Dialect</th>
+												<th></th>
+											</thead>
+											<tbody data-bind="foreach: sources">
+												<tr>
+													<td data-bind="text: source.sourceKey"></td>
+													<td data-bind="text: source.sourceName"></td>
+													<td data-bind="text: source.sourceDialect"></td>
+													<td><generate-component params="{info: info, source: source, dirtyFlag: $parent.dirtyFlag}"></generate-component></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
 								</div>
 							</div>
 							<button data-bind="click: showSql">Show SQL</button>

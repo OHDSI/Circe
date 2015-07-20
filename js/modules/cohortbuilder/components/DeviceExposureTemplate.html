@@ -44,7 +44,7 @@
 			<tr data-bind="if: Quantity() != null, visible: Quantity() != null">
 				<td><img data-bind="click: function() { $component.removeCriterion('Quantity') }" class="deleteIcon" src="images/cohortbuilder/delete.png" /></td>
 				<td>
-					with quantity <numeric-range params="Range: Quantity"></numeric-range>
+					with quantity <numeric-range params="Range: Quantity"></date-range>
 				</td>
 			</tr>
 			<tr data-bind="if: DeviceSourceConcept() != null, visible: DeviceSourceConcept() != null">

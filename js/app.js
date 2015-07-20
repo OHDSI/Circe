@@ -1,19 +1,24 @@
-define(['knockout',
+define(['jquery',
+				'knockout',
 				'appConfig',
 				'cohortbuilder/CohortDefinition',
 				'cohortbuilder/CohortExpression',
 				'webapi/CohortDefinitionAPI',
+				'webapi/SourceAPI',
 				'cohortbuilder/components',
 				'knockout-jqueryui/tabs',
 				'databindings',
+				'circe',
 				'bindings/jqAutosizeBinding'
 			 ],
 	function (
+		$,
 		ko,
 		config,
 		CohortDefinition,
 		CohortExpression,
-		chortDefinitionAPI) {
+		chortDefinitionAPI,
+		sourceAPI) {
 
 		function dirtyFlag(root, isInitiallyDirty) {
 			var result = function() {},
@@ -61,9 +66,19 @@ define(['knockout',
 			var pollTimeout = null;
 			
 			function pollForInfo() {
-				chortDefinitionAPI.getInfo(self.selectedDefinition().id()).then(function(info) {
-					self.info(info);
-					if (info && info.status != "COMPLETE")
+				if (pollTimeout)
+					clearTimeout(pollTimeout);
+				
+				chortDefinitionAPI.getInfo(self.selectedDefinition().id()).then(function(infoList) {
+					var hasPending = false;
+					infoList.forEach(function(info){
+						var source = self.sources().filter(function (s) { return s.source.sourceId == info.id.sourceId })[0];
+						source.info(info);
+						if (info.status != "COMPLETE")
+							hasPending = true;
+					});
+					
+					if (hasPending)
 					{
 						pollTimeout = setTimeout(function () {
 							pollForInfo();
@@ -82,11 +97,13 @@ define(['knockout',
 			self.tabWidget = ko.observable();
 			self.conceptSetEditor = ko.observable();
 			self.cohortExpressionEditor = ko.observable();
+			self.sources = ko.observableArray();
 			self.generatedSql = {};
-			self.info = ko.observable();
 			self.dirtyFlag = ko.observable();
 			self.isRunning = ko.pureComputed(function () {
-				return (self.info() && self.info().status != "COMPLETE");
+				return self.sources().filter(function (source) {
+					return source.info() && source.info().status != "COMPLETE";
+				}).length > 0;
 			});
 			self.isSaveable = ko.pureComputed(function() {
 				return self.dirtyFlag() && self.dirtyFlag().isDirty() && self.isRunning(); 
@@ -221,7 +238,9 @@ define(['knockout',
 					self.refreshList().then(function () {
 						console.log("Refreshed...");
 						self.selectedDefinition(null);
-						self.info(null);
+						self.sources().forEach(function (source) {
+							source.info(null);
+						});
 						self.selectedView("list");
 					});
 				});
@@ -249,7 +268,9 @@ define(['knockout',
 				self.refreshList().then(function () {
 					console.log("Refreshed...");
 					self.selectedDefinition(null);
-					self.info(null);
+					self.sources().forEach(function (source) {
+						source.info(null);
+					});
 					self.selectedView("list");
 				});
 			}
@@ -264,7 +285,7 @@ define(['knockout',
 				self.selectedDefinition(newDefinition);
 				self.selectedView("detail");
 				setTimeout(function() {
-					self.editorWidget().tabWidget().tabs("option", "active", 1); // index 1 is the Concept Set tab	
+					self.tabWidget().tabs("option", "active", 1); // index 1 is the Concept Set Tab.
 				},0);
 			}
 
@@ -288,6 +309,13 @@ define(['knockout',
 				});
 			}
 			
+			self.onGenerate = function(generateComponent) {
+				var generatePromise = chortDefinitionAPI.generate(self.selectedDefinition().id(), generateComponent.source.sourceKey);
+				generatePromise.then(function (result) {
+					pollForInfo();
+				});
+			}			
+			
 			self.getExpressionJSON = function () {
 				return ko.toJSON(self.selectedDefinition().Expression, pruneJSON, 2)
 			}
@@ -297,5 +325,21 @@ define(['knockout',
 				'/:id': self.open
 			};
 			
+			// startup actions
+
+			sourceAPI.getSources().then(function(sources) {
+				var sourceList = [];
+				sources.forEach(function(source) {
+					if (source.daimons.filter(function (daimon) { return daimon.daimonType == "CDM"; }).length > 0
+							&& source.daimons.filter(function (daimon) { return daimon.daimonType == "Results"; }).length > 0)
+					{
+						sourceList.push({
+							source: source,
+							info: ko.observable()
+						});
+					}
+				});
+				self.sources(sourceList);
+			});
 		}
 	});
