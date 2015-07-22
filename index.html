@@ -51,7 +51,7 @@
 						}
 					 }">
 				</table>
-				<button class="button-flat-primary" data-bind="click: newDefinition">New Definition</button>
+				<button class="button-flat-primary" data-bind="click: function() { router.setRoute('/new'); }">New Definition</button>
 			</div>
 			<div data-bind="visible: selectedView() == 'detail'">
 			<table width="99%">

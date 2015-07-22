@@ -215,7 +215,10 @@ define(['jquery',
 				// reset view after save
 				chortDefinitionAPI.saveCohortDefinition(definition).then(function(result) {
 					console.log("Saved...");
-					self.open(result.id);
+					if (!definition.id) // reset route to new ID
+						self.router.setRoute('/' + result.id);
+					else // reload saved study
+						self.open(definition.id);
 				});
 			}
 
@@ -322,6 +325,7 @@ define(['jquery',
 			
 			self.routes = {
 				'' : self.list,
+				'/new': self.newDefinition,				
 				'/:id': self.open
 			};
 			
