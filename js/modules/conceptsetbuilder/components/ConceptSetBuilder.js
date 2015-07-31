@@ -46,7 +46,16 @@ define([
 					return new ConceptSetItem(item);
 				});
 				
-				self.selectedConceptSet().expression.items(self.selectedConceptSet().expression.items().concat(importedConceptSetItems));
+				// only add new concepts.
+				ixConcepts = {};
+				self.selectedConceptSet().expression.items().forEach(function(item) {
+					ixConcepts[item.concept.CONCEPT_ID] = true;
+				});
+				
+				self.selectedConceptSet().expression.items(self.selectedConceptSet().expression.items().concat(importedConceptSetItems.filter(function (item){
+					return !ixConcepts[item.concept.CONCEPT_ID];
+				})));
+				
 				self.isImportEnabled(false);
 			};
 
@@ -56,12 +65,25 @@ define([
 
 			// concept picker handlers
 			self.addConcepts = function (conceptList) {
-				var newConceptSetItems = conceptList.map(function (c) {
+				// only add new concepts.
+				var selectedConceptSetItems = self.selectedConceptSet().expression.items;
+				var ixConcepts = {};
+				selectedConceptSetItems().forEach(function(item) {
+					ixConcepts[item.concept.CONCEPT_ID] = true;
+				});
+
+				var importedConcepts = [];
+				conceptList.forEach(function(item) {
+					if (!ixConcepts[item.CONCEPT_ID])
+						importedConcepts.push(item);
+				});
+
+				var newConceptSetItems = importedConcepts.map(function (c) {
 					return new ConceptSetItem({
-						concept: c
+						concept: c,
+						includeDescendants: true
 					});
 				});
-				var selectedConceptSetItems = self.selectedConceptSet().expression.items;
 				selectedConceptSetItems(selectedConceptSetItems().concat(newConceptSetItems));
 			}
 

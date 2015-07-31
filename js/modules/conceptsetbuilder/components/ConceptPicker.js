@@ -1,4 +1,4 @@
-define(['knockout', 'text!./ConceptPickerTemplate.html', 'conceptsetbuilder/InputTypes/Concept', 'vocabularyprovider', 'knockout-jqueryui/dialog', 'css!../css/conceptpicker.css'], function (ko, template, Concept, VocabularyProvider) {
+define(['jquery','knockout', 'text!./ConceptPickerTemplate.html', 'conceptsetbuilder/InputTypes/Concept', 'vocabularyprovider', 'knockout-jqueryui/dialog', 'css!../css/conceptpicker.css'], function ($, ko, template, Concept, VocabularyProvider) {
 	
 	function _mapConceptRowToConcept (row)
 	{
@@ -77,7 +77,7 @@ define(['knockout', 'text!./ConceptPickerTemplate.html', 'conceptsetbuilder/Inpu
 	
 	ConceptPickerViewModel.prototype.doImport = function() {
 		var self=this;
-		
+		var notFound = [];
 		if (this.importValues().trim().length == 0)
 		{
 			self.isImportEnabled(false);
@@ -92,7 +92,7 @@ define(['knockout', 'text!./ConceptPickerTemplate.html', 'conceptsetbuilder/Inpu
 				uniqueConceptIds.push(el);
 		});
 		
-		console.log(uniqueConceptIds);
+		console.info(uniqueConceptIds);
 		if (uniqueConceptIds.length > 0)
 		{
 			var results = [];
@@ -101,7 +101,10 @@ define(['knockout', 'text!./ConceptPickerTemplate.html', 'conceptsetbuilder/Inpu
 				p = p.then(function() {
 					return VocabularyProvider.getConcept(cId);
 				}).then(function(data) {
-					results.push(_mapConceptRowToConcept(data));
+					if (data != "")
+						results.push(_mapConceptRowToConcept(data));
+					else
+						notFound.push(cId);
 				});
 			});
 			
@@ -112,6 +115,10 @@ define(['knockout', 'text!./ConceptPickerTemplate.html', 'conceptsetbuilder/Inpu
 				}
 				self.isImportEnabled(false);
 				self.importValues("");
+				if (notFound.length > 0)
+				{
+					console.warn("The following concept ids were not found: " + notFound.join());
+				}
 			});
 		}
 		else

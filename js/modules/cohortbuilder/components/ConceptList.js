@@ -7,7 +7,19 @@ define(['knockout','text!./ConceptListTemplate.html', 'conceptsetbuilder/InputTy
 		
 		// onAdd handler
 		self.addConcepts = function(concepts) {
-			self.ConceptList(self.ConceptList().concat(concepts));
+			// remove only add new concepts.
+			var ixConcepts = {};
+			self.ConceptList().forEach(function(item) {
+				ixConcepts[item.CONCEPT_ID] = true;
+			});
+			
+			var importedConcepts = [];
+			concepts.forEach(function(item) {
+				if (!ixConcepts[item.CONCEPT_ID])
+					importedConcepts.push(item);
+			});
+			
+			self.ConceptList(self.ConceptList().concat(importedConcepts));
 		}
 		
 		self.removeConcept = function (item) {
