@@ -42,6 +42,7 @@ require(['knockout', 'app', 'director' ], function (ko, App, Router) {
 	ko.applyBindings(circeApp, document.getElementById('wrapper'));
 	
 	var router = Router(circeApp.routes);
+	circeApp.router = router;
 	router.init('/');
 
 	$(window).bind('beforeunload', function () {

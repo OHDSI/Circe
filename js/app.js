@@ -120,6 +120,8 @@ define(['jquery',
 				}
 			});
 			
+			self.router = null;
+			
 			// model behaviors
 			
 			self.addConceptSet = function(item) {
@@ -244,7 +246,7 @@ define(['jquery',
 						self.sources().forEach(function (source) {
 							source.info(null);
 						});
-						self.selectedView("list");
+						self.router.setRoute("/");
 					});
 				});
 			}			
