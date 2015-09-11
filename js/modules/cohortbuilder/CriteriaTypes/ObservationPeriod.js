@@ -4,8 +4,8 @@ define(['knockout', '../InputTypes/Range','conceptsetbuilder/InputTypes/Concept'
 		data = data || {};
 
 		self.First = ko.observable(data.First || null);
-		self.PeriodStartDate = ko.observable(data.OccurrenceStartDate && new Range(data.PeriodStartDate));
-		self.PeriodEndDate = ko.observable(data.OccurrenceEndDate && new Range(data.PeriodEndDate));
+		self.PeriodStartDate = ko.observable(data.PeriodStartDate && new Range(data.PeriodStartDate));
+		self.PeriodEndDate = ko.observable(data.PeriodEndDate && new Range(data.PeriodEndDate));
 		self.PeriodType = ko.observable(data.PeriodType && ko.observableArray(data.PeriodType.map(function (d) {
 			return new Concept(d);
 		})));
