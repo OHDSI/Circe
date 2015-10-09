@@ -21,6 +21,7 @@ requirejs.config({
 		"director": "director.1.2.6.min",
 		"cohortbuilder": "modules/cohortbuilder",
 		"conceptsetbuilder": "modules/conceptsetbuilder",
+		"conceptpicker": "modules/conceptpicker",
 		"webapi" : "modules/WebAPIProvider",
 		"datatables": "jqueryui/jquery.dataTables.min",
 		"vocabularyprovider": "modules/WebAPIProvider/VocabularyProvider",

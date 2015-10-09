@@ -1,4 +1,4 @@
-define(['knockout', './Concept'], function (ko, Concept) {
+define(['knockout', 'conceptpicker/InputTypes/Concept'], function (ko, Concept) {
 
 	function ConceptSetItem(data)
 	{

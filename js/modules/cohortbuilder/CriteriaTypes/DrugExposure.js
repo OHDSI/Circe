@@ -1,4 +1,4 @@
-define(['knockout', '../InputTypes/Range','conceptsetbuilder/InputTypes/Concept', '../InputTypes/Text'], function (ko, Range, Concept, Text) {
+define(['knockout', '../InputTypes/Range','conceptpicker/InputTypes/Concept', '../InputTypes/Text'], function (ko, Range, Concept, Text) {
 
 	function DrugExposure(data) {
 		var self = this;

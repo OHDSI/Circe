@@ -5,8 +5,7 @@ define([
 	'../InputTypes/ConceptSet',
 	'../InputTypes/ConceptSetItem',
 	'databindings',
-	'css!../css/buttons.css',
-	'css!../css/tabs.css'],
+	'conceptpicker/ConceptPicker'],
 	function (
 		$,
 		ko,

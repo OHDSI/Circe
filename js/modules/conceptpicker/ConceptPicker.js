@@ -1,4 +1,4 @@
-define(['jquery','knockout', 'text!./ConceptPickerTemplate.html', 'conceptsetbuilder/InputTypes/Concept', 'vocabularyprovider', 'knockout-jqueryui/dialog', 'css!../css/conceptpicker.css'], function ($, ko, template, Concept, VocabularyProvider) {
+define(['jquery','knockout', 'text!./ConceptPickerTemplate.html', './InputTypes/Concept', 'vocabularyprovider', 'knockout-jqueryui/dialog', 'css!./css/conceptpicker.css'], function ($, ko, template, Concept, VocabularyProvider) {
 	
 	function _mapConceptRowToConcept (row)
 	{
@@ -128,10 +128,11 @@ define(['jquery','knockout', 'text!./ConceptPickerTemplate.html', 'conceptsetbui
 		}
 	}
 	
-	// return compoonent definition
-	return {
+	var component = {
 		viewModel: ConceptPickerViewModel,
 		template: template
 	}
-
+	
+	ko.components.register('concept-picker', component);
+	return component;
 });
