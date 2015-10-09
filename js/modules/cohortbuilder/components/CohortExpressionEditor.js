@@ -1,4 +1,4 @@
-define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes','../CohortExpression', 'text!./CohortExpressionEditorTemplate.html', 'databindings', 'conceptpicker/ConceptPicker', 'css!../css/builder.css', 'css!../css/ddslick.criteria.css'], 
+define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes','../CohortExpression', 'text!./CohortExpressionEditorTemplate.html', 'databindings'], 
 			 function (ko, options, CriteriaGroup, criteriaTypes, CohortExpression, template) {
 		
 	function CohortExpressionEditorViewModel(params) {

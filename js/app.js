@@ -24,17 +24,19 @@ define(['jquery',
 		sourceAPI) {
 
 		function dirtyFlag(root, isInitiallyDirty) {
-			var result = function() {},
-					_initialState = ko.observable(ko.toJSON(root,pruneJSON)),
-					_isInitiallyDirty = ko.observable(isInitiallyDirty);
+			var result = function () {},
+				_initialState = ko.observable(ko.toJSON(root, pruneJSON)),
+				_isInitiallyDirty = ko.observable(isInitiallyDirty);
 
-			result.isDirty = ko.pureComputed(function() {
-					return _isInitiallyDirty() || _initialState() !== ko.toJSON(root,pruneJSON);
-			}).extend({rateLimit: 500});;
+			result.isDirty = ko.pureComputed(function () {
+				return _isInitiallyDirty() || _initialState() !== ko.toJSON(root, pruneJSON);
+			}).extend({
+				rateLimit: 500
+			});;
 
-			result.reset = function() {
-					_initialState(ko.toJSON(root));
-					_isInitiallyDirty(false);
+			result.reset = function () {
+				_initialState(ko.toJSON(root));
+				_isInitiallyDirty(false);
 			};
 
 			return result;
@@ -55,7 +57,7 @@ define(['jquery',
 			});
 			return translatePromise;
 		}
-		
+
 		function pruneJSON(key, value) {
 			if (value === 0 || value) {
 				return value;
@@ -65,31 +67,34 @@ define(['jquery',
 		}
 
 		return function App() {
-			
+
 			var pollTimeout = null;
-			
+
 			function pollForInfo() {
 				if (pollTimeout)
 					clearTimeout(pollTimeout);
-				
-				chortDefinitionAPI.getInfo(self.selectedDefinition().id()).then(function(infoList) {
+
+				chortDefinitionAPI.getInfo(self.selectedDefinition().id()).then(function (infoList) {
 					var hasPending = false;
-					infoList.forEach(function(info){
-						var source = self.sources().filter(function (s) { return s.source.sourceId == info.id.sourceId })[0];
-						source.info(info);
-						if (info.status != "COMPLETE")
-							hasPending = true;
+					infoList.forEach(function (info) {
+						var source = self.sources().filter(function (s) {
+							return s.source.sourceId == info.id.sourceId
+						})[0];
+						if (source) {
+							source.info(info);
+							if (info.status != "COMPLETE")
+								hasPending = true;
+						}
 					});
-					
-					if (hasPending)
-					{
+
+					if (hasPending) {
 						pollTimeout = setTimeout(function () {
 							pollForInfo();
-						},5000);
+						}, 5000);
 					}
 				});
 			}
-											 
+
 			var self = this;
 
 			// model state
@@ -108,52 +113,58 @@ define(['jquery',
 					return source.info() && source.info().status != "COMPLETE";
 				}).length > 0;
 			});
-			self.isSaveable = ko.pureComputed(function() {
-				return self.dirtyFlag() && self.dirtyFlag().isDirty() && self.isRunning(); 
+			self.isSaveable = ko.pureComputed(function () {
+				return self.dirtyFlag() && self.dirtyFlag().isDirty() && self.isRunning();
 			});
 			self.sqlOptions = ko.observable();
-			
-			self.modifiedJSON = "";			
+
+			self.modifiedJSON = "";
 			self.expressionJSON = ko.pureComputed({
 				read: function () {
-					return ko.toJSON(self.selectedDefinition().expression(), function (key, value) {if (value === 0 || value ) { return value; } else {return}} , 2);
+					return ko.toJSON(self.selectedDefinition().expression(), function (key, value) {
+						if (value === 0 || value) {
+							return value;
+						} else {
+							return
+						}
+					}, 2);
 				},
-				write: function(value) {
+				write: function (value) {
 					self.modifiedJSON = value;
 				}
 			});
-			
+
 			self.router = null;
-			
+
 			// model behaviors
-			
-			self.addConceptSet = function(item) {
+
+			self.addConceptSet = function (item) {
 				self.tabWidget().tabs("option", "active", 1); // index 1 is the Concept Set Tab.
 				var fieldObservable = item.CodesetId;
 				var newConceptId = self.conceptSetEditor().createConceptSet().id;
 				fieldObservable(newConceptId);
 			}
-		
-			self.reload = function() {
+
+			self.reload = function () {
 				var updatedExpression = JSON.parse(self.modifiedJSON);
 				self.selectedDefinition().expression(new CohortExpression(updatedExpression));
-			}			
-			
+			}
+
 			self.showSql = function () {
 				self.generatedSql.mssql = null;
 				self.generatedSql.oracle = null;
 				self.generatedSql.postgres = null;
 				self.generatedSql.redshift = null;
 				self.generatedSql.msaps = null;
-				
+
 
 				var expression = ko.toJS(self.selectedDefinition().expression, pruneJSON);
 				var options = ko.toJS(self.sqlOptions);
-				
+
 				var templateSqlPromise = chortDefinitionAPI.getSql(expression, options);
 
 				templateSqlPromise.then(function (result) {
-					
+
 					var mssqlTranslatePromise = translateSql(result.templateSql, 'sql server');
 					mssqlTranslatePromise.then(function (result) {
 						self.generatedSql.mssql = result.targetSQL;
@@ -163,7 +174,7 @@ define(['jquery',
 					msapsTranslatePromise.then(function (result) {
 						self.generatedSql.msaps = result.targetSQL;
 					});
-					
+
 					var oracleTranslatePromise = translateSql(result.templateSql, 'oracle');
 					oracleTranslatePromise.then(function (result) {
 						self.generatedSql.oracle = result.targetSQL;
@@ -186,29 +197,28 @@ define(['jquery',
 			}
 
 			self.selectDefinition = function (definitionTableItem) {
-				window.location.hash = '/' + definitionTableItem.id; 
+				window.location.hash = '/' + definitionTableItem.id;
 			};
-			
+
 			self.open = function (id) {
 				var currentId = self.selectedDefinition() && self.selectedDefinition().id();
-				
-				chortDefinitionAPI.getCohortDefinition(id).then(function(definition) {
+
+				chortDefinitionAPI.getCohortDefinition(id).then(function (definition) {
 					definition.expression = JSON.parse(definition.expression);
 					var definition = new CohortDefinition(definition);
 					self.dirtyFlag(new dirtyFlag(definition));
 					self.selectedDefinition(definition);
 					self.selectedView("detail");
-					if (currentId != id)
-					{				
-						setTimeout(function() {
+					if (currentId != id) {
+						setTimeout(function () {
 							self.tabWidget().tabs("option", "active", 0); // index 0 is the Expression tab
-						},0);
+						}, 0);
 					}
-				}).then(function() {
+				}).then(function () {
 					pollForInfo();
 				});
 			};
-			
+
 			self.save = function () {
 				clearTimeout(pollTimeout);
 
@@ -216,9 +226,9 @@ define(['jquery',
 
 				// for saving, we flatten the expresson JS into a JSON string
 				definition.expression = ko.toJSON(definition.expression, pruneJSON);
-				
+
 				// reset view after save
-				chortDefinitionAPI.saveCohortDefinition(definition).then(function(result) {
+				chortDefinitionAPI.saveCohortDefinition(definition).then(function (result) {
 					console.log("Saved...");
 					if (!definition.id) // reset route to new ID
 						self.router.setRoute('/' + result.id);
@@ -231,17 +241,17 @@ define(['jquery',
 				clearTimeout(pollTimeout);
 
 				// reset view after save
-				chortDefinitionAPI.copyCohortDefinition(self.selectedDefinition().id()).then(function(result) {
+				chortDefinitionAPI.copyCohortDefinition(self.selectedDefinition().id()).then(function (result) {
 					console.log("Copied...");
 					self.open(result.id);
 				});
 			}
-			
+
 			self.delete = function () {
 				clearTimeout(pollTimeout);
 
 				// reset view after save
-				chortDefinitionAPI.deleteCohortDefinition(self.selectedDefinition().id()).then(function(result) {
+				chortDefinitionAPI.deleteCohortDefinition(self.selectedDefinition().id()).then(function (result) {
 					console.log("Deleted...");
 					self.refreshList().then(function () {
 						console.log("Refreshed...");
@@ -252,11 +262,11 @@ define(['jquery',
 						self.router.setRoute("/");
 					});
 				});
-			}			
-			
-			self.refreshList = function() {
+			}
+
+			self.refreshList = function () {
 				var refreshPromise = chortDefinitionAPI.getCohortDefinitionList();
-				refreshPromise.then(function(definitionList) {
+				refreshPromise.then(function (definitionList) {
 					var filteredList = definitionList.filter(function (def) {
 						return def.expressionType == "SIMPLE_EXPRESSION";
 					});
@@ -264,14 +274,13 @@ define(['jquery',
 				});
 				return refreshPromise;
 			}
-			
+
 			self.list = function () {
-				
-				if (self.dirtyFlag() && self.dirtyFlag().isDirty() && !confirm("Changes are not saved. Would you like to continue?"))
-				{
+
+				if (self.dirtyFlag() && self.dirtyFlag().isDirty() && !confirm("Changes are not saved. Would you like to continue?")) {
 					return;
 				};
-				
+
 				clearTimeout(pollTimeout);
 				self.refreshList().then(function () {
 					console.log("Refreshed...");
@@ -288,60 +297,62 @@ define(['jquery',
 					"Title": "New Definition",
 					"Type": "SIMPLE_DEFINITION"
 				});
-				
+
 				self.dirtyFlag(new dirtyFlag(newDefinition, true));
 				self.selectedDefinition(newDefinition);
 				self.selectedView("detail");
-				setTimeout(function() {
+				setTimeout(function () {
 					self.tabWidget().tabs("option", "active", 1); // index 1 is the Concept Set Tab.
-				},0);
+				}, 0);
 			}
 
-			self.addSqlOptions = function() {
-				self.sqlOptions({ 
+			self.addSqlOptions = function () {
+				self.sqlOptions({
 					cdmSchema: ko.observable(""),
 					targetSchema: ko.observable(""),
 					targetTable: ko.observable(""),
 					cohortId: ko.observable(""),
 				});
 			}
-			
-			self.removeSqlOptions = function()  {
-				self.sqlOptions(null);	
+
+			self.removeSqlOptions = function () {
+				self.sqlOptions(null);
 			}
-			
-			self.generate = function() {
+
+			self.generate = function () {
 				var generatePromise = chortDefinitionAPI.generate(self.selectedDefinition().id());
 				generatePromise.then(function (result) {
 					pollForInfo();
 				});
 			}
-			
-			self.onGenerate = function(generateComponent) {
+
+			self.onGenerate = function (generateComponent) {
 				var generatePromise = chortDefinitionAPI.generate(self.selectedDefinition().id(), generateComponent.source.sourceKey);
 				generatePromise.then(function (result) {
 					pollForInfo();
 				});
-			}			
-			
+			}
+
 			self.getExpressionJSON = function () {
 				return ko.toJSON(self.selectedDefinition().Expression, pruneJSON, 2)
 			}
-			
+
 			self.routes = {
-				'' : self.list,
-				'/new': self.newDefinition,				
+				'': self.list,
+				'/new': self.newDefinition,
 				'/:id': self.open
 			};
-			
+
 			// startup actions
 
-			sourceAPI.getSources().then(function(sources) {
+			sourceAPI.getSources().then(function (sources) {
 				var sourceList = [];
-				sources.forEach(function(source) {
-					if (source.daimons.filter(function (daimon) { return daimon.daimonType == "CDM"; }).length > 0
-							&& source.daimons.filter(function (daimon) { return daimon.daimonType == "Results"; }).length > 0)
-					{
+				sources.forEach(function (source) {
+					if (source.daimons.filter(function (daimon) {
+							return daimon.daimonType == "CDM";
+						}).length > 0 && source.daimons.filter(function (daimon) {
+							return daimon.daimonType == "Results";
+						}).length > 0) {
 						sourceList.push({
 							source: source,
 							info: ko.observable()
