@@ -62,4 +62,7 @@ define(function (require, exports) {
 	var conceptList = require('./components/ConceptList');
 	ko.components.register('concept-list',conceptList);
 	
+	var primaryEventSelector = require('./components/PrimaryEventSelector')
+	ko.components.register('primary-event-selector', primaryEventSelector);
+	
 });
