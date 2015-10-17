@@ -17,13 +17,13 @@ define([], function () {
 
 	options.occurrenceTypeOptions = [{
 		id: 1,
-		name: 'At Most'
+		name: 'at most'
 }, {
 		id: 0,
-		name: 'Exactly'
+		name: 'exactly'
 }, {
 		id: 2,
-		name: 'At Least'
+		name: 'at least'
 }];
 
 	options.windowDayOptions = new Array();
@@ -55,13 +55,13 @@ define([], function () {
 }];
 	
 	options.resultLimitOptions = [{
-				name: "All Events",
+				name: "all events",
 				id: "All"
 		}, {
-				name: "Earliest Event",
+				name: "earliest event",
 				id: "First"
 		}, {
-				name: "Latest Event",
+				name: "latest event",
 				id: "Last"
 		}];
 	

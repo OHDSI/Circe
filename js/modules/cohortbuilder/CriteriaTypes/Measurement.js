@@ -25,7 +25,7 @@ define(['knockout', '../InputTypes/Range','conceptpicker/InputTypes/Concept', '.
 		}))); 
 		self.RangeLow = ko.observable(data.RangeLow && new Range(data.RangeLow));
 		self.RangeHigh = ko.observable(data.RangeHigh && new Range(data.RangeHigh));
-		self.MeasurementSourceConcept = ko.observable(data.MeasurementSourceConcept && ko.observable(data.MeasurementSourceConcept));
+		self.MeasurementSourceConcept = ko.observable(data.MeasurementSourceConcept != null ? ko.observable(data.MeasurementSourceConcept) : null);
 		
 		// Derived Fields
 		self.RangeLowRatio = ko.observable(data.RangeLowRatio && new Range(data.RangeLowRatio));

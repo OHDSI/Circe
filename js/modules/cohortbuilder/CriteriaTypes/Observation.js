@@ -24,7 +24,7 @@ define(['knockout', '../InputTypes/Range','conceptpicker/InputTypes/Concept', '.
 		self.Unit = ko.observable(data.Unit && ko.observableArray(data.Unit.map(function (d) {
 			return new Concept(d);
 		})));
-		self.ObservationSourceConcept = ko.observable(data.ObservationSourceConcept && ko.observable(data.ObservationSourceConcept));
+		self.ObservationSourceConcept = ko.observable(data.ObservationSourceConcept != null ? ko.observable(data.ObservationSourceConcept) : null);
 
 		// Derived Fields
 		self.First = ko.observable(data.First || null);

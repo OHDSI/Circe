@@ -12,9 +12,9 @@ define(['jquery',
 				'css!styles/buttons.css',
 				'databindings',
 				'circe',
+				'cohortdefinitionviewer',
 				'bindings/jqAutosizeBinding'
-			 ],
-	function (
+], function (
 		$,
 		ko,
 		config,
