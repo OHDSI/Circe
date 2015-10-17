@@ -76,7 +76,8 @@
 											<!-- ko if: isRunning -->
 											<img class="spin" src="images/running.png" />Generating...
 											<!-- /ko -->
-											<!-- /ko -->											
+											<!-- /ko -->
+											<button class="button button-small button-flat-primary" data-bind="click: showSql">Show SQL</button>
 										</td>
 									</tr>
 									<tr>
@@ -146,32 +147,6 @@
 									</div>
 								</div>
 							</div>
-							<button data-bind="click: showSql">Show SQL</button>
-							<!-- ko if: sqlOptions() != null -->
-							<table>
-								<tr>
-									<td>CDM Schema:</td>
-									<td><input data-bind="value: sqlOptions().cdmSchema"></input></td>
-								</tr>
-								<tr>
-									<td>Target Schema:</td>
-									<td><input data-bind="value: sqlOptions().targetSchema"></input></td>
-								</tr>
-								<tr>
-									<td>Target Table:</td>
-									<td><input data-bind="value: sqlOptions().targetTable"></input></td>
-								</tr>
-								<tr>
-									<td>Cohort Def Id:</td>
-									<td><input data-bind="value: sqlOptions().cohortId"></input></td>
-								</tr>
-							</table>
-							<button data-bind="click: removeSqlOptions">Remove Options</button>
-							<!-- /ko -->
-							<!-- ko if: sqlOptions() == null -->
-							<button data-bind="click: addSqlOptions">Add Options</button>
-							<!-- /ko -->
-
 						</div>
 					</td>
 				</tr>
