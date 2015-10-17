@@ -1,5 +1,5 @@
 <!-- ko with: Criteria -->
-a a specimen of <span data-bind="text: $component.getCodesetName(CodesetId(), 'Any Drug')"></span>
+a a specimen of <conceptset-reference params="{conceptSetId: CodesetId, conceptSets: $component.expression.ConceptSets, defaultName: 'Any Specimen'}"></conceptset-reference>
 <ul>
 <!-- ko if: First() != null -->
 	<li>for the first time in the person's history</li>

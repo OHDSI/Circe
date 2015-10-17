@@ -62,4 +62,10 @@ define(function (require, exports) {
 	var conceptList = require('./components/ConceptList');
 	ko.components.register('concept-list-viewer',conceptList);
 	
+	var conceptSetReference = require('./components/ConceptSetReference');
+	ko.components.register('conceptset-reference',conceptSetReference);
+	
+	var conceptSetViewer = require('./components/ConceptSetViewer');
+	ko.components.register('conceptset-viewer',conceptSetViewer);
+
 });

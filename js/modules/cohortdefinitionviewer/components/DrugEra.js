@@ -8,8 +8,11 @@ define(['knockout', 'cohortbuilder/options', 'cohortbuilder/InputTypes/Range', '
 		self.options = options;
 
 		self.getCodesetName = function(codesetId, defaultName) {
-			if (codesetId != null)	
-				return ko.utils.unwrapObservable(self.expression.ConceptSets()[codesetId].name);
+			if (codesetId != null)
+			{
+				var selectedConceptSet = self.expression.ConceptSets().filter(function (item) { return item.id == codesetId })[0];
+				return ko.utils.unwrapObservable(selectedConceptSet.name);
+			}
 			else
 				return defaultName;
 		};

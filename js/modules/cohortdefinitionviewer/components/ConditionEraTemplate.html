@@ -1,5 +1,5 @@
 <!-- ko with: Criteria -->
-a condition era of <span data-bind="text: $component.getCodesetName(CodesetId(), 'Any Condition')"></span>
+a condition era of <conceptset-reference params="{conceptSetId: CodesetId, conceptSets: $component.expression.ConceptSets, defaultName: 'Any Condition'}"></conceptset-reference>
 <ul>
 <!-- ko if: First() != null -->
 	<li>for the first time in the person's history</li>

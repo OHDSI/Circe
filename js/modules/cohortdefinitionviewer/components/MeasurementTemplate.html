@@ -1,5 +1,5 @@
 <!-- ko with: Criteria -->
-a measurement of <span data-bind="text: $component.getCodesetName(CodesetId(), 'Any Measurement')"></span>
+a measurement of <conceptset-reference params="{conceptSetId: CodesetId, conceptSets: $component.expression.ConceptSets, defaultName: 'Any Measurement'}"></conceptset-reference>
 <ul>
 <!-- ko if: First() != null -->
 	<li>for the first time in the person's history</li>
@@ -38,7 +38,7 @@ a measurement of <span data-bind="text: $component.getCodesetName(CodesetId(), '
 	<li>with an abnormal result</li>
 <!-- /ko -->
 <!-- ko if: MeasurementSourceConcept() != null -->
-	<li>Measurement Source Concept is <span data-bind="text: $component.getCodesetName(MeasurementSourceConcept()(), 'UNSPECIFIED!')"></span></li>
+	<li>Measurement Source Concept is <conceptset-reference params="{conceptSetId: MeasurementSourceConcept(), conceptSets: $component.expression.ConceptSets, defaultName: 'UNSPECIFIED!'}"></conceptset-reference></li>
 <!-- /ko -->
 <!-- ko if: Age() != null -->
 	<li>with age <numeric-range-viewer params="Range: Age"></numeric-range-viewer></li>

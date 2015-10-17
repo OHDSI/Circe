@@ -1,5 +1,5 @@
 <!-- ko with: Criteria -->
-a visit occurrence of <span data-bind="text: $component.getCodesetName(CodesetId(), 'Any Drug')"></span>
+a visit occurrence of <conceptset-reference params="{conceptSetId: CodesetId, conceptSets: $component.expression.ConceptSets, defaultName: 'Any Visit'}"></conceptset-reference>
 <ul>
 <!-- ko if: First() != null -->
 	<li>for the first time in the person's history</li>
@@ -14,7 +14,7 @@ a visit occurrence of <span data-bind="text: $component.getCodesetName(CodesetId
 	<li>visit type is any of: <concept-list-viewer params="ConceptList: VisitType()"></concept-list-viewer></li>
 <!-- /ko -->
 <!-- ko if: VisitSourceConcept() != null -->
-	<li>Visit Source Concept is <span data-bind="text: $component.getCodesetName(VisitSourceConcept()(), 'UNSPECIFIED!')"></span></li>
+	<li>Visit Source Concept is <conceptset-reference params="{conceptSetId: VisitSourceConcept(), conceptSets: $component.expression.ConceptSets, defaultName: 'UNSPECIFIED!'}"></conceptset-reference></li>
 <!-- /ko -->
 <!-- ko if: VisitLength() != null -->
 	<li>with visit length <numeric-range-viewer params="Range: VisitLength"></numeric-range-viewer></li>

@@ -1,5 +1,5 @@
 <!-- ko with: Criteria -->
-a drug exposure of <span data-bind="text: $component.getCodesetName(CodesetId(), 'Any Drug')"></span>
+a drug exposure of <conceptset-reference params="{conceptSetId: CodesetId, conceptSets: $component.expression.ConceptSets, defaultName: 'Any Drug'}"></conceptset-reference>
 <ul>
 <!-- ko if: First() != null -->
 	<li>for the first time in the person's history</li>
@@ -38,7 +38,7 @@ a drug exposure of <span data-bind="text: $component.getCodesetName(CodesetId(),
 	<li>with a lot number <text-filter-viewer params="Filter: LotNumber"></text-filter-viewer></li>
 <!-- /ko -->
 <!-- ko if: DrugSourceConcept() != null -->
-	<li>Drug Source Concept is <span data-bind="text: $component.getCodesetName(DrugSourceConcept()(), 'UNSPECIFIED!')"></span></li>
+	<li>Drug Source Concept is <conceptset-reference params="{conceptSetId: DrugSourceConcept(), conceptSets: $component.expression.ConceptSets, defaultName: 'UNSPECIFIED!'}"></conceptset-reference></li>
 <!-- /ko -->
 <!-- ko if: Age() != null -->
 	<li>with age <numeric-range-viewer params="Range: Age"></numeric-range-viewer></li>
