@@ -12,7 +12,12 @@ define(function (require, exports) {
 	var domains = [];	
 	
 	sourceAPI.getSources().then(function(sources) {
-		defaultSource = sources[0]; // use this source for all vocab calls
+		// find the source which has a Vocabulary Daimon with priority = 1
+		var prioritySources = sources.filter(function(source) { return source.daimons.filter(function (daimon) { return daimon.daimonType == "Vocabulary" && daimon.priority == "1"}).length > 0 }); 
+		if (prioritySources.length > 0)
+			defaultSource = prioritySources[0];
+		else // find the first vocabulary or CDM daimon
+			defaultSource = sources.filter(function(source) { return source.daimons.filter(function (daimon) { return daimon.daimonType == "Vocabulary" || daimon.daimonType == "CDM"}).length > 0 })[0];
 		
 		// preload domain list once for all future calls to getDomains()
 		$.ajax({
