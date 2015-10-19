@@ -120,6 +120,16 @@
 								<div data-bind="attr: { id: 'printfriendly' }">
 									<div style="padding: 5px">
 										<cohort-expression-viewer params="expression: selectedDefinition().expression"></cohort-expression-viewer>
+										<br/>
+										<div style="font-size:1.3em">Appendix 1: Concept Set Definitions</div>
+										<br/>
+										<!-- ko foreach: selectedDefinition().expression().ConceptSets.sorted -->
+										<div style="font-size: 1.15em"><span data-bind="text: ($index() + 1)"></span>. <span data-bind="text: $data.name"></span></div>
+										<div style="padding-left:20px">
+										<conceptset-viewer params="{conceptSet: $data}"></conceptset-viewer>
+										<br/>
+										</div>
+										<!-- /ko -->										
 									</div>
 								</div>
 								<div data-bind="attr: { id: 'raw' }">
