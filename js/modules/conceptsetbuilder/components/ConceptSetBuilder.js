@@ -5,15 +5,15 @@ define([
 	'../InputTypes/ConceptSet',
 	'../InputTypes/ConceptSetItem',
 	'databindings',
-	'conceptpicker/ConceptPicker'],
-	function (
+	'conceptpicker/ConceptPicker'
+], function (
 		$,
 		ko,
 		template,
 		ConceptSet,
 		ConceptSetItem) {
 
-		function CodesetBuilderViewModel(params) {
+	function CodesetBuilderViewModel(params) {
 			var self = this;
 
 			self.conceptSets = params.conceptSets;

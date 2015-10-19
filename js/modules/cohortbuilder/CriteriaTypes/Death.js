@@ -13,7 +13,7 @@ define(['knockout', '../InputTypes/Range','conceptpicker/InputTypes/Concept', '.
 		self.DeathType = ko.observable(data.DeathType && ko.observableArray(data.DeathType.map(function (d) {
 			return new Concept(d);
 		})));
-		self.DeathSourceConcept = ko.observable(data.CauseSourceConcept && ko.observable(data.CauseSourceConcept));
+		self.DeathSourceConcept = ko.observable(data.DeathSourceConcept != null ? ko.observable(data.DeathSourceConcept) : null);
 		// Derived Fields
 		self.Age = ko.observable(data.Age && new Range(data.Age));
 

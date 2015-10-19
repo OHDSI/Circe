@@ -8,6 +8,10 @@ requirejs.config({
 		{
 			name: "circe",
 			location: "modules/circe"
+		},
+		{
+			name: "cohortdefinitionviewer",
+			location: "modules/cohortdefinitionviewer"
 		}
 	],
 	paths: {

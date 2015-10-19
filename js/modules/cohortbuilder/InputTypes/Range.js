@@ -12,8 +12,8 @@ define(['knockout'], function (ko) {
 
 	Range.prototype.toJSON = function () {
 		return {
-			Value : this.Value instanceof Date ? (this.Value.getFullYear() + '-' + (this.Value.getMonth() + 1) + '-' + this.Value.getDate() ) : this.Value,
-			Extent: this.Extent instanceof Date ? (this.Extent.getFullYear() + '-' + (this.Extent.getMonth() + 1) + '-' + this.Extent.getDate() ) : this.Extent,
+			Value : this.Value instanceof Date ? (this.Value.toISOString().slice(0,10)) : this.Value,
+			Extent: this.Extent instanceof Date ? (this.Extent.toISOString().slice(0,10)) : this.Extent,
 			Op: this.Op
 		}
 	}

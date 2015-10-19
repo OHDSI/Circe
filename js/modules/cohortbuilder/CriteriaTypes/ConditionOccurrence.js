@@ -15,7 +15,7 @@ define(['knockout', '../InputTypes/Range','conceptpicker/InputTypes/Concept', '.
 			return new Concept(d);
 		})));
 		self.StopReason = ko.observable(data.StopReason && new Text(data.StopReason));
-		self.ConditionSourceConcept = ko.observable(data.ConditionSourceConcept && ko.observable(data.ConditionSourceConcept));
+		self.ConditionSourceConcept = ko.observable(data.ConditionSourceConcept != null ? ko.observable(data.ConditionSourceConcept) : null);
 
 		// Derived Fields
 		self.First = ko.observable(data.First || null);

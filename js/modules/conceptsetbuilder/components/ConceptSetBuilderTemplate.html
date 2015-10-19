@@ -1,5 +1,5 @@
 <template id="conceptSetTemplate">
-	<select data-bind="options: conceptSets, 
+	<select data-bind="options: conceptSets.sorted, 
 		optionsText: function(item) { return item.name }, 
 		optionsCaption: 'Please select codeset to modify...', 
 		value: selectedConceptSet" class="mediumInputField">

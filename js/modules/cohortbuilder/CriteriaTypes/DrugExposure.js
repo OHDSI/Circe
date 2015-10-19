@@ -26,7 +26,7 @@ define(['knockout', '../InputTypes/Range','conceptpicker/InputTypes/Concept', '.
 			return new Concept(d);
 		})));
 		self.LotNumber = ko.observable(data.LotNumber && new Text(data.LotNumber));
-		self.DrugSourceConcept = ko.observable(data.DrugSourceConcept && ko.observable(data.DrugSourceConcept));
+		self.DrugSourceConcept = ko.observable(data.DrugSourceConcept != null ? ko.observable(data.DrugSourceConcept) : null);
 
 		// Derived Fields
 		self.First = ko.observable(data.First || null);

@@ -14,7 +14,7 @@ define(['knockout', '../InputTypes/Range','conceptpicker/InputTypes/Concept', '.
 		self.VisitType = ko.observable(data.VisitType && ko.observableArray(data.VisitType.map(function (d) {
 			return new Concept(d);
 		})));
-		self.VisitSourceConcept = ko.observable(data.VisitSourceConcept && ko.observable(data.VisitSourceConcept));
+		self.VisitSourceConcept = ko.observable(data.VisitSourceConcept != null ? ko.observable(data.VisitSourceConcept) : null);
 		self.VisitLength = ko.observable(data.VisitLength && new Range(data.VisitLength));
 
 		// Derived Fields

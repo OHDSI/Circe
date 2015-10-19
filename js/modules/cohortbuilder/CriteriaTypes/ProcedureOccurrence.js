@@ -20,7 +20,7 @@ define(['knockout', '../InputTypes/Range','conceptpicker/InputTypes/Concept'], f
 		
 		self.Quantity = ko.observable(data.Quantity && new Range(data.Quantity));
 		
-		self.ProcedureSourceConcept = ko.observable(data.ProcedureSourceConcept && ko.observable(data.ProcedureSourceConcept));
+		self.ProcedureSourceConcept = ko.observable(data.ProcedureSourceConcept != null ? ko.observable(data.ProcedureSourceConcept) : null);
 
 		// Derived Fields
 		self.First = ko.observable(data.First || null);

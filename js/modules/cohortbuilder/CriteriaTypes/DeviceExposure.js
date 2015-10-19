@@ -16,7 +16,7 @@ define(['knockout', '../InputTypes/Range','conceptpicker/InputTypes/Concept', '.
 		})));
 		self.UniqueDeviceId = ko.observable(data.UniqueDeviceId && new Text(data.StopReason));
 		self.Quantity = ko.observable(data.Quantity && new Range(data.Quantity));
-		self.DeviceSourceConcept = ko.observable(data.DeviceSourceConcept && ko.observable(data.DeviceSourceConcept));
+		self.DeviceSourceConcept = ko.observable(data.DeviceSourceConcept != null ? ko.observable(data.DeviceSourceConcept) : null);
 
 		// Derived Fields
 		self.First = ko.observable(data.First || null);
