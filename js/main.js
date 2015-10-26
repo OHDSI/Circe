@@ -20,7 +20,7 @@ requirejs.config({
 		"css": "requirejs/plugins/css",
 		"json": "requirejs/plugins/json",
 		"jquery": ["http://cdn.rawgit.com/jquery/jquery/1.11.2/dist/jquery.min","jquery-1.11.1.min"],
-		"jquery-ui": "jqueryui/jquery-ui.min",
+		"jquery-ui": "//code.jquery.com/ui/1.11.4/jquery-ui.min",
 		"knockout": ["http://cdn.rawgit.com/knockout/knockout/v3.3.0/dist/knockout","knockout-3.3.0"],
 		"director": "director.1.2.6.min",
 		"cohortbuilder": "modules/cohortbuilder",
