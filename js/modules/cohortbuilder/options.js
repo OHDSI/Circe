@@ -48,11 +48,17 @@ define([], function () {
 	options.occurrenceCountOptions = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 	options.groupTypeOptions = [{
 		id: 'ALL',
-		name: 'All'
-}, {
+		name: 'all'
+	}, {
 		id: 'ANY',
-		name: 'Any'
-}];
+		name: 'any'
+	}, {
+		id: 'AT_LEAST',
+		name: 'at least'
+	}, {
+		id: 'AT_MOST',
+		name: 'at most'
+	}];
 	
 	options.resultLimitOptions = [{
 				name: "all events",
