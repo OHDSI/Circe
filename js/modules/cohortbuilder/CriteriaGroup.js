@@ -8,6 +8,7 @@ define(function (require, exports, module) {
 		
 		data = data || {};
 		self.Type = ko.observable((data.Type) || "ALL");
+		self.Count = ko.observable(data.Count || 0);
 		self.CriteriaList = ko.observableArray();
 		self.Groups = ko.observableArray();
 
@@ -25,6 +26,12 @@ define(function (require, exports, module) {
 		}
 	}
 
+	CriteriaGroup.prototype.toJSON = function () {
+		if (!this.Type.startsWith("AT_")) {
+			delete this.Count;
+		}
+		return this;
+	}	
 	module.exports = CriteriaGroup;
 	
 });

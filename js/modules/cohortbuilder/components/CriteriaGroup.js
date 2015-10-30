@@ -108,6 +108,13 @@ define(['knockout', '../CriteriaTypes','../CriteriaGroup', '../AdditionalCriteri
 		self.group = params.group;
 		self.parentGroup = params.parentGroup;
 		self.options = options;
+		self.groupCountOptions = ko.pureComputed(function() {
+			var optionsArray = ['0'];
+			for (var i=0;i < (self.group().CriteriaList().length + self.group().Groups().length); i++) {
+				optionsArray.push(""+(i+1));
+			}
+			return optionsArray;
+		});
 
 		self.getCriteriaComponent = function (data) {
 
