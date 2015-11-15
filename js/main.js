@@ -19,15 +19,15 @@ requirejs.config({
 		"text": "requirejs/plugins/text",
 		"css": "requirejs/plugins/css",
 		"json": "requirejs/plugins/json",
-		"jquery": ["//cdn.rawgit.com/jquery/jquery/1.11.2/dist/jquery.min","jquery-1.11.1.min"],
+		"jquery": "//code.jquery.com/jquery-1.11.2",
 		"jquery-ui": "//code.jquery.com/ui/1.11.4/jquery-ui.min",
-		"knockout": ["//cdn.rawgit.com/knockout/knockout/v3.3.0/dist/knockout","knockout-3.3.0"],
-		"director": "director.1.2.6.min",
+		"knockout": "//cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min",
+		"director": "//cdnjs.cloudflare.com/ajax/libs/Director/1.2.8/director.min",
 		"cohortbuilder": "modules/cohortbuilder",
 		"conceptsetbuilder": "modules/conceptsetbuilder",
 		"conceptpicker": "modules/conceptpicker",
 		"webapi" : "modules/WebAPIProvider",
-		"datatables": "jqueryui/jquery.dataTables.min",
+		"datatables": "//cdn.datatables.net/1.10.10/js/jquery.dataTables.min",
 		"vocabularyprovider": "modules/WebAPIProvider/VocabularyProvider",
 		"ColVis": "jqueryui/dataTables.colVis.min"
 	},
@@ -37,7 +37,7 @@ requirejs.config({
 	deps: ['jquery',
 				 'jquery-ui',
 				 'jqueryui/jquery.ui.autocomplete.scroll',
-				 'css!jqueryui/jquery.dataTables.css',
+				 'css!//cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css',
 				 'css!jqueryui/dataTables.colVis.css'
 				]
 });
