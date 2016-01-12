@@ -174,6 +174,7 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes','../Coh
 		self.addPrimaryCriteriaOptions = {
 			selectText: "Add Primary Event Filters...",
 			width:250,
+			height:300,
 			actionOptions: primaryCriteriaOptions,
 			onAction: function(data) {
 				data.selectedData.action();

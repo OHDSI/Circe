@@ -34,6 +34,7 @@
 	margin-top: -8px;
 }
 .dd-options {
+	right: 0px;
 	border: solid 1px #ccc;
 	border-top: none;
 	list-style: none;
