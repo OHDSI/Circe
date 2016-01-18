@@ -5,7 +5,8 @@ define(
         'jquery',
         'knockout',
         './bindingHandler',
-        './utils'
+        './utils',
+			  'jquery-ui/datepicker'
     ],
 
     function ($, ko, BindingHandler, utils) {

@@ -26,7 +26,7 @@
 			</tbody>
 		</table>
 	</div>
-	<div data-bind="foreach: group().CriteriaList">
+	<div style="min-height: 10px;" data-bind="sortable: {data: group().CriteriaList, connectClass: 'additionalCriteria'}">
 		<div class="additionalCriteria">
 			<div data-bind="component: { 
 									name: $component.getCriteriaComponent($data.Criteria), 

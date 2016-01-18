@@ -19,17 +19,27 @@ requirejs.config({
 		"text": "requirejs/plugins/text",
 		"css": "requirejs/plugins/css",
 		"json": "requirejs/plugins/json",
-		"jquery": "//code.jquery.com/jquery-1.11.2",
-		"jquery-ui": "//code.jquery.com/ui/1.11.4/jquery-ui.min",
-		"knockout": "//cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min",
-		"director": "//cdnjs.cloudflare.com/ajax/libs/Director/1.2.8/director.min",
+		"jquery": "https://code.jquery.com/jquery-1.11.2",
+		"jquery-ui": "https://code.jquery.com/ui/1.11.4/jquery-ui.min",
+		"knockout": "https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min",
+		"ko.sortable": "https://cdnjs.cloudflare.com/ajax/libs/knockout-sortable/0.11.0/knockout-sortable",
+		"director": "https://cdnjs.cloudflare.com/ajax/libs/Director/1.2.8/director.min",
 		"cohortbuilder": "modules/cohortbuilder",
 		"conceptsetbuilder": "modules/conceptsetbuilder",
 		"conceptpicker": "modules/conceptpicker",
 		"webapi" : "modules/WebAPIProvider",
-		"datatables": "//cdn.datatables.net/1.10.10/js/jquery.dataTables.min",
+		"datatables": "https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min",
 		"vocabularyprovider": "modules/WebAPIProvider/VocabularyProvider",
 		"ColVis": "jqueryui/dataTables.colVis.min"
+	},
+	map: {
+		'*': {
+			'jquery-ui/sortable' : 'jquery-ui',
+			'jquery-ui/draggable' : 'jquery-ui',
+			'jquery-ui/dialog' : 'jquery-ui',
+			'jquery-ui/autocomplate': 'jquery-ui',
+			'jquery-ui/tabs': 'jquery-ui'
+		}		
 	},
 	shim: { 
 		"director": { exports: "Router" } 

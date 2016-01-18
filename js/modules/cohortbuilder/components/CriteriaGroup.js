@@ -264,6 +264,8 @@ define(['knockout', '../CriteriaTypes','../CriteriaGroup', '../AdditionalCriteri
 
 		self.addCriteriaSettings = {
 			selectText: "Add New Criteria...",
+			width:250,
+			height:300,
 			actionOptions: addCriteriaActions,
 			onAction: function (data) {
 				data.selectedData.action();

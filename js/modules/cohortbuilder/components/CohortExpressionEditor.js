@@ -1,6 +1,6 @@
-define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes','../CohortExpression', 'text!./CohortExpressionEditorTemplate.html', 'databindings', 'conceptpicker/ConceptPicker', 'css!../css/builder.css', 'css!../css/ddslick.criteria.css'], 
-			 function (ko, options, CriteriaGroup, criteriaTypes, CohortExpression, template) {
-		
+define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes','../CohortExpression', 'text!./CohortExpressionEditorTemplate.html',
+				'databindings', 'conceptpicker/ConceptPicker', 'css!../css/builder.css', 'css!../css/ddslick.criteria.css', 'ko.sortable'
+			 ], function (ko, options, CriteriaGroup, criteriaTypes, CohortExpression, template) {
 	function CohortExpressionEditorViewModel(params) {
 		var self = this;
 		var primaryCriteriaOptions = [

@@ -5,7 +5,8 @@ define(
         'jquery',
         'knockout',
         './bindingHandler',
-        './utils'
+        './utils',
+			  'jquery-ui/tabs'
     ],
 
     function ($, ko, BindingHandler, utils) {

@@ -6,7 +6,8 @@ define(
         'jquery',
         'knockout',
         './bindingHandler',
-        './utils'
+        './utils',
+			  'jquery-ui/dialog'
     ],
 
     function ($, ko, BindingHandler, utils) {
