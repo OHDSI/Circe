@@ -1,4 +1,4 @@
-define(['knockout', '../options', 'text!./WindowInputTemplate.html'], function (ko, options, template) {
+define(['knockout', '../options', 'text!./WindowInputTemplate.html', 'databindings'], function (ko, options, template) {
 
 	function WindowInputViewModel(params) {
 		var self = this;
