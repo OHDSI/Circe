@@ -19,7 +19,7 @@ requirejs.config({
 		"text": "requirejs/plugins/text",
 		"css": "requirejs/plugins/css",
 		"json": "requirejs/plugins/json",
-		"jquery": "https://code.jquery.com/jquery-1.11.2",
+		"jquery": "https://code.jquery.com/jquery-1.12.0",
 		"jquery-ui": "https://code.jquery.com/ui/1.11.4/jquery-ui.min",
 		"knockout": "https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min",
 		"ko.sortable": "https://cdnjs.cloudflare.com/ajax/libs/knockout-sortable/0.11.0/knockout-sortable",

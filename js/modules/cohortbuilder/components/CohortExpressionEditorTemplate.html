@@ -23,7 +23,7 @@
 			<col span="1" class="rule" />
 			<col span="1" class="delete" />
 		</colgroup>
-		<tbody data-bind="sortable: {data: expression().PrimaryCriteria().CriteriaList, connectClass : 'primaryCriteria'}">
+		<tbody data-bind="sortable: {data: expression().PrimaryCriteria().CriteriaList, connectClass : 'primaryCriteria', options: {cancel: ':input, button, [contenteditable]'}}">
 			<tr style="padding-top: 5px">
 				<td>
 					<div data-bind='component: { 
