@@ -151,7 +151,7 @@ define(['knockout', '../CriteriaTypes','../CriteriaGroup', '../AdditionalCriteri
 		};
 
 		self.addAdditionalCriteria = function () {
-			self.group().Groups.push(new CriteriaGroup());
+			self.group().Groups.push(new CriteriaGroup(null, self.expression.ConceptSets));
 		};
 
 		self.addConditionCriteria = function () {
@@ -159,7 +159,7 @@ define(['knockout', '../CriteriaTypes','../CriteriaGroup', '../AdditionalCriteri
 				Criteria: {
 					ConditionOccurrence: {}
 				}
-			}));
+			}, self.expression.ConceptSets));
 		};
 
 		self.addConditionEraCriteria = function () {
@@ -167,7 +167,7 @@ define(['knockout', '../CriteriaTypes','../CriteriaGroup', '../AdditionalCriteri
 				Criteria: {
 					ConditionEra: {}
 				}
-			}));
+			}, self.expression.ConceptSets));
 		};
 
 		self.addDrugExposureCriteria = function () {
@@ -175,7 +175,7 @@ define(['knockout', '../CriteriaTypes','../CriteriaGroup', '../AdditionalCriteri
 				Criteria: {
 					DrugExposure: {}
 				}
-			}));
+			}, self.expression.ConceptSets));
 		};
 
 		self.addDrugEraCriteria = function () {
@@ -183,7 +183,7 @@ define(['knockout', '../CriteriaTypes','../CriteriaGroup', '../AdditionalCriteri
 				Criteria: {
 					DrugEra: {}
 				}
-			}));
+			}, self.expression.ConceptSets));
 		};
 
 		self.addDoseEraCriteria = function () {
@@ -191,7 +191,7 @@ define(['knockout', '../CriteriaTypes','../CriteriaGroup', '../AdditionalCriteri
 				Criteria: {
 					DoseEra: {}
 				}
-			}));
+			}, self.expression.ConceptSets));
 		};
 
 		self.addProcedureCriteria = function () {
@@ -199,7 +199,7 @@ define(['knockout', '../CriteriaTypes','../CriteriaGroup', '../AdditionalCriteri
 				Criteria: {
 					ProcedureOccurrence: {}
 				}
-			}));
+			}, self.expression.ConceptSets));
 		};
 		
 		self.addObservationCriteria = function () {
@@ -207,7 +207,7 @@ define(['knockout', '../CriteriaTypes','../CriteriaGroup', '../AdditionalCriteri
 				Criteria: {
 					Observation: {}
 				}
-			}));
+			}, self.expression.ConceptSets));
 		};	
 
 		self.addVisitCriteria = function () {
@@ -215,7 +215,7 @@ define(['knockout', '../CriteriaTypes','../CriteriaGroup', '../AdditionalCriteri
 				Criteria: {
 					VisitOccurrence: {}
 				}
-			}));
+			}, self.expression.ConceptSets));
 		};
 		
 		self.addDeviceCriteria = function () {
@@ -223,7 +223,7 @@ define(['knockout', '../CriteriaTypes','../CriteriaGroup', '../AdditionalCriteri
 				Criteria: {
 					DeviceExposure: {}
 				}
-			}));
+			}, self.expression.ConceptSets));
 		};
 		
 		self.addMeasurementCriteria = function () {
@@ -231,7 +231,7 @@ define(['knockout', '../CriteriaTypes','../CriteriaGroup', '../AdditionalCriteri
 				Criteria: {
 					Measurement: {}
 				}
-			}));
+			}, self.expression.ConceptSets));
 		};
 
 		self.addSpecimenCriteria = function () {
@@ -239,7 +239,7 @@ define(['knockout', '../CriteriaTypes','../CriteriaGroup', '../AdditionalCriteri
 				Criteria: {
 					Specimen: {}
 				}
-			}));
+			}, self.expression.ConceptSets));
 		};
 		
 		self.addObservationPeriodCriteria = function () {
@@ -247,7 +247,7 @@ define(['knockout', '../CriteriaTypes','../CriteriaGroup', '../AdditionalCriteri
 				Criteria: {
 					ObservationPeriod: {}
 				}
-			}));
+			}, self.expression.ConceptSets));
 		};		
 		self.addDeathCriteria = function()
 		{
@@ -255,7 +255,7 @@ define(['knockout', '../CriteriaTypes','../CriteriaGroup', '../AdditionalCriteri
 				Criteria: {
 					Death: {}
 				}
-			}));
+			}, self.expression.ConceptSets));
 		}
 		
 		self.removeCriteria = function (observableList, data) {

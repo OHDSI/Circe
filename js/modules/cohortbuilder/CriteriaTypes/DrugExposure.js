@@ -11,7 +11,7 @@ define(['knockout', '../InputTypes/Range','conceptpicker/InputTypes/Concept', '.
 					  if (self.CodesetId() == change.value.id)
 							self.CodesetId(null);
 						if (self.DrugSourceConcept() == change.value.id)
-							sef.DrugSourceConcept(null);
+							self.DrugSourceConcept(null);
 					}
 			});
 		}, null, "arrayChange");

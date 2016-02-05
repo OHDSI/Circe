@@ -11,7 +11,7 @@ define(['knockout', '../InputTypes/Range','conceptpicker/InputTypes/Concept', '.
 					  if (self.CodesetId() == change.value.id)
 							self.CodesetId(null);
 						if (self.DeviceSourceConcept() == change.value.id)
-							sef.DeviceSourceConcept(null);
+							self.DeviceSourceConcept(null);
 					}
 			});
 		}, null, "arrayChange");

@@ -11,7 +11,7 @@ define(['knockout', '../InputTypes/Range','conceptpicker/InputTypes/Concept', '.
 					  if (self.CodesetId() == change.value.id)
 							self.CodesetId(null);
 						if (self.ConditionSourceConcept() == change.value.id)
-							sef.CondtionSourceConcept(null);
+							self.CondtionSourceConcept(null);
 					}
 			});
 		}, null, "arrayChange");

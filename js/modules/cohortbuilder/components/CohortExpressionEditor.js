@@ -11,7 +11,7 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes','../Coh
 					//imageSrc: "images/cohortbuilder/condition.png",
 					action: function () {				
 						self.expression().PrimaryCriteria().CriteriaList.push({
-							ConditionOccurrence: new criteriaTypes.ConditionOccurrence
+							ConditionOccurrence: new criteriaTypes.ConditionOccurrence(null,self.expression().ConceptSets)
 						}); 
 					}
 				},
@@ -22,7 +22,7 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes','../Coh
 					//imageSrc: "images/cohortbuilder/condition.png",
 					action: function () {				
 						self.expression().PrimaryCriteria().CriteriaList.push({
-							ConditionEra: new criteriaTypes.ConditionEra
+							ConditionEra: new criteriaTypes.ConditionEra(null,self.expression().ConceptSets)
 						}); 
 					}
 				},
@@ -33,7 +33,7 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes','../Coh
 					//imageSrc: "images/cohortbuilder/drug.png",
 					action: function () {				
 						self.expression().PrimaryCriteria().CriteriaList.push({
-							DrugExposure: new criteriaTypes.DrugExposure
+							DrugExposure: new criteriaTypes.DrugExposure(null,self.expression().ConceptSets)
 						}); 
 					}
 				},
@@ -44,7 +44,7 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes','../Coh
 					//imageSrc: "images/cohortbuilder/drugera.png",
 					action: function () {				
 						self.expression().PrimaryCriteria().CriteriaList.push({
-							DrugEra: new criteriaTypes.DrugEra
+							DrugEra: new criteriaTypes.DrugEra(null,self.expression().ConceptSets)
 						}); 
 					}
 				},
@@ -55,7 +55,7 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes','../Coh
 					//imageSrc: "images/cohortbuilder/drugera.png",
 					action: function () {				
 						self.expression().PrimaryCriteria().CriteriaList.push({
-							DoseEra: new criteriaTypes.DoseEra
+							DoseEra: new criteriaTypes.DoseEra(null,self.expression().ConceptSets)
 						}); 
 					}
 				},
@@ -66,7 +66,7 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes','../Coh
 					//imageSrc: "images/cohortbuilder/procedures.png",
 					action: function () {				
 						self.expression().PrimaryCriteria().CriteriaList.push({
-							ProcedureOccurrence: new criteriaTypes.ProcedureOccurrence
+							ProcedureOccurrence: new criteriaTypes.ProcedureOccurrence(null,self.expression().ConceptSets)
 						}); 
 					}
 				},
@@ -77,7 +77,7 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes','../Coh
 					//imageSrc: "images/cohortbuilder/observation.png",
 					action: function () {				
 						self.expression().PrimaryCriteria().CriteriaList.push({
-							Observation: new criteriaTypes.Observation
+							Observation: new criteriaTypes.Observation(null,self.expression().ConceptSets)
 						}); 
 					}
 				},
@@ -88,7 +88,7 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes','../Coh
 					//imageSrc: "images/cohortbuilder/visit.png",
 					action: function () {				
 						self.expression().PrimaryCriteria().CriteriaList.push({
-							VisitOccurrence: new criteriaTypes.VisitOccurrence
+							VisitOccurrence: new criteriaTypes.VisitOccurrence(null,self.expression().ConceptSets)
 						}); 
 					}
 				},
@@ -99,7 +99,7 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes','../Coh
 					//imageSrc: "images/cohortbuilder/procedures.png",
 					action: function () {				
 						self.expression().PrimaryCriteria().CriteriaList.push({
-							DeviceExposure: new criteriaTypes.DeviceExposure
+							DeviceExposure: new criteriaTypes.DeviceExposure(null,self.expression().ConceptSets)
 						}); 
 					}
 				},
@@ -110,7 +110,7 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes','../Coh
 					//imageSrc: "images/cohortbuilder/procedures.png",
 					action: function () {				
 						self.expression().PrimaryCriteria().CriteriaList.push({
-							Measurement: new criteriaTypes.Measurement
+							Measurement: new criteriaTypes.Measurement(null,self.expression().ConceptSets)
 						}); 
 					}
 				},
@@ -121,7 +121,7 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes','../Coh
 					//imageSrc: "images/cohortbuilder/procedures.png",
 					action: function () {				
 						self.expression().PrimaryCriteria().CriteriaList.push({
-							Specimen: new criteriaTypes.Specimen
+							Specimen: new criteriaTypes.Specimen(null,self.expression().ConceptSets)
 						}); 
 					}
 				},
@@ -132,7 +132,7 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes','../Coh
 					//imageSrc: "images/cohortbuilder/procedures.png",
 					action: function () {				
 						self.expression().PrimaryCriteria().CriteriaList.push({
-							ObservationPeriod: new criteriaTypes.ObservationPeriod
+							ObservationPeriod: new criteriaTypes.ObservationPeriod(null,self.expression().ConceptSets)
 						}); 
 					}
 				},
@@ -143,7 +143,7 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes','../Coh
 					//imageSrc: "images/cohortbuilder/procedures.png",
 					action: function () {				
 						self.expression().PrimaryCriteria().CriteriaList.push({
-							Death: new criteriaTypes.Death
+							Death: new criteriaTypes.Death(null,self.expression().ConceptSets)
 						}); 
 					}
 				}
@@ -163,7 +163,7 @@ define(['knockout', '../options', '../CriteriaGroup', '../CriteriaTypes','../Coh
 		};
 
 		self.addAdditionalCriteria = function () {
-			self.expression().AdditionalCriteria(new CriteriaGroup());
+			self.expression().AdditionalCriteria(new CriteriaGroup(null, self.expression().ConceptSets));
 		};
 
 		self.removePrimaryCriteria = function (criteria) {
