@@ -14,33 +14,33 @@ define(function (require, exports) {
 	var ObservationPeriod = require("./CriteriaTypes/ObservationPeriod");	
 	var Death = require("./CriteriaTypes/Death");
 	
-	function GetCriteriaFromObject (data)
+	function GetCriteriaFromObject (data, conceptSets)
 	{
 		var result;
 		
 		if (data.hasOwnProperty("ConditionOccurrence")) {
 			return {
-				ConditionOccurrence: new exports.ConditionOccurrence(data.ConditionOccurrence)
+				ConditionOccurrence: new exports.ConditionOccurrence(data.ConditionOccurrence, conceptSets)
 			};
 		} else if (data.hasOwnProperty("ConditionEra")) {
 			return {
-				ConditionEra: new exports.ConditionEra(data.ConditionEra)
+				ConditionEra: new exports.ConditionEra(data.ConditionEra, conceptSets)
 			};
 		} else if (data.hasOwnProperty("DrugExposure")) {
 			return {
-				DrugExposure: new exports.DrugExposure(data.DrugExposure)
+				DrugExposure: new exports.DrugExposure(data.DrugExposure, conceptSets)
 			};
 		} else if (data.hasOwnProperty("DrugEra")) {
 			return {
-				DrugEra: new exports.DrugEra(data.DrugEra)
+				DrugEra: new exports.DrugEra(data.DrugEra, conceptSets)
 			};
 		} else if (data.hasOwnProperty("DoseEra")) {
 			return {
-				DoseEra: new exports.DoseEra(data.DoseEra)
+				DoseEra: new exports.DoseEra(data.DoseEra, conceptSets)
 			};
 		} else if (data.hasOwnProperty("Observation")) {
 			return {
-				Observation: new exports.Observation(data.Observation)
+				Observation: new exports.Observation(data.Observation, conceptSets)
 			};
 		} else if (data.hasOwnProperty("Person")) {
 			return {
@@ -48,19 +48,19 @@ define(function (require, exports) {
 			};
 		} else if (data.hasOwnProperty("ProcedureOccurrence")) {
 			return {
-				ProcedureOccurrence: new exports.ProcedureOccurrence(data.ProcedureOccurrence)
+				ProcedureOccurrence: new exports.ProcedureOccurrence(data.ProcedureOccurrence, conceptSets)
 			};
 		} else if (data.hasOwnProperty("VisitOccurrence")) {
 			return {
-				VisitOccurrence: new exports.VisitOccurrence(data.VisitOccurrence)
+				VisitOccurrence: new exports.VisitOccurrence(data.VisitOccurrence, conceptSets)
 			};	
 		} else if (data.hasOwnProperty("DeviceExposure")) {
 			return {
-				DeviceExposure: new exports.DeviceExposure(data.DeviceExposure)
+				DeviceExposure: new exports.DeviceExposure(data.DeviceExposure, conceptSets)
 			};		
 		} else if (data.hasOwnProperty("Measurement")) {
 			return {
-				Measurement: new exports.Measurement(data.Measurement)
+				Measurement: new exports.Measurement(data.Measurement, conceptSets)
 			};		
 		} else if (data.hasOwnProperty("ObservationPeriod")) {
 			return {
@@ -68,11 +68,11 @@ define(function (require, exports) {
 			};		
 		} else if (data.hasOwnProperty("Specimen")) {
 			return {
-				Specimen: new exports.Specimen(data.Specimen)
+				Specimen: new exports.Specimen(data.Specimen, conceptSets)
 			};		
 		}	else if (data.hasOwnProperty("Death")) {
 			return {
-				Death: new exports.Death(data.Death)
+				Death: new exports.Death(data.Death, conceptSets)
 			};
 		};	
 	}

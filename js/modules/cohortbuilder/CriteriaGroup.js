@@ -2,7 +2,7 @@ define(function (require, exports, module) {
 	var ko = require('knockout');
 	var debug = true;
 
-	function CriteriaGroup(data) {
+	function CriteriaGroup(data, conceptSets) {
 		var self = this;
 		var AdditionalCriteria = require('./AdditionalCriteria');
 		
@@ -15,13 +15,13 @@ define(function (require, exports, module) {
 		// if data is provided, intialize the criteriaList
 		if (data.CriteriaList && data.CriteriaList.length > 0) {
 			data.CriteriaList.forEach(function (d) {
-				self.CriteriaList.push(new AdditionalCriteria(d));
+				self.CriteriaList.push(new AdditionalCriteria(d, conceptSets));
 			});
 		}
 		
 		if (data.Groups && data.Groups.length > 0) {
 			data.Groups.forEach(function (d) {
-				self.Groups.push(new CriteriaGroup(d));
+				self.Groups.push(new CriteriaGroup(d, conceptSets));
 			});
 		}
 	}

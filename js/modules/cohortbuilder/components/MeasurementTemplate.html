@@ -4,13 +4,7 @@
 			<col style="width:16px" />
 			<col />							
 			<tr>
-				<td colspan="2"> a measurement of 
-					<select data-bind="options: $component.expression.ConceptSets, 
-						optionsText: function(item) { return item.name }, 
-						optionsCaption: 'Any Measurement', 
-						optionsValue: 'id',
-						value: CodesetId" class="mediumInputField">
-					</select><button type="button" class="btn btn-default addConceptSet" aria-expanded="false"><span class="glyphicon glyphicon-plus-sign"></span></button>
+				<td colspan="2"> a measurement of <conceptset-selector params="conceptSetId: CodesetId, conceptSets: $component.expression.ConceptSets, defaultText: 'Any Measurement'"></conceptset-selector>
 				</td>
 			</tr>
 			<tr data-bind="if: First() != null, visible: First() != null">
@@ -87,13 +81,7 @@
 				<td><img data-bind="click: function() { $component.removeCriterion('MeasurementSourceConcept') }" class="deleteIcon" src="images/cohortbuilder/delete.png" /></td>
 				<td>
 					<div>
-					Measurement Source Concept is 
-						<select data-bind="options: $component.expression.ConceptSets, 
-							optionsText: function(item) { return item.name }, 
-							optionsCaption: 'Select Concept Set...', 
-							optionsValue: 'id',
-							value: MeasurementSourceConcept()" class="mediumInputField">
-						</select>
+					Measurement Source Concept is <conceptset-selector params="conceptSetId: MeasurementSourceConcept, conceptSets: $component.expression.ConceptSets, defaultText: 'Any Measurement'"></conceptset-selector>
 					</div>
 			 </td>									
 			</tr>							

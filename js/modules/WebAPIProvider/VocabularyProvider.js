@@ -64,12 +64,47 @@ define(function (require, exports) {
 		
 		return getConceptPromise;
 	}
+	
+	function getConceptSetList(url)
+	{
+		var repositoryUrl;
+		
+		if (!url)
+			repositoryUrl = url + 'conceptset/';
+		else
+			repositoryUrl = config.webAPIRoot + 'conceptset/';
+		
+		var getConceptSetListPromise = $.ajax({
+			url: repositoryUrl
+		});
+
+		return getConceptSetListPromise;
+	}
+	
+	function getConceptSetExpression(id, url)
+	{
+		if (!url)
+			repositoryUrl = url + 'conceptset/';
+		else
+			repositoryUrl = config.webAPIRoot + 'conceptset/';
+
+		repositoryUrl += id + '/expression';
+		
+		var getConceptSetPromise = $.ajax({
+			url: repositoryUrl
+		});
+		
+		return getConceptSetPromise;
+	}
+	
 
 	var api = {
 		loaded: loadedPromise,
 		search: search,
 		getDomains: getDomains,
-		getConcept: getConcept
+		getConcept: getConcept,
+		getConceptSetList: getConceptSetList,
+		getConceptSetExpression: getConceptSetExpression
 	}
 
 	return api;

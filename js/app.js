@@ -97,9 +97,11 @@ define(['jquery',
 			self.definitions = ko.observableArray();
 			self.selectedView = ko.observable("");
 			self.isGeneratedOpen = ko.observable(false);
+			self.isSelectConceptSetOpen = ko.observable(false);
 			self.tabWidget = ko.observable();
 			self.conceptSetEditor = ko.observable();
 			self.cohortExpressionEditor = ko.observable();
+			self.criteriaContext = ko.observable();
 			self.sources = ko.observableArray();
 			self.generatedSql = {};
 			self.dirtyFlag = ko.observable();
@@ -127,11 +129,27 @@ define(['jquery',
 			
 			// model behaviors
 			
-			self.addConceptSet = function(item) {
-				self.tabWidget().tabs("option", "active", 1); // index 1 is the Concept Set Tab.
-				var fieldObservable = item.CodesetId;
+			self.selectConceptSet = function(item) {
+				self.criteriaContext(item);
+				self.isSelectConceptSetOpen(true);
+			}
+			
+			self.onConceptSetSelectAction = function(result)
+			{
+				console.log(result);
+				self.isSelectConceptSetOpen(false);
+				
+				if (result.action=='add')
+					self.addConceptSet();
+				
+				self.criteriaContext(null);
+			}
+			
+			self.addConceptSet = function()
+			{
 				var newConceptId = self.conceptSetEditor().createConceptSet().id;
-				fieldObservable(newConceptId);
+				self.criteriaContext().conceptSetId(newConceptId);
+				self.tabWidget().tabs("option", "active", 1); // index 1 is the Concept Set Tab.
 			}
 		
 			self.reload = function() {

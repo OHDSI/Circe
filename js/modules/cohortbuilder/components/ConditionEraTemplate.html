@@ -4,13 +4,7 @@
 			<col style="width:16px" />
 			<col />							
 			<tr>
-				<td colspan="2"> a condition era of 
-					<select data-bind="options: $component.expression.ConceptSets.sorted, 
-						optionsText: function(item) { return item.name }, 
-						optionsCaption: 'Any Condition', 
-						optionsValue: 'id',
-						value: CodesetId" class="mediumInputField">
-					</select><button type="button" class="btn btn-default addConceptSet" aria-expanded="false"><span class="glyphicon glyphicon-plus-sign"></span></button>
+				<td colspan="2"> a condition era of <conceptset-selector params="conceptSetId: CodesetId, conceptSets: $component.expression.ConceptSets, defaultText: 'Any Condition'"></conceptset-selector>
 				</td>
 			</tr>
 			<tr data-bind="if: First() != null, visible: First() != null">

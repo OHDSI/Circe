@@ -17,9 +17,9 @@ define(function (require, exports) {
 		var data = data || {};
 
 		
-		self.PrimaryCriteria = ko.observable(new PrimaryCriteria(data.PrimaryCriteria));
-		self.AdditionalCriteria = ko.observable(data.AdditionalCriteria && new CriteriaGroup(data.AdditionalCriteria));
 		self.ConceptSets = ko.observableArray(data.ConceptSets && data.ConceptSets.map(function(d) { return new ConceptSet(d) }));
+		self.PrimaryCriteria = ko.observable(new PrimaryCriteria(data.PrimaryCriteria, self.ConceptSets));
+		self.AdditionalCriteria = ko.observable(data.AdditionalCriteria && new CriteriaGroup(data.AdditionalCriteria, self.ConceptSets));
 		self.ExpressionLimit =  { Type: ko.observable(data.ExpressionLimit && data.ExpressionLimit.Type || "All") }
 		
 		self.ConceptSets.sorted = ko.pureComputed(function() {

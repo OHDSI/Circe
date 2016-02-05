@@ -3,12 +3,12 @@ define(function (require, exports, module) {
 	var ko = require('knockout');
 	var CriteriaTypes = require('./CriteriaTypes');		
 
-	function PrimaryCriteria(data) {
+	function PrimaryCriteria(data, conceptSets) {
 		var self = this;
 		
 		data = data || {};
 		self.CriteriaList = ko.observableArray(data.CriteriaList && data.CriteriaList.map(function (d) {
-			return CriteriaTypes.GetCriteriaFromObject(d)
+			return CriteriaTypes.GetCriteriaFromObject(d, conceptSets)
 		}));
 		
 		self.ObservationWindow = { PriorDays: ko.observable((data.ObservationWindow && data.ObservationWindow.PriorDays) || 0),

@@ -1,8 +1,20 @@
 define(['knockout', '../InputTypes/Range','conceptpicker/InputTypes/Concept', '../InputTypes/Text'], function (ko, Range, Concept, Text) {
 
-	function Measurement(data) {
+	function Measurement(data, conceptSets) {
 		var self = this;
 		data = data || {};
+
+		// set up subscription to update CodesetId and ConditionSourceConcept if the item is removed from conceptSets
+		conceptSets.subscribe(function (changes) {
+			changes.forEach(function(change) {
+					if (change.status === 'deleted') {
+					  if (self.CodesetId() == change.value.id)
+							self.CodesetId(null);
+						if (self.MeasurementSourceConcept() == change.value.id)
+							sef.MeasurementSourceConcept(null);
+					}
+			});
+		}, null, "arrayChange");
 
 		// General Condition Occurence Criteria
 

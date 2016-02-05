@@ -1,9 +1,21 @@
 define(['knockout', '../InputTypes/Range','conceptpicker/InputTypes/Concept'], function (ko, Range, Concept) {
 
-	function ConditionOccurence(data) {
+	function ProcedureOccurrence(data, conceptSets) {
 		var self = this;
 		data = data || {};
 
+		// set up subscription to update CodesetId and ConditionSourceConcept if the item is removed from conceptSets
+		conceptSets.subscribe(function (changes) {
+			changes.forEach(function(change) {
+					if (change.status === 'deleted') {
+					  if (self.CodesetId() == change.value.id)
+							self.CodesetId(null);
+						if (self.ProcedureSourceConcept() == change.value.id)
+							sef.ProcedureSourceConcept(null);
+					}
+			});
+		}, null, "arrayChange");
+		
 		// General Condition Occurence Criteria
 
 		// Verbatim fields
@@ -45,10 +57,10 @@ define(['knockout', '../InputTypes/Range','conceptpicker/InputTypes/Concept'], f
 
 	}
 
-	ConditionOccurence.prototype.toJSON = function () {
+	ProcedureOccurrence.prototype.toJSON = function () {
 		return this;
 	}
 
-	return ConditionOccurence;
+	return ProcedureOccurrence;
 
 });

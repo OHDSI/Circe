@@ -1,10 +1,21 @@
 define(['knockout', '../InputTypes/Range', 'conceptpicker/InputTypes/Concept'], function (ko, Range, Concept) {
 
-	function DrugEra(data) {
+	function DrugEra(data, conceptSets) {
 		var self = this;
 		data = data || {};
 
-		// General Condition Occurence Criteria
+
+		// set up subscription to update CodesetId and ConditionSourceConcept if the item is removed from conceptSets
+		conceptSets.subscribe(function (changes) {
+			changes.forEach(function(change) {
+					if (change.status === 'deleted') {
+					  if (self.CodesetId() == change.value.id)
+							self.CodesetId(null);
+					}
+			});
+		}, null, "arrayChange");
+
+		// General Drug Era Criteria
 
 		// Verbatim fields
 		self.CodesetId = ko.observable(data.CodesetId);

@@ -4,13 +4,7 @@
 			<col style="width:16px" />
 			<col />							
 			<tr>
-				<td colspan="2"> a dose era of 
-					<select data-bind="options: $component.expression.ConceptSets, 
-						optionsText: function(item) { return item.name }, 
-						optionsCaption: 'Any Drug', 
-						optionsValue: 'id',
-						value: CodesetId" class="mediumInputField">
-					</select><button type="button" class="btn btn-default addConceptSet" aria-expanded="false"><span class="glyphicon glyphicon-plus-sign"></span></button>
+				<td colspan="2"> a dose era of <conceptset-selector params="conceptSetId: CodesetId, conceptSets: $component.expression.ConceptSets, defaultText: 'Any Drug'"></conceptset-selector>
 				</td>
 			</tr>
 			<tr data-bind="if: First() != null, visible: First() != null">

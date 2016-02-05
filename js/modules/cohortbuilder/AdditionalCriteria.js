@@ -7,11 +7,11 @@ define(function (require, exports, module) {
 	
 	var debug = false;
 
-	function AdditionalCriteria(data) {
+	function AdditionalCriteria(data, conceptSets) {
 		var self = this;
 		
 		data = data || {};
-		self.Criteria = CriteriaTypes.GetCriteriaFromObject(data.Criteria);
+		self.Criteria = CriteriaTypes.GetCriteriaFromObject(data.Criteria, conceptSets);
 		self.StartWindow = new Window(data.StartWindow);
 		self.Occurrence = new Occurrence(data.Occurrence);
 	}

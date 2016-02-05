@@ -4,13 +4,7 @@
 			<col style="width:16px" />
 			<col />							
 			<tr>
-				<td colspan="2"> a visit occurrence of 
-					<select data-bind="options: $component.expression.ConceptSets, 
-						optionsText: function(item) { return item.name }, 
-						optionsCaption: 'Any Visit', 
-						optionsValue: 'id',
-						value: CodesetId" class="mediumInputField">
-					</select><button type="button" class="btn btn-default addConceptSet" aria-expanded="false"><span class="glyphicon glyphicon-plus-sign"></span></button>
+				<td colspan="2"> a visit occurrence of <conceptset-selector params="conceptSetId: CodesetId, conceptSets: $component.expression.ConceptSets, defaultText: 'Any Visit'"></conceptset-selector>
 				</td>
 			</tr>
 			<tr data-bind="if: First() != null, visible: First() != null">
@@ -39,13 +33,7 @@
 				<td><img data-bind="click: function() { $component.removeCriterion('VisitSourceConcept') }" class="deleteIcon" src="images/cohortbuilder/delete.png" /></td>
 				<td>
 					<div>
-					Visit Source Concept is 
-						<select data-bind="options: $component.expression.ConceptSets, 
-							optionsText: function(item) { return item.name }, 
-							optionsCaption: 'Select Concept Set...', 
-							optionsValue: 'id',
-							value: VisitSourceConcept()" class="mediumInputField">
-						</select>
+					Visit Source Concept is <conceptset-selector params="conceptSetId: VisitSourceConcept, conceptSets: $component.expression.ConceptSets, defaultText: 'Any Visit'"></conceptset-selector>
 					</div>
 			 </td>									
 			</tr>
@@ -88,5 +76,4 @@
 		</table>
 	</div>
 	<div class="addCriterion" data-bind="ddSlickAction: $component.addCriterionSettings"></div>
-
 </div>

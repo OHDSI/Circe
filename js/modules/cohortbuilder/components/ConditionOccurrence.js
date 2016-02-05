@@ -1,4 +1,5 @@
-define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', 'text!./ConditionOccurrenceTemplate.html'], function (ko, options, Range, Text, template) {
+define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', 'text!./ConditionOccurrenceTemplate.html', './ConceptSetSelector'
+], function (ko, options, Range, Text, template) {
 
 	function ConditionOccurrenceViewModel(params) {
 
@@ -114,12 +115,6 @@ define(['knockout', '../options', '../InputTypes/Range', '../InputTypes/Text', '
 			self.Criteria[propertyName](null);
 		}
 		
-		self.newCodeset = function(item)
-		{
-			// need to do something with self.Criteria.CodesetId
-			console.log("From ConditionOccurrence");
-			console.log(item);
-		}
 	}
 
 	// return compoonent definition

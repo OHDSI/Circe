@@ -1,9 +1,21 @@
 define(['knockout', '../InputTypes/Range','conceptpicker/InputTypes/Concept', '../InputTypes/Text'], function (ko, Range, Concept, Text) {
 
-	function ConditionOccurence(data) {
+	function ConditionOccurence(data, conceptSets) {
 		var self = this;
 		data = data || {};
 
+		// set up subscription to update CodesetId and ConditionSourceConcept if the item is removed from conceptSets
+		conceptSets.subscribe(function (changes) {
+			changes.forEach(function(change) {
+					if (change.status === 'deleted') {
+					  if (self.CodesetId() == change.value.id)
+							self.CodesetId(null);
+						if (self.DeathSourceConcept() == change.value.id)
+							self.DeathSourceConcept(null);
+					}
+			});
+		}, null, "arrayChange");
+		
 		// General Condition Occurence Criteria
 
 		// Verbatim fields

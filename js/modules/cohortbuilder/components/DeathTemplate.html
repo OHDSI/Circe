@@ -4,13 +4,7 @@
 			<col style="width:16px" />
 			<col />							
 			<tr>
-				<td colspan="2"> a death occurrence from 
-					<select data-bind="options: $component.expression.ConceptSets, 
-						optionsText: function(item) { return item.name }, 
-						optionsCaption: 'Any Cause of Death', 
-						optionsValue: 'id',
-						value: CodesetId" class="mediumInputField">
-					</select><button type="button" class="btn btn-default addConceptSet" aria-expanded="false"><span class="glyphicon glyphicon-plus-sign"></span></button>
+				<td colspan="2"> a death occurrence from <conceptset-selector params="conceptSetId: CodesetId, conceptSets: $component.expression.ConceptSets, defaultText: 'Any Death'"></conceptset-selector>
 				</td>
 			</tr>
 			<tr data-bind="if: OccurrenceStartDate() != null, visible: OccurrenceStartDate() != null">
@@ -29,13 +23,7 @@
 				<td><img data-bind="click: function() { $component.removeCriterion('DeathSourceConcept') }" class="deleteIcon" src="images/cohortbuilder/delete.png" /></td>
 				<td>
 					<div>
-					Death Source Concept is 
-						<select data-bind="options: $component.expression.ConceptSets, 
-							optionsText: function(item) { return item.name }, 
-							optionsCaption: 'Select Concept Set...', 
-							optionsValue: 'id',
-							value: DeathSourceConcept()" class="mediumInputField">
-						</select>
+					Death Source Concept is <conceptset-selector params="conceptSetId: DeathSourceConcept, conceptSets: $component.expression.ConceptSets, defaultText: 'Any Death'"></conceptset-selector>
 					</div>
 			 </td>									
 			</tr>										

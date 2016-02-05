@@ -114,7 +114,7 @@
 										<concept-set-builder params="{conceptSets: ConceptSets, ref: $root.conceptSetEditor}"></concept-set-builder>
 									</div>
 								</div>
-								<div data-bind="attr: { id: 'criteria' }, eventListener: { event: 'click', selector: '.addConceptSet', callback: addConceptSet}">
+								<div data-bind="attr: { id: 'criteria' }, eventListener: { event: 'click', selector: '.conceptset_selector', callback: selectConceptSet}">
 									<cohort-expression-editor params="expression: selectedDefinition().expression, widget: cohortExpressionEditor"></cohort-expression-editor>
 								</div>
 								<div data-bind="attr: { id: 'printfriendly' }">
@@ -156,6 +156,9 @@
 										</table>
 									</div>
 								</div>
+							</div>
+							<div title="Select Concept Set..." data-bind="dialog: {isOpen: isSelectConceptSetOpen, modal: true, width:'80%', height:600}">
+								<cohort-concept-set-browser params="criteriaContext: criteriaContext, cohortConceptSets: selectedDefinition().expression().ConceptSets, onActionComplete: onConceptSetSelectAction"></cohort-concept-set-browser>
 							</div>
 						</div>
 					</td>
