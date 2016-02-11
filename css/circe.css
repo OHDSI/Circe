@@ -1,9 +1,9 @@
-*:focus 
+*:focus
 {
 	outline: none !important;
 }
 
-body 
+body
 {
 	margin: 0px;
 	font-family: Arial;
@@ -50,4 +50,12 @@ img.spin {
 table.sourceTable tr td, table.sourceTable th
 {
 	padding: 2px 5px;
+}
+
+table.conceptsetviewer th {
+		font-size: .65em;
+}
+
+table.conceptsetviewer th.fixed-width {
+	width:75px;
 }
