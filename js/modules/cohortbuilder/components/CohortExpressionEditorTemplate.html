@@ -32,7 +32,7 @@
 										}'></div>
 				</td>
 				<td style="vertical-align: top; padding-top: 5px">
-					<button class="button button-small button-flat-caution" data-bind="click: function (data, event) { $component.removePrimaryCriteria(data) }">Delete Filter</button>
+					<button class="btn btn-sm btn-danger" data-bind="click: function (data, event) { $component.removePrimaryCriteria(data) }">Delete Filter</button>
 				</td>
 			</tr>
 		</tbody>
@@ -53,10 +53,10 @@
 	<div data-bind="if: AdditionalCriteria">
 		<div style="font-weight: bold">For people matching the Primary Events, include:</div>
 		<criteria-group params="{expression: $data, group: AdditionalCriteria}"></criteria-group>
-		<button class="button button-flat-primary button-small" data-bind="click: function () { $component.removeAdditionalCriteria() }">Remove Additional Filters</button>
+		<button class="btn btn-sm btn-danger" data-bind="click: function () { $component.removeAdditionalCriteria() }">Remove Additional Filters</button>
 	</div>
 	<div data-bind="ifnot: AdditionalCriteria">
-		<button class="button button-flat-primary button-small" data-bind="click: function () { $component.addAdditionalCriteria() }">Add Additional Filters</button>
+		<button class="btn btn-sm btn-primary" data-bind="click: function () { $component.addAdditionalCriteria() }">Add Additional Filters</button>
 	</div>
 </div>
 

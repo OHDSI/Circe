@@ -51,7 +51,7 @@
 						}
 					 }">
 				</table>
-				<button class="button-flat-primary" data-bind="click: function() { router.setRoute('/new'); }">New Definition</button>
+				<button class="btn btn-sm btn-primary" data-bind="click: function() { router.setRoute('/new'); }">New Definition</button>
 			</div>
 			<div data-bind="visible: selectedView() == 'detail'">
 			<table width="99%">
@@ -67,17 +67,17 @@
 																	class="inputField" data-bind="textInput: selectedDefinition().name, jqAutoresize: {append: ''}, css: { emptyInput: !(selectedDefinition().name() && (selectedDefinition().name().length > 0)) }"></textarea>
 										</td>
 										<td>
-											<button class="button button-small" data-bind="click: save, enable: (dirtyFlag().isDirty() && !isRunning()), css: {'button-flat-primary': !dirtyFlag().isDirty, 'button-flat-caution': dirtyFlag().isDirty}">Save</button>
+											<button class="btn btn-sm btn-success" data-bind="click: save, enable: (dirtyFlag().isDirty() && !isRunning()), css: {'btn-success': dirtyFlag().isDirty}">Save</button>
 											<!-- ko if: selectedDefinition().id() != null -->
-											<button class="button button-small button-flat-primary" data-bind="click: copy, enable: !dirtyFlag().isDirty()">Copy</button>
+											<button class="btn btn-sm btn-primary" data-bind="click: copy, enable: !dirtyFlag().isDirty()">Copy</button>
 											<!-- ko ifnot: isRunning -->
-											<button class="button button-small button-flat-caution" data-bind="click: $root.delete">Delete</button>
+											<button class="btn btn-sm btn-danger" data-bind="click: $root.delete">Delete</button>
 											<!-- /ko -->
 											<!-- ko if: isRunning -->
 											<img class="spin" src="images/running.png" />Generating...
 											<!-- /ko -->
 											<!-- /ko -->
-											<button class="button button-small button-flat-primary" data-bind="click: showSql">Show SQL</button>
+											<button class="btn btn-sm btn-primary" data-bind="click: showSql">Show SQL</button>
 										</td>
 									</tr>
 									<tr>
@@ -134,7 +134,7 @@
 								</div>
 								<div data-bind="attr: { id: 'raw' }">
 									<textarea style="width: 100%; height: 500px" data-bind="textInput: expressionJSON"></textarea>
-									<div style="text-align: right"><button data-bind="click: reload">Reload</button></div>
+									<div style="text-align: right"><button class="btn btn-sm btn-primary" data-bind="click: reload">Reload</button></div>
 								</div>
 								<div data-bind="attr: { id: 'generate' }, eventListener: { event: 'click', selector: '.generate', callback: onGenerate}">
 									<div style="padding: 5px">
