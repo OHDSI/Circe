@@ -1,13 +1,9 @@
-<table width="width:100%" style="margin-bottom: 10px">
-	<tr>
-		<td width="100%" style="padding-right:15px"><select class="form-control" data-bind="enable: loading()==false, options:$component.sources, optionsText:'name', value:selectedSource"></select></td>
-		<td><div class="btn btn-sm btn-primary" style="width: 175px" data-bind="click: addConceptSet">Add Concept Set</div></td>
-	</tr>
-</table>
+<select class="form-control" data-bind="enable: loading()==false, options:$component.sources, optionsText:'name', value:selectedSource"></select>
+
 <div data-bind="if:$component.selectedSource().url == null">
-    <div data-bind="visible:$component.selectedSource().url == null, 
+    <div data-bind="visible:$component.selectedSource().url == null,
                                     eventListener: [{event: 'click', selector: '.cohortConceptSetItem', callback: selectCohortConceptSet}]">
-        <table class="stripe compact hover" cellspacing="0" width="100%" 
+        <table class="stripe compact hover" cellspacing="0" width="100%"
             data-bind="dataTable:{
                 data: cohortConceptSets(),
                 options: {
@@ -27,13 +23,13 @@
         </table>
     </div>
 </div>
-<div data-bind="visible:$component.selectedSource().url != null, 
+<div data-bind="visible:$component.selectedSource().url != null,
 								eventListener: [{event: 'click', selector: '.repositoryConceptSetItem', callback: selectRepositoryConceptSet}]">
 	<!-- ko if: loading -->
-	Loading... 
+	Loading...
 	<!-- /ko -->
 	<div data-bind="visible: !loading()">
-		<table class="stripe compact hover" cellspacing="0" width="100%" 
+		<table class="stripe compact hover" cellspacing="0" width="100%"
 			data-bind="dataTable:{
 				data: repositoryConceptSets(),
 				options: {
