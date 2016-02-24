@@ -11,14 +11,15 @@
                     orderClasses: false,
                     autoWidth: false,
                     order: [ 1, 'asc' ],
+                    stripeClasses : [ 'cohortConceptSetItem' ],
                     columns: [
                         { data: 'id', title: 'Id', width: '25px'},
-                        { data: 'name', title: 'Title', width: '100%', className: 'cohortConceptSetItem' },
+                        { data: 'name', title: 'Title', width: '100%' },
                     ],
                     language: {
                         search: 'Filter Cohort Concept Sets:'
                     }
-                }
+                }, 
              }">
         </table>
     </div>
@@ -41,9 +42,10 @@
 						{ width: '25px', targets: 0},
 						{ width: '100%', targets: 1},
 					],
-					columns: [
+                    stripeClasses : [ 'repositoryConceptSetItem' ],
+                    columns: [
 						{ data: 'id', title: 'Id', width: '25px'},
-						{ data: 'name', title: 'Title', width: '100%', className: 'repositoryConceptSetItem' },
+						{ data: 'name', title: 'Title', width: '100%' },
 					],
 					language: {
 						search: 'Filter Repository Concept Sets:'
