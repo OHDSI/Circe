@@ -67,7 +67,7 @@ define(['knockout', 'text!./CohortConceptSetBrowserTemplate.html', 'vocabularypr
         if (self.cohortConceptSets != null) {            
             self.sources.unshift({"name":"Cohort Definition","url":null});
         } else {
-            self.loadConceptSetsFromRepository(self.sources[0]);
+            self.loadConceptSetsFromRepository(self.sources[0].url);
         }
 
         self.selectedSource = ko.observable(self.sources[0]);
@@ -78,13 +78,6 @@ define(['knockout', 'text!./CohortConceptSetBrowserTemplate.html', 'vocabularypr
 			}
 		});
 
-        if (self.cohortConceptSets == null) {
-        	// If there were no concept sets passed into the
-        	// component, load them from the repository
-            self.loadConceptSetsFromRepository(self.sources[0]);
-        }
-        
-		
 		// datatable callbacks:
 		
 		self.selectCohortConceptSet = function(conceptSet)
