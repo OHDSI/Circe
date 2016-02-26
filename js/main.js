@@ -30,6 +30,8 @@ requirejs.config({
 		"webapi" : "modules/WebAPIProvider",
 		"datatables": "https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min",
 		"vocabularyprovider": "modules/WebAPIProvider/VocabularyProvider",
+		"facets": "/atlas/js/facets",
+		"faceted-datatable": "/atlas/js/components/faceted-datatable",
 		"ColVis": "jqueryui/dataTables.colVis.min"
 	},
 	map: {
@@ -38,7 +40,9 @@ requirejs.config({
 			'jquery-ui/draggable' : 'jquery-ui',
 			'jquery-ui/dialog' : 'jquery-ui',
 			'jquery-ui/autocomplete': 'jquery-ui',
-			'jquery-ui/tabs': 'jquery-ui'
+			'jquery-ui/tabs': 'jquery-ui',
+			'knockout.dataTables.binding': 'databindings/datatableBinding',
+			'colvis': 'ColVis'
 		}		
 	},
 	shim: { 

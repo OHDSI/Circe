@@ -6,7 +6,7 @@ define(['knockout', 'text!./CohortConceptSetBrowserTemplate.html', 'vocabularypr
         
 		function defaultRepositoryConceptSetSelected(conceptSet) {
 		    // Default functionality
-		    VocabularyProvider.getConceptSetExpression(conceptSet.id, self.selectedSource())
+		    VocabularyProvider.getConceptSetExpression(conceptSet.id, self.selectedSource().url)
 		        .done(function (result) {
 		            var newId = self.cohortConceptSets().length > 0 ? Math.max.apply(null, self.cohortConceptSets().map(function (d) {
 		                return d.id;

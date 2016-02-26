@@ -58,3 +58,7 @@ tr.selected .glyphicon-ok-sign {
 .glyphicon {
 	font-size:1.4em;
 }
+
+html {
+	 overflow-y: scroll;
+}

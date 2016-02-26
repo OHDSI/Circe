@@ -4,26 +4,35 @@ define([
 	'text!./ConceptSetBuilderTemplate.html',
 	'../InputTypes/ConceptSet',
 	'../InputTypes/ConceptSetItem',
+	'vocabularyprovider',
 	'databindings',
-	'conceptpicker/ConceptPicker'
+	'conceptpicker/ConceptPicker',
+	'faceted-datatable',
+	'knockout-jqueryui/tabs',
+	'css!styles/tabs.css'
 ], function (
 		$,
 		ko,
 		template,
 		ConceptSet,
-		ConceptSetItem) {
+		ConceptSetItem,
+		VocabularyAPI) {
 
 	function CodesetBuilderViewModel(params) {
 			var self = this;
+			params.ref(this); // assign refrence to self to ref's param
 
 			self.conceptSets = params.conceptSets;
 			self.selectedConceptSet = ko.observable();
+			self.tabWidget = ko.observable();		
 			self.nameHasFocus = ko.observable();
 			self.isImportEnabled = ko.observable(false);
 			self.isExportEnabled = ko.observable(false);
 			self.importValues = ko.observable();
 			self.dtApi = ko.observable(); // store reference to datatable
-			params.ref(this); // assign refrence to self to ref's param
+			self.includedConceptsComponent = ko.observable();
+			self.mappedConceptsComponent = ko.observable();
+		
 
 			// model behaviors
 			self.createConceptSet = function () {
@@ -86,8 +95,7 @@ define([
 				selectedConceptSetItems(selectedConceptSetItems().concat(newConceptSetItems));
 			}
 
-			self.removeSelected = function()
-			{
+			self.removeSelected = function() {
 				var selectedItems = self.dtApi().getSelectedData();
 				self.selectedConceptSet().expression.items.removeAll(selectedItems);
 			}
@@ -96,8 +104,7 @@ define([
 				return '<span data-bind="click: function(d) { d.' + field + '(!d.' + field + '()); } ,css: { selected: ' + field + '} " class="glyphicon glyphicon-ok"></span>';
 			}
 			
-			self.getConceptSetJson = function()
-			{
+			self.getConceptSetJson = function() {
 				if (self.selectedConceptSet())
 					return ko.toJSON(self.selectedConceptSet().expression, null, 2);
 				else

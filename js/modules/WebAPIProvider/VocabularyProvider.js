@@ -59,7 +59,7 @@ define(function (require, exports) {
 	
 	function getConcept(id) {
 		var getConceptPromise = $.ajax({
-			url: config.webAPIRoot + defaultSource.sourceKey + '/' + 'vocabulary/concept/' + id
+			url: config.webAPIRoot + defaultSource.sourceKey + '/vocabulary/concept/' + id
 		});
 		
 		return getConceptPromise;
@@ -69,10 +69,10 @@ define(function (require, exports) {
 	{
 		var repositoryUrl;
 		
-		if (!url)
+		if (url)
 			repositoryUrl = url + 'conceptset/';
 		else
-			repositoryUrl = config.webAPIRoot + 'conceptset/';
+			repositoryUrl = config.webAPIRoot + defaultSource.sourceKey + '/conceptset/';
 		
 		var getConceptSetListPromise = $.ajax({
 			url: repositoryUrl
@@ -83,10 +83,12 @@ define(function (require, exports) {
 	
 	function getConceptSetExpression(id, url)
 	{
-		if (!url)
+		var repositoryUrl;
+		
+		if (url)
 			repositoryUrl = url + 'conceptset/';
 		else
-			repositoryUrl = config.webAPIRoot + 'conceptset/';
+			repositoryUrl = config.webAPIRoot + defaultSource.sourceKey + '/conceptset/';
 
 		repositoryUrl += id + '/expression';
 		
@@ -97,6 +99,62 @@ define(function (require, exports) {
 		return getConceptSetPromise;
 	}
 	
+	function resolveConceptSetExpression(expression, url)
+	{
+		var repositoryUrl;
+		
+		if (url)
+			repositoryUrl = url + 'vocabulary/resolveConceptSetExpression';
+		else
+			repositoryUrl = config.webAPIRoot + defaultSource.sourceKey + '/vocabulary/resolveConceptSetExpression';
+
+		var resolveConceptSetExpressionPromise = $.ajax({
+			url: repositoryUrl,
+			data: JSON.stringify(expression),
+			method: 'POST',
+			contentType: 'application/json'
+		});
+		
+		return resolveConceptSetExpressionPromise;
+	}
+	
+	function getConceptsById(identifiers, url)
+	{
+		var repositoryUrl;
+		
+		if (url)
+			repositoryUrl = url + 'vocabulary/lookup/identifiers';
+		else
+			repositoryUrl = config.webAPIRoot + defaultSource.sourceKey + '/vocabulary/lookup/identifiers';
+
+		var getConceptsByIdPromise = $.ajax({
+			url: repositoryUrl,
+			data: JSON.stringify(identifiers),
+			method: 'POST',
+			contentType: 'application/json'
+		});
+		
+		return getConceptsByIdPromise;
+	}
+
+	function getMappedConceptsById(identifiers, url)
+	{
+		var repositoryUrl;
+		
+		if (url)
+			repositoryUrl = url + 'vocabulary/lookup/mapped';
+		else
+			repositoryUrl = config.webAPIRoot + defaultSource.sourceKey + '/vocabulary/lookup/mapped';
+
+		var getMappedConceptsByIdPromise = $.ajax({
+			url: repositoryUrl,
+			data: JSON.stringify(identifiers),
+			method: 'POST',
+			contentType: 'application/json'
+		});
+		
+		return getMappedConceptsByIdPromise;
+	}	
 
 	var api = {
 		loaded: loadedPromise,
@@ -104,7 +162,10 @@ define(function (require, exports) {
 		getDomains: getDomains,
 		getConcept: getConcept,
 		getConceptSetList: getConceptSetList,
-		getConceptSetExpression: getConceptSetExpression
+		getConceptSetExpression: getConceptSetExpression,
+		resolveConceptSetExpression: resolveConceptSetExpression,
+		getConceptsById: getConceptsById,
+		getMappedConceptsById: getMappedConceptsById
 	}
 
 	return api;

@@ -59,3 +59,54 @@ table.conceptsetviewer th {
 table.conceptsetviewer th.fixed-width {
 	width:75px;
 }
+
+/* facet styles */
+.feFilter {
+	padding-left: 0px;
+}
+
+.feFilter .facetName {
+	padding: 10px 2px 0px 3px;
+	color: #337ab7;
+	font-size: 12px;
+	border-bottom: solid 1px;
+	font-weight: bold;
+}
+
+.feFilter .facetMemberName {
+	font-size: 11px;
+	cursor: pointer;
+	padding: 0px 2px 0px 5px;
+	margin: 1px 0px 1px 0px;
+}
+
+.feFilter .facetMemberName:hover {
+	background-color: #ddd;
+}
+
+.feFilter .facetMemberName.selected {
+	background-color: #F9B813;
+}
+
+.panel-default > .panel-highlighted {
+	background-color: #F9B813;
+	background-image: linear-gradient(to bottom,#F9B813 0,#EFAB00 100%);
+}
+
+.feFilter .facetScrollBox {
+	max-height: 125px;
+	overflow-y: auto;
+	border-bottom: solid 1px #eee;
+	/* border-top: solid 1px #ddd; */
+	margin-bottom: ;
+}
+
+/* concept selection styles */
+td .fa-shopping-cart {
+	color: #ccc;
+	cursor: pointer;
+}
+
+.fa-shopping-cart.selected {
+	color: #F19119;
+}
