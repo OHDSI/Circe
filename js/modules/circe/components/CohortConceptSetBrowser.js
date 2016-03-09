@@ -33,12 +33,21 @@ define(['knockout', 'text!./CohortConceptSetBrowserTemplate.html', 'vocabularypr
 			self.criteriaContext() && self.criteriaContext().conceptSetId(conceptSet.id);
 			self.onActionComplete({action: 'assign', status: 'Success'});			
 		}
-        
+
+		function setDisabledConceptSetButton(action) {
+			if (action && action()) {
+				return action()
+			} else {
+				return false;
+			}
+		}
+                
 		self.criteriaContext = params.criteriaContext;
 		self.cohortConceptSets = params.$raw.cohortConceptSets();
 		self.onActionComplete = params.onActionComplete;
         self.onRespositoryConceptSetSelected = params.onRespositoryConceptSetSelected || defaultRepositoryConceptSetSelected;
         self.onCohortConceptSetSelected = params.onCohortConceptSetSelected || defaultConceptSetSelected;
+        self.disableConceptSetButton = setDisabledConceptSetButton(params.disableConceptSetButton);
 
 		self.loading = ko.observable(false);
 		self.repositoryConceptSets = ko.observableArray();
