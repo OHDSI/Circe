@@ -17,7 +17,7 @@ define(['knockout', 'text!./CohortConceptSetBrowserTemplate.html', 'vocabularypr
 		                name: conceptSet.name,
 		                expression: result
 		            });
-		            self.cohortConceptSets.push(newConceptSet);
+		            params.$raw.cohortConceptSets().push(newConceptSet);
 		            self.criteriaContext() && self.criteriaContext().conceptSetId(newConceptSet.id);
 		            self.onActionComplete({
 		                action: 'load',
@@ -43,7 +43,7 @@ define(['knockout', 'text!./CohortConceptSetBrowserTemplate.html', 'vocabularypr
 		}
                 
 		self.criteriaContext = params.criteriaContext;
-		self.cohortConceptSets = params.$raw.cohortConceptSets();
+		self.cohortConceptSets = params.cohortConceptSets;
 		self.onActionComplete = params.onActionComplete;
         self.onRespositoryConceptSetSelected = params.onRespositoryConceptSetSelected || defaultRepositoryConceptSetSelected;
         self.onCohortConceptSetSelected = params.onCohortConceptSetSelected || defaultConceptSetSelected;
